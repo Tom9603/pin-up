@@ -18,3 +18,9 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd
+/.idea/commandlinetools/Symfony_17_09_2025_13_37.xml
+/.idea/php.xml
+/.idea/Pin-Up.iml
+/.idea/vcs.xml
+/.idea/workspace.xml
