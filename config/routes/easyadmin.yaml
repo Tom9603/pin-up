@@ -1,3 +1,3 @@
 easyadmin:
-    resource: .
+    resource: ../../src/Controller/
     type: easyadmin.routes
