@@ -28,7 +28,7 @@ class Article
     /**
      * @var Collection<int, Media>
      */
-    #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'article')]
+    #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'article', cascade: ['persist', 'remove'])]
     private Collection $medias;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
@@ -44,6 +44,8 @@ class Article
     {
         $this->medias = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->date_publication = new \DateTime();
+
     }
 
     public function getId(): ?int
@@ -158,4 +160,9 @@ class Article
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->title ?? 'Article #'.$this->id;
+    }
+
 }
