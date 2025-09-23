@@ -1,21 +1,14 @@
-
 @import 'variables';
 @import 'mixins';
 
 /* Base */
-
 @import 'base/global';
 @import 'base/typography';
 
 /* Layouts */
-
 @import 'layout/header';
 @import 'layout/footer';
 
 /* Components */
-
 @import 'components/buttons';
 @import 'components/forms';
-
-// Pages
-
