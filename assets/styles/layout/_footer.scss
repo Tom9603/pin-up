@@ -1,0 +1,78 @@
+@import '../abstract/variables';
+
+footer {
+    background-color: $primary-color;
+    color: $secondary-color;
+    position: relative; // pour gérer l'image qui dépasse
+    padding-top: 4rem; // espace pour que le h2 ne colle pas trop à l'image
+    text-align: center;
+
+    img {
+        position: absolute;
+        top: -50px; // l'image sort du footer
+        left: 50%;
+        transform: translateX(-50%);
+        max-height: 120px; // ajuste selon ta maquette
+    }
+
+    h2 {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: $font-size-h2;
+        margin: 0 auto 6rem;
+        display: block;
+    }
+
+    nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); // mobile first : 2 colonnes
+        gap: 2rem 10rem;
+        width: 80%;
+        max-width: 1000px;
+        justify-content: center;
+        text-align: left; // pour les textes
+        margin: 0 auto;
+        padding: 0 2rem;
+
+
+        .socials {
+            grid-column: 1 / -1;
+            text-align: center;
+            justify-self: center;
+            padding-top: 2rem;
+
+            ul {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                padding: 0;
+                margin: 0;
+                list-style: none;
+            }
+        }
+    }
+
+    div {
+
+        h3 {
+            text-transform: uppercase;
+            margin-bottom: 4.5rem;
+            font-weight: bold;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
