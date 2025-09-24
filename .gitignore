@@ -24,3 +24,24 @@
 /.idea/Pin-Up.iml
 /.idea/vcs.xml
 /.idea/workspace.xml
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-bundle ###
+/.idea/dataSources/d59a470b-d5a1-45e4-a5e7-f31548d08176/storage_v2/_src_/schema/information_schema.FNRwLQ.meta
+/.idea/dataSources/d59a470b-d5a1-45e4-a5e7-f31548d08176/storage_v2/_src_/schema/mysql.osA4Bg.meta
+/.idea/dataSources/d59a470b-d5a1-45e4-a5e7-f31548d08176/storage_v2/_src_/schema/performance_schema.kIw0nw.meta
+/.idea/dataSources/d59a470b-d5a1-45e4-a5e7-f31548d08176/storage_v2/_src_/schema/sys.zb4BAA.meta
+/.idea/dataSources/d59a470b-d5a1-45e4-a5e7-f31548d08176.xml
+/.idea/copilot.data.migration.agent.xml
+/.idea/copilot.data.migration.ask.xml
+/.idea/copilot.data.migration.ask2agent.xml
+/.idea/copilot.data.migration.edit.xml
+/.idea/dataSources.local.xml
+/.idea/dataSources.xml
+/.idea/material_theme_project_new.xml
+/.idea/modules.xml
+/.idea/watcherTasks.xml

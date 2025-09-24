@@ -1,6 +1,6 @@
 <footer>
 
-    <img src="#" alt="#">
+    <img src="{{ asset('images/femme 7.png') }}" alt="#">
 
     <h2>comité miss pin-up bretagne</h2>
 
@@ -44,13 +44,15 @@
         <div class="socials">
             <h3>Nos réseaux</h3>
             <ul>
-                <li><a href="#">icône facebook</a></li>
-                <li><a href="#">icône instagram</a></li>
+                <li>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                </li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
             </ul>
         </div>
 
     </nav>
-
+    <p>By Tom Ochietti</p>
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('admin') }}">Administration</a>
     {% endif %}
