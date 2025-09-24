@@ -9,18 +9,21 @@ footer {
 
     img {
         position: absolute;
-        top: -50px; // l'image sort du footer
-        left: 50%;
+        top: -13.2%;
+        left: 23%;
         transform: translateX(-50%);
-        max-height: 120px; // ajuste selon ta maquette
+        max-height: 300px;
     }
 
     h2 {
+        font-family: 'Bebas Neue', sans-serif;
         text-align: center;
         text-transform: uppercase;
         font-size: $font-size-h2;
         margin: 0 auto 6rem;
         display: block;
+        padding: 0 2rem;
+        text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.35);
     }
 
     nav {
@@ -30,7 +33,7 @@ footer {
         width: 80%;
         max-width: 1000px;
         justify-content: center;
-        text-align: left; // pour les textes
+        text-align: left;
         margin: 0 auto;
         padding: 0 2rem;
 
@@ -49,15 +52,21 @@ footer {
                 margin: 0;
                 list-style: none;
             }
+
+            i {
+                font-size: 5rem;
+            }
         }
     }
 
     div {
 
         h3 {
+            font-family: 'Bebas Neue', sans-serif;
             text-transform: uppercase;
             margin-bottom: 4.5rem;
-            font-weight: bold;
+            text-align: center;
+            font-size: $font-size-h3;
         }
 
         ul {
@@ -68,11 +77,8 @@ footer {
         }
 
         li {
-            margin-bottom: 0.5rem;
-        }
-
-        a {
-            text-decoration: none;
+            margin-bottom: 1.5rem;
+            font-family: 'Inter', sans-serif;
         }
     }
 }
