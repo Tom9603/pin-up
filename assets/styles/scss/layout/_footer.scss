@@ -3,8 +3,8 @@
 footer {
     background-color: $primary-color;
     color: $secondary-color;
-    position: relative; // pour gérer l'image qui dépasse
-    padding-top: 4rem; // espace pour que le h2 ne colle pas trop à l'image
+    position: relative;
+    padding-top: 4rem;
     text-align: center;
 
     img {
@@ -13,6 +13,7 @@ footer {
         left: 23%;
         transform: translateX(-50%);
         max-height: 300px;
+        filter: drop-shadow(20px 20px 15px rgba(0, 0, 0, 0.6));
     }
 
     h2 {
@@ -28,7 +29,7 @@ footer {
 
     nav {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); // mobile first : 2 colonnes
+        grid-template-columns: repeat(2, 1fr);
         gap: 2rem 10rem;
         width: 80%;
         max-width: 1000px;
@@ -51,6 +52,7 @@ footer {
                 padding: 0;
                 margin: 0;
                 list-style: none;
+                text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.35);
             }
 
             i {
@@ -67,6 +69,7 @@ footer {
             margin-bottom: 4.5rem;
             text-align: center;
             font-size: $font-size-h3;
+            text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.35);
         }
 
         ul {

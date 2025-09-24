@@ -1,0 +1,34 @@
+@import '../abstract/variables';
+
+header {
+    text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.35);
+}
+
+.menu {
+    background-color: $primary-color;
+    color: $secondary-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3rem;
+    text-transform: uppercase;
+    font-family: 'Limelight', sans-serif;
+
+    .title-main {
+        line-height: 1.2;
+        font-size: 6rem;
+    }
+
+    .title-sub {
+        display: block;
+        font-size: 4rem;
+        letter-spacing: 2px;
+    }
+
+    .menu-icons {
+        display: flex;
+        gap: 1rem;
+        font-size: 4rem;
+    }
+
+}

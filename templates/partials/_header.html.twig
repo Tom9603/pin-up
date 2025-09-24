@@ -1,15 +1,22 @@
-<header>
-    <h1>{% block header_title %}{% endblock %}</h1>
-    <nav>
-        {% block header_nav %}
-            <ul>
-                <li><a href="{{ path('app_home') }}">Accueil</a></li>
-                <li><a href="{{ path('app_event') }}">événement</a></li>
-                <li><a href="{{ path('app_shop') }}">boutique</a></li>
-                <li><a href="{{ path('app_contact') }}">contact</a></li>
-                <li><a href="{{ path('app_login') }}">connexion</a></li>
-                <li><a href="#">notification</a></li>
-            </ul>
-        {% endblock %}
+<header class="site-header">
+
+    <nav class="menu">
+
+        <h1 class="menu-title">
+
+            <span class="title-main">PIN-UP</span>
+            <span class="title-sub">BRETAGNE</span>
+
+        </h1>
+
+        <div class="menu-icons">
+
+            <a href="{{ path('app_login') }}" title="Connexion"> <i class="fa-regular fa-user"></i></a>
+
+            <a href="#" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+
+            <a href="#" title="Menu"><i class="fa fa-bars"></i></a>
+
+        </div>
     </nav>
 </header>
