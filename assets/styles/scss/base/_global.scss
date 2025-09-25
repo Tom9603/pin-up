@@ -1,19 +1,20 @@
 // Mobile first
 
 html, body {
+    background-image: url('../../images/bg.png');
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 16px;
     line-height: 1.5;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;;
 }
 
 main {
     flex: 1;
-    padding: 1rem;
+    padding: 30rem 1rem 1rem;
 }
 
 footer {

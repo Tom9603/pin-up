@@ -1,13 +1,14 @@
-<header class="site-header">
+<header>
+    <div class="overlay"></div>
 
     <nav class="menu">
-
-        <h1 class="menu-title">
-
-            <span class="title-main">PIN-UP</span>
-            <span class="title-sub">BRETAGNE</span>
-
-        </h1>
+        <img src="{{ asset('images/femme 5.png') }}" alt="" class="pinup-img">
+        <p class="menu-title">
+            <a href="{{ path('app_home') }}">
+                <span class="title-main">PIN-UP</span>
+                <span class="title-sub">BRETAGNE</span>
+            </a>
+        </p>
 
         <div class="menu-icons">
 
@@ -15,8 +16,27 @@
 
             <a href="#" title="Notifications"><i class="fa-regular fa-bell"></i></a>
 
-            <a href="#" title="Menu"><i class="fa fa-bars"></i></a>
+            <button class="menu-link hamburger" id="open-menu" title="Menu">
+                <i class="fa fa-bars"></i>
+            </button>
 
         </div>
     </nav>
+
 </header>
+
+{# Action de fermeture du menu #}
+<aside class="side-menu" id="side-menu">
+    <button class="close-btn" id="close-menu" title="Fermer">
+        <i class="fa fa-times"></i>
+    </button>
+    {# Menu hamburger ouvert #}
+    <img src="{{ asset('images/femme 8.png') }}" alt="" class="img-menu">
+    <ul>
+        <li><a href="{{ path('app_home') }}">Accueil</a></li>
+        <li><a href="{{ path('app_event') }}">Événements</a></li>
+        <li><a href="{{ path('app_shop') }}">Boutique</a></li>
+        <li><a href="{{ path('app_contact') }}">Contact</a></li>
+        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+    </ul>
+</aside>
