@@ -2,33 +2,190 @@
 
 header {
     text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.35);
+    position: relative;
 }
 
 .menu {
     background-color: $primary-color;
     color: $secondary-color;
     display: flex;
+    gap: 20rem;
     justify-content: space-between;
     align-items: center;
-    border-radius: 3rem;
+    border-radius: 150px;
     text-transform: uppercase;
-    font-family: 'Limelight', sans-serif;
+    padding: 0.1rem 5rem;
+    width: fit-content;
+    max-width: 78%;
+    margin: 20px auto;
+    box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
+
+    // menu qui suit au scroll
+    position: fixed;
+    top: 8.5rem;
+    z-index: 1000;
+    left: 50%;
+    transform: translateX(-50%);
+
+
+    .pinup-img {
+        position: absolute;
+        top: -143px;
+        left: -10px;
+        height: 250px;
+        z-index: 1100;
+        pointer-events: none;
+        transform: scaleX(-1);
+        filter: drop-shadow(-25px 15px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    .menu-title {
+        margin-left: 2rem;
+        font-family: 'Limelight', sans-serif;
+    }
 
     .title-main {
         line-height: 1.2;
-        font-size: 6rem;
+        font-size: 3.5rem;
     }
 
     .title-sub {
         display: block;
-        font-size: 4rem;
+        font-size: 2.5rem;
         letter-spacing: 2px;
     }
 
     .menu-icons {
+
         display: flex;
         gap: 1rem;
+        margin-left: -3rem;
         font-size: 4rem;
+
+        // Icone du menu déroulant
+        .menu-link {
+            font-size: 4rem;
+            background: none;
+            border: none;
+            color: $secondary-color;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            transition: color 0.2s ease;
+        }
+
+        i {
+            pointer-events: none;
+        }
+    }
+}
+
+.side-menu {
+    position: fixed;
+    top: 9.9rem;
+    left: 46%;
+    width: 450px;
+    background-color: $primary-color;
+    border-radius: 0 90px 0 0;
+    padding: 2rem 1.5rem;
+    box-shadow: 20px 40px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1200;
+    transform: scaleX(0);
+    transform-origin: right center;
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+
+
+    // Liens du menu ouvert
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 2rem 0;
+
+        li {
+            margin: 4rem 0 5rem;
+            text-align: center;
+
+            a {
+                text-transform: uppercase;
+                text-decoration: none;
+                font-size: 3.5rem;
+                color: $secondary-color;
+                transition: color 0.2s ease;
+                font-family: 'Inter', sans-serif !important;
+
+                &:hover {
+                    color: lighten($secondary-color, 15%);
+                    transform: translateX(-5px)
+                }
+            }
+        }
     }
 
+    // Bouton fermer (croix)
+    .close-btn {
+        position: absolute;
+        top: 50px;
+        right: 50px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: $secondary-color;
+    }
+
+    // Image pinup qui apparait avec le menu
+    .img-menu {
+        position: absolute;
+        top: 50%;
+        left: -350px;
+        transform: translateY(-50%) translateX(100px);
+        opacity: 0;
+        filter: drop-shadow(25px 15px 4px rgba(0, 0, 0, 0.3));
+        height: 800px;
+        pointer-events: none;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    // Quand ouvert
+    &.open {
+        transform: scaleX(1);
+        opacity: 1;
+
+        .img-menu {
+            transform: translateY(-50%) translateX(0); // Centrer verticalement l'image quand le menu est ouvert
+            opacity: 1;
+        }
+    }
+
+    &.closing {
+        transform: scaleX(0); // revient à gauche
+        opacity: 0;
+
+        .img-menu {
+            transform: translateY(-50%) translateX(100px); // repart à droite
+            opacity: 0;
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(236, 217, 182, 0.3);
+    backdrop-filter: blur(8px);
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
 }

@@ -51,9 +51,9 @@
         </div>
 
     </nav>
-    <p>© 2025 Tom Ochietti - Tous droits réservés</p>
+    <p class="tom">© 2025 Tom Ochietti - Tous droits réservés</p>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('admin') }}">Administration</a>
+        <a href="{{ path('admin') }}" class="admin">Administration</a>
     {% endif %}
 
 </footer>

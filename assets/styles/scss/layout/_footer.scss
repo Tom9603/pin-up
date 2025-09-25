@@ -9,7 +9,7 @@ footer {
 
     img {
         position: absolute;
-        top: -13.2%;
+        top: -11%;
         left: 23%;
         transform: translateX(-50%);
         max-height: 300px;
@@ -21,7 +21,7 @@ footer {
         text-align: center;
         text-transform: uppercase;
         font-size: $font-size-h2;
-        margin: 0 auto 6rem;
+        margin: 4rem 6rem;
         display: block;
         padding: 0 2rem;
         text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.35);
@@ -30,13 +30,11 @@ footer {
     nav {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem 10rem;
-        width: 80%;
-        max-width: 1000px;
-        justify-content: center;
-        text-align: left;
+        gap: 2rem 6rem;
+        width: 95%;
+        max-width: none;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 0;
 
 
         .socials {
@@ -70,18 +68,24 @@ footer {
             text-align: center;
             font-size: $font-size-h3;
             text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.35);
+            white-space: nowrap;
         }
 
         ul {
+            text-align: left;
             padding: 0;
             margin: 0;
             list-style: none;
-            font-size: 0.9rem;
+            font-size: 2rem;
         }
 
         li {
             margin-bottom: 1.5rem;
             font-family: 'Inter', sans-serif;
         }
+    }
+
+    .admin {
+        font-size: 2rem;
     }
 }
