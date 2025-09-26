@@ -37,6 +37,18 @@
         <li><a href="{{ path('app_event') }}">Événements</a></li>
         <li><a href="{{ path('app_shop') }}">Boutique</a></li>
         <li><a href="{{ path('app_contact') }}">Contact</a></li>
-        <li><a href="{{ path('app_login') }}">Connexion</a></li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+        {% else %}
+            <li><a href="{{ path('app_login') }}">Connexion</a></li>
+        {% endif %}
     </ul>
+    <div class="menu-socials">
+        <ul>
+            <li>
+                <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a>
+            </li>
+            <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+        </ul>
+    </div>
 </aside>

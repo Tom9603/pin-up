@@ -9,12 +9,12 @@ header {
     background-color: $primary-color;
     color: $secondary-color;
     display: flex;
-    gap: 20rem;
+    gap: 5rem;
     justify-content: space-between;
     align-items: center;
     border-radius: 150px;
     text-transform: uppercase;
-    padding: 0.1rem 5rem;
+    padding: 0.1rem 3rem;
     width: fit-content;
     max-width: 78%;
     margin: 20px auto;
@@ -58,9 +58,10 @@ header {
     .menu-icons {
 
         display: flex;
-        gap: 1rem;
-        margin-left: -3rem;
-        font-size: 4rem;
+        align-items: center; // aligne verticalement les icônes
+        gap: 2rem;           // espace normal
+        margin-left: 0;      // supprime le décalage négatif
+        font-size: 3.5rem;
 
         // Icone du menu déroulant
         .menu-link {
@@ -90,19 +91,19 @@ header {
     background-color: $primary-color;
     border-radius: 0 90px 0 0;
     padding: 2rem 1.5rem;
-    box-shadow: 20px 40px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3);
     z-index: 1200;
     transform: scaleX(0);
     transform-origin: right center;
     opacity: 0;
     transition: transform 0.2s ease, opacity 0.2s ease;
 
-
     // Liens du menu ouvert
     ul {
         list-style: none;
         padding: 0;
         margin: 2rem 0;
+        padding-top: 10rem;
 
         li {
             margin: 4rem 0 5rem;
@@ -115,6 +116,8 @@ header {
                 color: $secondary-color;
                 transition: color 0.2s ease;
                 font-family: 'Inter', sans-serif !important;
+                font-weight: 200;
+                text-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
 
                 &:hover {
                     color: lighten($secondary-color, 15%);
@@ -124,14 +127,54 @@ header {
         }
     }
 
+    .menu-socials {
+        margin-top: 7rem;
+        padding-top: 2rem;
+        text-align: center; // pour centrer les icônes
+        position: relative;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 30%; // longueur réduite
+            height: 2px;
+            background-color: $secondary-color;
+            margin: 0 auto 2rem auto; // centré et avec marge en bas
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        li {
+            display: flex;
+        }
+
+        a {
+            font-size: 6rem;
+            color: $secondary-color;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: lighten($secondary-color, 15%);
+            }
+        }
+    }
+
+
     // Bouton fermer (croix)
     .close-btn {
         position: absolute;
-        top: 50px;
-        right: 50px;
+        top: 63px;
+        right: 30px;
         background: none;
         border: none;
-        font-size: 2rem;
+        font-size: 4rem;
         cursor: pointer;
         color: $secondary-color;
     }

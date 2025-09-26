@@ -1,8 +1,14 @@
 // Mobile first
 
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     background-image: url('../../images/bg.png');
     height: 100%;
+    width: 100%;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
     font-family: Inter, sans-serif;
