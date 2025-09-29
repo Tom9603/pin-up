@@ -1,5 +1,18 @@
 @import '../abstract/variables';
 
-p {
+.logo {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 10%;
+    height: auto;
+}
+
+h1 {
+    display: none;
+}
+
+.content {
     font-size: $font-size-p;
+
 }

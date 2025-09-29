@@ -9,20 +9,22 @@ header {
     background-color: $primary-color;
     color: $secondary-color;
     display: flex;
-    gap: 5rem;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
     justify-content: space-between;
     align-items: center;
-    border-radius: 150px;
+    border-radius: 50px;
     text-transform: uppercase;
-    padding: 0.1rem 3rem;
+    padding: 0.2rem 1.2rem;
     width: fit-content;
-    max-width: 78%;
+    min-width: 250px;
+    max-width: 90%;
     margin: 20px auto;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
 
     // menu qui suit au scroll
     position: fixed;
-    top: 8.5rem;
+    top: 2rem;
     z-index: 1000;
     left: 50%;
     transform: translateX(-50%);
@@ -30,9 +32,9 @@ header {
 
     .pinup-img {
         position: absolute;
-        top: -143px;
-        left: -10px;
-        height: 250px;
+        top: -55px;
+        left: 145px;
+        height: 100px;
         z-index: 1100;
         pointer-events: none;
         transform: scaleX(-1);
@@ -40,32 +42,34 @@ header {
     }
 
     .menu-title {
-        margin-left: 2rem;
+        grid-column: 1;
+        margin-right: auto;
         font-family: 'Limelight', sans-serif;
     }
 
     .title-main {
         line-height: 1.2;
-        font-size: 3.5rem;
+        font-size: 1.8rem;
     }
 
     .title-sub {
         display: block;
-        font-size: 2.5rem;
+        font-size: 1.3rem;
         letter-spacing: 2px;
     }
 
     .menu-icons {
-
         display: flex;
+        grid-column: 7;
+        justify-content: flex-end;
         align-items: center; // aligne verticalement les icônes
-        gap: 2rem;           // espace normal
+        gap: 0.5rem;          // espace normal
         margin-left: 0;      // supprime le décalage négatif
-        font-size: 3.5rem;
+        font-size: 2rem;
 
         // Icone du menu déroulant
         .menu-link {
-            font-size: 4rem;
+            font-size: 2rem;
             background: none;
             border: none;
             color: $secondary-color;
@@ -73,7 +77,6 @@ header {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.5rem;
             transition: color 0.2s ease;
         }
 
@@ -85,12 +88,19 @@ header {
 
 .side-menu {
     position: fixed;
-    top: 9.9rem;
-    left: 46%;
-    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    top: 2.2rem;
+    left: auto;
+    right:0;
+    bottom: 0;
+    width: 50vw;
+    height: 100vh;
+    max-width: 250px;
     background-color: $primary-color;
-    border-radius: 0 90px 0 0;
-    padding: 2rem 1.5rem;
+    border-radius: 0 50px 0 0;
+    padding: 8rem 1rem 1rem;
     box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.3);
     z-index: 1200;
     transform: scaleX(0);
@@ -102,34 +112,33 @@ header {
     ul {
         list-style: none;
         padding: 0;
-        margin: 2rem 0;
-        padding-top: 10rem;
+        margin: 0 0 1rem 0;
+
 
         li {
-            margin: 4rem 0 5rem;
+            margin: 1rem 0 1.5rem;
             text-align: center;
+
 
             a {
                 text-transform: uppercase;
                 text-decoration: none;
-                font-size: 3.5rem;
+                font-size: 1rem;
                 color: $secondary-color;
                 transition: color 0.2s ease;
                 font-family: 'Inter', sans-serif !important;
-                font-weight: 200;
+                font-weight: 400;
                 text-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
 
                 &:hover {
                     color: lighten($secondary-color, 15%);
-                    transform: translateX(-5px)
+                    transform: translateX(-5px);
                 }
             }
         }
     }
 
     .menu-socials {
-        margin-top: 7rem;
-        padding-top: 2rem;
         text-align: center; // pour centrer les icônes
         position: relative;
 
@@ -139,13 +148,13 @@ header {
             width: 30%; // longueur réduite
             height: 2px;
             background-color: $secondary-color;
-            margin: 0 auto 2rem auto; // centré et avec marge en bas
+            margin: 0 auto 0.5rem auto; // centré et avec marge en bas
         }
 
         ul {
             display: flex;
             justify-content: center;
-            gap: 4rem;
+            gap: 2rem;
             padding: 0;
             margin: 0;
             list-style: none;
@@ -156,13 +165,9 @@ header {
         }
 
         a {
-            font-size: 6rem;
+            font-size: 2rem;
             color: $secondary-color;
             transition: color 0.2s ease;
-
-            &:hover {
-                color: lighten($secondary-color, 15%);
-            }
         }
     }
 
@@ -170,11 +175,11 @@ header {
     // Bouton fermer (croix)
     .close-btn {
         position: absolute;
-        top: 63px;
-        right: 30px;
+        top: 33px;
+        right: 20px;
         background: none;
         border: none;
-        font-size: 4rem;
+        font-size: 1.5rem;
         cursor: pointer;
         color: $secondary-color;
     }
@@ -182,14 +187,20 @@ header {
     // Image pinup qui apparait avec le menu
     .img-menu {
         position: absolute;
-        top: 50%;
-        left: -350px;
+        top: 63.5%;
+        left: -175px;
         transform: translateY(-50%) translateX(100px);
         opacity: 0;
         filter: drop-shadow(25px 15px 4px rgba(0, 0, 0, 0.3));
-        height: 800px;
+        height: 400px;
         pointer-events: none;
         transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .logo-light {
+        height: 125px;
+        align-self: center;
+        margin: -1rem 0 2rem;
     }
 
     // Quand ouvert
@@ -226,9 +237,18 @@ header {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;
+    pointer-events: none;
 }
 
 .overlay.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: all;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
 }

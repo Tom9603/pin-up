@@ -12,6 +12,11 @@
                 <li><a href="{{ path('app_home') }}">Accueil</a></li>
                 <li><a href="{{ path('app_event') }}">Événement</a></li>
                 <li><a href="{{ path('app_shop') }}">Boutique</a></li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                {% endif %}
             </ul>
         </div>
 
