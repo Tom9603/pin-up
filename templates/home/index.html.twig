@@ -39,8 +39,10 @@
             <div class="carousel-track">
                 {% for image in images|reverse %}
                     <div class="carousel-item">
-                        <img src="{{ asset('uploads/' ~ image.filename) }}" alt="">
+                        <img src="{{ asset('uploads/media/' ~ image.filename) }}" alt="">
                     </div>
+                {% else %}
+                    <p>Aucune image disponible</p>
                 {% endfor %}
             </div>
             <button class="next">›</button>

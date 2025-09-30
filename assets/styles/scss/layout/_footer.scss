@@ -26,6 +26,10 @@ footer {
         display: block;
         white-space: nowrap;
         text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.35);
+
+        &::after {
+            background-color: $secondary-color;
+        }
     }
 
     nav {

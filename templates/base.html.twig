@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}Welcome!{% endblock %}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
 
 
+    {# CSS compilé par Encore #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
-
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
 </head>
 <body>
-
 {% include 'partials/_header.html.twig' %}
 
 <main>
-    {% block body %}
-    {% endblock %}
+    {% block body %}{% endblock %}
 </main>
 
 {% include 'partials/_footer.html.twig' %}
+
+{# JS compilé par Encore #}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 </body>
 </html>
