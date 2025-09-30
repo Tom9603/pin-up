@@ -11,5 +11,39 @@
 
         <p class="">L'association Pin-Up Bretagne rassemble des passionées de culture rétro, mode vintage et événements festifs. Rejoignez-nous pour des défilés, shootings, salons et moment hauts en couleurs !</p>
     </div>
-
+    <section>
+        <h2>Pourquoi nous rejoindre ?</h2>
+        <div class="grid-home">
+            <div>
+                <img src="{{ asset('images/shoe.png') }}" alt="">
+                <p>Communauté engagée</p>
+            </div>
+            <div>
+                <img src="{{ asset('images/jukebox.png') }}" alt="">
+                <p>événements exclusifs</p>
+            </div>
+            <div>
+                <img src="{{ asset('images/lipstick.png') }}" alt="">
+                <p>Goodies</p>
+            </div>
+            <div>
+                <img src="{{ asset('images/dress.png') }}" alt="">
+                <p>Photoshoot</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Derniers évènements</h2>
+        <div class="carousel">
+            <button class="prev">‹</button>
+            <div class="carousel-track">
+                {% for image in images|reverse %}
+                    <div class="carousel-item">
+                        <img src="{{ asset('uploads/' ~ image.filename) }}" alt="">
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="next">›</button>
+        </div>
+    </section>
 {% endblock %}
