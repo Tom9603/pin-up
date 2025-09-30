@@ -24,11 +24,10 @@ header {
 
     // menu qui suit au scroll
     position: fixed;
-    top: 2rem;
+    top: 3rem;
     z-index: 1000;
     left: 50%;
     transform: translateX(-50%);
-
 
     .pinup-img {
         position: absolute;
@@ -38,7 +37,7 @@ header {
         z-index: 1100;
         pointer-events: none;
         transform: scaleX(-1);
-        filter: drop-shadow(-25px 15px 6px rgba(0, 0, 0, 0.3));
+        filter: drop-shadow(7px 15px 6px rgba(0, 0, 0, 0.3));
     }
 
     .menu-title {
@@ -91,9 +90,9 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    top: 2.2rem;
+    top: 4rem;
     left: auto;
-    right:0;
+    right:1rem;
     bottom: 0;
     width: 50vw;
     height: 100vh;

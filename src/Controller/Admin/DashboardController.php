@@ -12,6 +12,7 @@ use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\User;
+use App\Entity\Image;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
@@ -36,6 +37,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Article', 'fa fa-newspaper', Article::class);
         yield MenuItem::linkToCrud('Commentaire', 'fa fa-comments', Comment::class);
         yield MenuItem::linkToCrud('Utilisateur', 'fa fa-users', User::class);
+        yield MenuItem::linkToCrud('Carrousel', 'fa fa-camera', Image::class);
         yield MenuItem::section('   ');
         yield MenuItem::section('   ');
         yield MenuItem::section('   ');

@@ -7,5 +7,7 @@
  */
 import './styles/scss/main.scss';
 import './js/menu.js';
+import './js/carrousel.js';
+import './js/back-to-top.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
