@@ -24,8 +24,8 @@ header {
 
     // menu qui suit au scroll
     position: fixed;
-    top: 3rem;
-    z-index: 1000;
+    top: 2.5rem;
+    z-index: 9999;
     left: 50%;
     transform: translateX(-50%);
 
@@ -92,10 +92,10 @@ header {
     justify-content: flex-start;
     top: 4rem;
     left: auto;
-    right:1rem;
+    right:1.5rem;
     bottom: 0;
     width: 50vw;
-    height: 100vh;
+    height: 100dvh;
     max-width: 250px;
     background-color: $primary-color;
     border-radius: 0 50px 0 0;
@@ -174,7 +174,7 @@ header {
     // Bouton fermer (croix)
     .close-btn {
         position: absolute;
-        top: 33px;
+        top: 50px;
         right: 20px;
         background: none;
         border: none;
@@ -186,7 +186,7 @@ header {
     // Image pinup qui apparait avec le menu
     .img-menu {
         position: absolute;
-        top: 63.5%;
+        top: 60%;
         left: -175px;
         transform: translateY(-50%) translateX(100px);
         opacity: 0;
@@ -199,7 +199,7 @@ header {
     .logo-light {
         height: 125px;
         align-self: center;
-        margin: -1rem 0 2rem;
+        margin:0 3rem;
     }
 
     // Quand ouvert
@@ -224,12 +224,33 @@ header {
     }
 }
 
+// Augmentation de la taille du bouton de menu
+#open-menu {
+    min-width: 50px;
+    min-height: 70px;
+}
+
+// La croix est cachée au début
+#open-menu .fa-times {
+    display: none;
+}
+
+// Quand le menu est ouvert, on cache le burger
+#open-menu.active .fa-bars {
+    display: none;
+}
+
+// Et on affiche la croix à la place
+#open-menu.active .fa-times {
+    display: inline;
+}
+
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100dvh;
     background: rgb(236, 217, 182, 0.3);
     backdrop-filter: blur(8px);
     z-index: 1100;
@@ -247,7 +268,4 @@ header {
 
 .no-scroll {
     overflow: hidden;
-    height: 100vh;
-    position: fixed;
-    width: 100%;
 }

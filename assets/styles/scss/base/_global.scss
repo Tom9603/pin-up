@@ -6,6 +6,7 @@
 
 html, body {
     background-image: url('../../images/bg.png');
+    z-index: 1;
     min-height: 100%;
     width: 100%;
     overflow-x: hidden;
@@ -15,12 +16,35 @@ html, body {
     font-family: Inter, sans-serif;
     font-size: 16px;
     line-height: 1.5;
+    position: relative;
+        .no-scroll {
+            overflow: hidden;
+            height: 100%;
+        }
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 40px;
+    height: auto;
+    pointer-events: none;
 }
 
 main {
     margin: 0 auto;
     padding: 6rem 1rem 1rem;
     max-width: 900px;
+    position: relative;
 }
 
 footer {
@@ -30,4 +54,20 @@ footer {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+//Button
+.btn {
+    display: inline-block;
+
+    background-color: $primary-color;
+    color: $secondary-color;
+    font-family: $font-family-primary;
+    font-size: $font-size-p*0.8;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
 }
