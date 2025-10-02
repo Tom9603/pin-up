@@ -6,9 +6,15 @@ use App\Repository\EventRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class EventsController extends AbstractController
 {
+    #[Route('/events', name: 'app_events')]
+    public function index(): Response
+    {
+        return $this->render('events/index.html.twig');
+    }
     #[Route('/api/events', name: 'api_events')]
     public function events(EventRepository $eventRepository): JsonResponse
     {

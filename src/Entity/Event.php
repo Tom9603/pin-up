@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\EventRepository;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
-use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EventRepository;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
@@ -28,8 +28,11 @@ class Event
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $end = null;
 
-    #[ORM\ManyToOne(inversedBy: 'event')]
-    private ?Reservation $reservation = null;
+    /**
+     * @var Collection<int, Reservation>
+     */
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Reservation::class, cascade: ['remove'])]
+    private Collection $reservations;
 
     /**
      * @var Collection<int, Media>
@@ -39,6 +42,7 @@ class Event
 
     public function __construct()
     {
+        $this->reservations = new ArrayCollection();
         $this->medias = new ArrayCollection();
     }
 
@@ -55,7 +59,6 @@ class Event
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -67,7 +70,6 @@ class Event
     public function setContent(string $content): static
     {
         $this->content = $content;
-
         return $this;
     }
 
@@ -93,15 +95,30 @@ class Event
         return $this;
     }
 
-    public function getReservation(): ?Reservation
+    /**
+     * @return Collection<int, Reservation>
+     */
+    public function getReservations(): Collection
     {
-        return $this->reservation;
+        return $this->reservations;
     }
 
-    public function setReservation(?Reservation $reservation): static
+    public function addReservation(Reservation $reservation): static
     {
-        $this->reservation = $reservation;
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations->add($reservation);
+            $reservation->setEvent($this);
+        }
+        return $this;
+    }
 
+    public function removeReservation(Reservation $reservation): static
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            if ($reservation->getEvent() === $this) {
+                $reservation->setEvent(null);
+            }
+        }
         return $this;
     }
 
@@ -113,32 +130,22 @@ class Event
         return $this->medias;
     }
 
-    public function setMedias(Collection $medias): static
-    {
-        $this->medias = $medias;
-        return $this;
-    }
-
-
     public function addMedia(Media $media): static
     {
         if (!$this->medias->contains($media)) {
             $this->medias->add($media);
             $media->setEvent($this);
         }
-
         return $this;
     }
 
     public function removeMedia(Media $media): static
     {
         if ($this->medias->removeElement($media)) {
-            // set the owning side to null (unless already changed)
             if ($media->getEvent() === $this) {
                 $media->setEvent(null);
             }
         }
-
         return $this;
     }
 }

@@ -10,12 +10,12 @@
             <img src="{{ asset('images/logo.png') }}" class ="logo" alt="">
 
         <div class="presentation-container">
-            <img src=" {{ asset('images/vinyle.png') }}" class="vinyle" alt="">
             <p class="presentation">
                 L'association Pin-Up Bretagne rassemble des passionées de culture rétro, mode vintage et événements festifs.<br><br>
                 Rejoignez-nous pour des défilés, shootings, salons et moment hauts en couleurs !
+                <img src=" {{ asset('images/vinyle.png') }}" class="vinyle" alt="">
+                <img src=" {{ asset('images/present.png') }}" class="pinup" alt="">
             </p>
-            <img src=" {{ asset('images/present.png') }}" alt="">
         </div>
     </div>
     <section>
@@ -55,5 +55,5 @@
             <button class="next">›</button>
         </div>
     </section>
-    <a href="{{ path('app_event') }}" class="btn">Accéder aux événements</a>
+    <a href="{{ path('app_events') }}" class="btn">Accéder aux événements</a>
 {% endblock %}

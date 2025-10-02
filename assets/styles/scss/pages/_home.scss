@@ -40,24 +40,30 @@ h2 {
     color: $secondary-color;
     padding: 3rem;
     position: relative;
+    overflow: visible;
 }
 
-.presentation-container img:not(.vinyle) {
+.presentation-container {
+    position: relative;
+    display: inline-block;
+}
+
+.presentation img.pinup {
     transform: scaleX(-1);
     width: 70%;
     height: auto;
-    right: -3.5rem;
-    top: 25rem;
+    bottom: -8rem;
+    right: -4rem;
     position: absolute;
     filter: drop-shadow(7px 15px 6px rgba(0, 0, 0, 0.3));
 }
 
-.presentation-container img.vinyle {
+.presentation img.vinyle {
     position: absolute;
     z-index: 1;
     width: 40%;
     left: -2rem;
-    top: 19rem;
+    top: -3.5rem;
     filter: drop-shadow(7px 15px 6px rgba(0, 0, 0, 0.3));
 }
 

@@ -794,6 +794,42 @@
   resolved "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-7.0.1.tgz"
   integrity sha512-RLmb9U6H2rJDnGxEqXxzy7ANPrQz7WK2/eTjdZqyU9uRU5W+FkAec9uU5gTYzFBH7aoXIw2WTJSCJR4KPlReQw==
 
+"@fullcalendar/core@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmjs.org/@fullcalendar/core/-/core-6.1.19.tgz"
+  integrity sha512-z0aVlO5e4Wah6p6mouM0UEqtRf1MZZPt4mwzEyU6kusaNL+dlWQgAasF2cK23hwT4cmxkEmr4inULXgpyeExdQ==
+  dependencies:
+    preact "~10.12.1"
+
+"@fullcalendar/daygrid@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmjs.org/@fullcalendar/daygrid/-/daygrid-6.1.19.tgz"
+  integrity sha512-IAAfnMICnVWPjpT4zi87i3FEw0xxSza0avqY/HedKEz+l5MTBYvCDPOWDATpzXoLut3aACsjktIyw9thvIcRYQ==
+
+"@fullcalendar/interaction@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmjs.org/@fullcalendar/interaction/-/interaction-6.1.19.tgz"
+  integrity sha512-GOciy79xe8JMVp+1evAU3ytdwN/7tv35t5i1vFkifiuWcQMLC/JnLg/RA2s4sYmQwoYhTw/p4GLcP0gO5B3X5w==
+
+"@fullcalendar/list@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmjs.org/@fullcalendar/list/-/list-6.1.19.tgz"
+  integrity sha512-knZHpAVF0LbzZpSJSUmLUUzF0XlU/MRGK+Py2s0/mP93bCtno1k2L3XPs/kzh528hSjehwLm89RgKTSfW1P6cA==
+
+"@fullcalendar/multimonth@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmjs.org/@fullcalendar/multimonth/-/multimonth-6.1.19.tgz"
+  integrity sha512-YYP8o/tjNLFRKhelwiq5ja3Jm3WDf3bfOUHf32JvAWwfotCvZjD7tYv66Nj02mQ8OWWJINa2EQGJxFHgIs14aA==
+  dependencies:
+    "@fullcalendar/daygrid" "~6.1.19"
+
+"@fullcalendar/timegrid@~6.1.19":
+  version "6.1.19"
+  resolved "https://registry.npmjs.org/@fullcalendar/timegrid/-/timegrid-6.1.19.tgz"
+  integrity sha512-OuzpUueyO9wB5OZ8rs7TWIoqvu4v3yEqdDxZ2VcsMldCpYJRiOe7yHWKr4ap5Tb0fs7Rjbserc/b6Nt7ol6BRg==
+  dependencies:
+    "@fullcalendar/daygrid" "~6.1.19"
+
 "@jest/schemas@^29.6.3":
   version "29.6.3"
   resolved "https://registry.npmjs.org/@jest/schemas/-/schemas-29.6.3.tgz"
@@ -2264,6 +2300,18 @@ fsevents@~2.3.2:
   resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
+fullcalendar@^6.1.19:
+  version "6.1.19"
+  resolved "https://registry.npmjs.org/fullcalendar/-/fullcalendar-6.1.19.tgz"
+  integrity sha512-/DsMLYyU1kdOVojaV+ITNH2cHlHtyt6X3m4P6hhH0kwfHZpQbXajJnDbnFIufu/BdE9YcknMRPJj3R7FbPkg1A==
+  dependencies:
+    "@fullcalendar/core" "~6.1.19"
+    "@fullcalendar/daygrid" "~6.1.19"
+    "@fullcalendar/interaction" "~6.1.19"
+    "@fullcalendar/list" "~6.1.19"
+    "@fullcalendar/multimonth" "~6.1.19"
+    "@fullcalendar/timegrid" "~6.1.19"
+
 function-bind@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
@@ -3220,6 +3268,11 @@ postcss@^8.0.9, postcss@^8.1.0, postcss@^8.2.14, postcss@^8.3.0, postcss@^8.4.32
     nanoid "^3.3.11"
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
+
+preact@~10.12.1:
+  version "10.12.1"
+  resolved "https://registry.npmjs.org/preact/-/preact-10.12.1.tgz"
+  integrity sha512-l8386ixSsBdbreOAkqtrwqHwdvR35ID8c3rKPa8lCWuO86dBi32QWHV4vfsZK1utLLFMvw+Z5Ad4XLkZzchscg==
 
 pretty-error@^4.0.0:
   version "4.0.0"

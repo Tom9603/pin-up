@@ -9,5 +9,6 @@ import './styles/scss/main.scss';
 import './js/menu.js';
 import './js/back-to-top.js';
 import './js/stars.js';
+//import './js/calendar.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

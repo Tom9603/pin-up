@@ -19,7 +19,8 @@ class Media
     #[ORM\ManyToOne(inversedBy: 'medias')]
     private ?Article $article = null;
 
-    #[ORM\ManyToOne(inversedBy: 'media')]
+    #[ORM\ManyToOne(inversedBy: 'medias')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Event $event = null;
 
     public function getId(): ?int
@@ -35,7 +36,6 @@ class Media
     public function setFileName(string $fileName): static
     {
         $this->fileName = $fileName;
-
         return $this;
     }
 
@@ -47,7 +47,6 @@ class Media
     public function setArticle(?Article $article): static
     {
         $this->article = $article;
-
         return $this;
     }
 
@@ -59,7 +58,6 @@ class Media
     public function setEvent(?Event $event): static
     {
         $this->event = $event;
-
         return $this;
     }
 }

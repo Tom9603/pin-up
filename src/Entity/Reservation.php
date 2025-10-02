@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ReservationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,18 +18,12 @@ class Reservation
     private ?\DateTime $date_reservation = null;
 
     #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    /**
-     * @var Collection<int, Event>
-     */
-    #[ORM\OneToMany(targetEntity: Event::class, mappedBy: 'reservation')]
-    private Collection $event;
-
-    public function __construct()
-    {
-        $this->event = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'reservations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Event $event = null;
 
     public function getId(): ?int
     {
@@ -46,7 +38,6 @@ class Reservation
     public function setDateReservation(\DateTime $date_reservation): static
     {
         $this->date_reservation = $date_reservation;
-
         return $this;
     }
 
@@ -58,37 +49,17 @@ class Reservation
     public function setUser(?User $user): static
     {
         $this->user = $user;
-
         return $this;
     }
 
-    /**
-     * @return Collection<int, Event>
-     */
-    public function getEvent(): Collection
+    public function getEvent(): ?Event
     {
         return $this->event;
     }
 
-    public function addEvent(Event $event): static
+    public function setEvent(?Event $event): static
     {
-        if (!$this->event->contains($event)) {
-            $this->event->add($event);
-            $event->setReservation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvent(Event $event): static
-    {
-        if ($this->event->removeElement($event)) {
-            // set the owning side to null (unless already changed)
-            if ($event->getReservation() === $this) {
-                $event->setReservation(null);
-            }
-        }
-
+        $this->event = $event;
         return $this;
     }
 }
