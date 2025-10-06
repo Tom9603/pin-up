@@ -8,10 +8,6 @@
     height: auto;
 }
 
-h1 {
-    display: none;
-}
-
 h2 {
     font-size: $font-size-h2*0.9;
     font-family: $font-family-quaternary;
@@ -29,6 +25,10 @@ h2 {
         background: $tertiary-color;
         margin: 0.5rem auto 0;
     }
+}
+
+.home-page {
+    display: none;
 }
 
 .presentation {

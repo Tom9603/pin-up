@@ -18,20 +18,18 @@ class ReservationController extends AbstractController
         $user = $security->getUser();
 
         if (!$user) {
-            return new JsonResponse(['error' => 'Non authentifié'], 401);
+            return new JsonResponse(['error' => 'Veuillez vous connecter pour vous inscrire'], 401);
         }
 
-        // Vérifie si l’utilisateur a déjà réservé cet event
         $existing = $em->getRepository(Reservation::class)->findOneBy([
             'user' => $user,
             'event' => $event,
         ]);
 
         if ($existing) {
-            return new JsonResponse(['error' => 'Déjà réservé'], 400);
+            return new JsonResponse(['error' => 'Vous êtes déjà inscrit'], 400);
         }
 
-        // Création de la réservation
         $reservation = new Reservation();
         $reservation->setUser($user);
         $reservation->setEvent($event);
@@ -43,15 +41,38 @@ class ReservationController extends AbstractController
         return new JsonResponse(['success' => true]);
     }
 
-    #[Route('/api/event/{id}/reservations', name: 'api_event_reservations')]
-    public function list(Event $event): JsonResponse
+    #[Route('/api/unreserve/{id}', name: 'api_unreserve_event', methods: ['DELETE'])]
+    public function unreserve(Event $event, Security $security, EntityManagerInterface $em): JsonResponse
     {
-        $data = [];
-        foreach ($event->getReservations() as $reservation) {
-            $data[] = $reservation->getUser()->getName();
+        $user = $security->getUser();
+
+        if (!$user) {
+            return new JsonResponse(['error' => "Vous ne pouvez pas annuler si vous n'êtes pas connecté", 401]);
         }
 
-        return new JsonResponse($data);
+        $reservation = $em->getRepository(Reservation::class)->findOneBy([
+            'user' => $user,
+            'event' => $event,
+        ]);
+
+        if (!$reservation) {
+            return new JsonResponse(['error' => 'Pas de réservation trouvée'], 404);
+        }
+
+        $em->remove($reservation);
+        $em->flush();
+
+        return new JsonResponse(['success' => true]);
     }
 
+    #[Route('/api/event/{id}/reservations', name: 'api_event_reservations', methods: ['GET'])]
+    public function getReservations(Event $event): JsonResponse
+    {
+        $users = [];
+        foreach ($event->getReservations() as $reservation) {
+            $users[] = $reservation->getUser()->getName();
+        }
+
+        return new JsonResponse($users);
+    }
 }

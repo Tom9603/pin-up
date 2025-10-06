@@ -1,15 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Calendrier{% endblock %}
+{% block title %}Événements{% endblock %}
 
 {% block body %}
-    <h1>Calendrier des événements</h1>
-    <div id="calendar"></div>
+    <div class="events-page">
+        <h1>Calendrier des événements</h1>
+
+        {# Le calendrier doit avoir un conteneur #}
+        <div id="calendar"></div>
+    </div>
+    {# Modale pour afficher les réservations #}
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3>Réservations</h3>
+            <ul id="reservationList"></ul>
+
+            <div id="reservationMessage"></div>
+
+            <button id="reserveBtn">Réserver</button>
+            <button id="unreserveBtn">Annuler ma réservation</button>
+            <button id="closeModal">Fermer</button>
+        </div>
+    </div>
 
     {# FullCalendar via CDN #}
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
-    {# Ton JS perso #}
     <script src="{{ asset('js/calendar.js') }}"></script>
 {% endblock %}

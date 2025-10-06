@@ -31,7 +31,7 @@ class Event
     /**
      * @var Collection<int, Reservation>
      */
-    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Reservation::class, cascade: ['remove'])]
+    #[ORM\OneToMany(mappedBy: 'event', targetEntity: Reservation::class)]
     private Collection $reservations;
 
     /**

@@ -1,0 +1,96 @@
+/****************************************** FULLCALENDAR ******************************************/
+.events-page {
+
+    h1 {
+        font-size: 2rem;
+        color: $tertiary-color;
+        font-family: $font-family-quaternary;
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    h2 {
+        text-transform: uppercase;
+        position: static;
+        padding-right: 4rem;
+
+        // Reset le flou derrière mon titre
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        filter: none !important;
+        background: transparent !important;
+
+        // Reset l'effet sous le titre'
+        &::after {
+            content: none !important;
+        }
+    }
+
+    //
+    .fc {
+        background: rgba(253, 245, 230, 0.8); /* couleur semi-transparente */
+        backdrop-filter: blur(10px);          /* applique le flou */
+        -webkit-backdrop-filter: blur(10px);  /* pour Safari */
+        border-radius: 1rem;
+        padding: 2rem;
+    }
+
+    .fc-toolbar-chunk .fc-button {
+        margin: 0.5rem 0.5rem;
+
+    }
+}
+
+/****************************************** MODALE ******************************************/
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    width: 20rem;
+    min-height: 15.625rem;
+    text-align: center;
+    box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.3);
+}
+
+#closeModal {
+    margin-top: 0.9375rem;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    background: #333;
+    color: white;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+}
+
+#closeModal:hover {
+    background: #555;
+}
+
+#reservationMessage {
+    font-size: 0.875rem;
+    margin: 0.625rem 0;
+    min-height: 1.5rem;
+    font-weight: normal;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
+#reservationList {
+    text-align: left;
+    padding-left: 1.25rem;
+    margin: 0.625rem 0;
+    list-style-type: disc;
+}

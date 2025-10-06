@@ -7,26 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
             locale: 'fr',
             events: '/api/events',
 
+            headerToolbar: {
+                left: 'title',
+                center: '',
+                right: 'prev,next today'
+            },
+
             eventClick: function(info) {
                 let eventId = info.event.id;
 
-                // Première question : réserver ?
-                if (confirm("Voulez-vous réserver cet événement ?")) {
-                    fetch(`/api/reserve/${eventId}`, {
-                        method: "POST"
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.success) {
-                                alert("Réservation réussie !");
-                            } else {
-                                alert("Erreur : " + data.error);
-                            }
-                        })
-                        .catch(() => alert("Erreur serveur"));
-                }
+                // On stocke l'ID de l'événement dans un data-attribute
+                document.getElementById('modal').dataset.eventId = eventId;
 
-                // Ensuite on affiche la modale avec les inscrits
+                // On récupère la liste des réservations
                 fetch(`/api/event/${eventId}/reservations`)
                     .then(res => res.json())
                     .then(data => {
@@ -36,16 +29,61 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (data.length === 0) {
                             list.innerHTML = "<li>Aucune réservation</li>";
                         } else {
-                            data.forEach(email => {
-                                list.innerHTML += `<li>${email}</li>`;
+                            data.forEach(user => {
+                                list.innerHTML += `<li>${user}</li>`;
                             });
                         }
 
-                        document.getElementById('modal').style.display = "block";
+                        // Efface les anciens messages
+                        document.getElementById('reservationMessage').innerText = "";
+
+                        // Ouvre la modale
+                        document.getElementById('modal').style.display = "flex";
                     });
             }
         });
 
         calendar.render();
+
+        // Bouton Réserver
+        document.getElementById('reserveBtn').addEventListener('click', function() {
+            let eventId = document.getElementById('modal').dataset.eventId;
+
+            fetch(`/api/reserve/${eventId}`, { method: "POST" })
+                .then(res => res.json())
+                .then(data => {
+                    let msg = document.getElementById('reservationMessage');
+                    if (data.success) {
+                        msg.innerText = "Réservation réussie !";
+                        msg.style.color = "green";
+                    } else {
+                        msg.innerText = "Erreur : " + data.error;
+                        msg.style.color = "red";
+                    }
+                });
+        });
+
+        // Bouton Annuler
+        document.getElementById('unreserveBtn').addEventListener('click', function() {
+            let eventId = document.getElementById('modal').dataset.eventId;
+
+            fetch(`/api/unreserve/${eventId}`, { method: "DELETE" })
+                .then(res => res.json())
+                .then(data => {
+                    let msg = document.getElementById('reservationMessage');
+                    if (data.success) {
+                        msg.innerText = "🗑Réservation annulée.";
+                        msg.style.color = "orange";
+                    } else {
+                        msg.innerText = "Erreur : " + data.error;
+                        msg.style.color = "red";
+                    }
+                });
+        });
+
+        // Bouton Fermer
+        document.getElementById('closeModal').addEventListener('click', function () {
+            document.getElementById('modal').style.display = "none";
+        });
     }
 });
