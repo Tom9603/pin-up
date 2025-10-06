@@ -94,3 +94,67 @@
     margin: 0.625rem 0;
     list-style-type: disc;
 }
+
+/****************************************** BLOG ******************************************/
+.blog-section {
+    background: $secondary-color;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 2rem auto;
+    overflow: hidden;
+
+    .category-tabs {
+        display: flex;
+        justify-content: center;
+        background: $primary-color;
+        border-radius: 1.8rem;
+        padding: 1rem;
+        gap: .5rem;
+        margin-bottom: 1rem;
+        box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+
+        .tab-btn {
+            background: transparent;
+            color: $secondary-color;
+            border: none;
+            padding: .9rem 0.6rem;
+            border-radius: 0.7rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+
+            &.active {
+                background: $secondary-color;
+                color: $primary-color;
+            }
+        }
+    }
+
+    .articles-container {
+        .article-card {
+            background: #f7e5c3;
+            border: 2px solid $primary-color;
+            border-radius: 1.4rem;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            color: $primary-color;
+            box-shadow: 2px 3px 5px rgba(0,0,0,0.15);
+
+            h3 {
+                margin: 0;
+                font-size: 1.1rem;
+                font-weight: bold;
+
+            }
+
+            .category-name {
+                font-size: .9rem;
+                text-transform: uppercase;
+                margin-top: .3rem;
+                color: $primary-color;
+            }
+        }
+    }
+}

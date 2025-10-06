@@ -6,10 +6,10 @@
     <div class="events-page">
         <h1>Calendrier des événements</h1>
 
-        {# Le calendrier doit avoir un conteneur #}
+        {# FullCalendar #}
         <div id="calendar"></div>
     </div>
-    {# Modale pour afficher les réservations #}
+    {# Modale pour réservations #}
     <div id="modal" class="modal">
         <div class="modal-content">
             <h3>Réservations</h3>
@@ -22,6 +22,32 @@
             <button id="closeModal">Fermer</button>
         </div>
     </div>
+
+    {# SECTION BLOG #}
+    <h2>Nos actualités</h2>
+    <section class="blog-section">
+
+        <div class="category-tabs">
+            {% for category in categories %}
+                <button class="tab-btn" data-id="{{ category.id }}">{{ category.name|upper }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="articles-container">
+            {% for category in categories %}
+                <div class="articles-list" id="cat-{{ category.id }}" style="display: none;">
+                    {% for article in category.articles %}
+                        <article class="article-card">
+                            <h3>{{ article.title|upper }}</h3>
+                            <p class="category-name">Catégorie : {{ category.name }}</p>
+                        </article>
+                    {% else %}
+                        <p class="no-article">Aucun article dans cette catégorie.</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 
     {# FullCalendar via CDN #}
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
