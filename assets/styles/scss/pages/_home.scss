@@ -2,29 +2,29 @@
 
 .logo {
     width: 60%;
-    display: block;
     margin: 0 auto;
-    padding-bottom: 10%;
+    background: url('../../images/bg.png') center/cover no-repeat;
+    border-radius: 10rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.logo img {
+    display: block;
+    width: 100%;
     height: auto;
 }
 
 h2 {
+    background-image: url('../../images/bg.png');
+    border-radius: 20px;
     font-size: $font-size-h2*0.9;
-    font-family: $font-family-quaternary;
+    font-family: $font-family-secondary;
     color: $tertiary-color;
+    font-weight: $font-weight-regular;
     text-align: center;
-    margin: 4rem 0 4rem;
     position: relative;
     text-shadow: 10px 10px 15px rgba(0, 0, 0, 0.35);
-
-    &::after {
-        content: "";
-        display: block;
-        width: 80px;
-        height: 2px;
-        background: $tertiary-color;
-        margin: 0.5rem auto 0;
-    }
 }
 
 .home-page {
@@ -46,6 +46,7 @@ h2 {
 .presentation-container {
     position: relative;
     display: inline-block;
+    padding-bottom: 3rem;
 }
 
 .presentation img.pinup {
@@ -72,7 +73,8 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 3rem;
     row-gap: 2rem;
-    padding: 5px;
+    padding: 5px 5px 3rem 5px;
+    padding-top: 1rem;
     justify-items: center;
     align-items: center;
     text-align: center;
@@ -111,6 +113,7 @@ h2 {
     margin: auto;
     box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+    padding-bottom: 1rem;
 
     .carousel-track {
         display: flex;

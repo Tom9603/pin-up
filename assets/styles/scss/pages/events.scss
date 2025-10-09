@@ -1,44 +1,70 @@
 /****************************************** FULLCALENDAR ******************************************/
+
+h2 {
+    padding: 0.6rem 0.2rem;
+    font-size: $font-size-h2;
+    font-family: $font-family-primary;
+}
+
 .events-page {
 
-    h1 {
-        font-size: 2rem;
-        color: $tertiary-color;
-        font-family: $font-family-quaternary;
-        text-align: center;
-        margin-bottom: 2rem;
-        position: relative;
-    }
+    position: relative;
 
     h2 {
+        font-family: $font-family-tertiary;
         text-transform: uppercase;
-        position: static;
-        padding-right: 4rem;
-
-        // Reset le flou derrière mon titre
+        font-weight: $font-weight-regular;
+        color: $secondary-color;
+        padding-right: 2rem;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         filter: none !important;
         background: transparent !important;
-
-        // Reset l'effet sous le titre'
         &::after {
-            content: none !important;
+            background-color: transparent !important;
         }
     }
 
-    //
+    #calendar {
+        min-height: 90vh;
+        background: $primary-color;
+        color: $secondary-color;
+        border-radius: 30px;
+        margin-bottom: 4rem;
+    }
+
     .fc {
-        background: rgba(253, 245, 230, 0.8); /* couleur semi-transparente */
-        backdrop-filter: blur(10px);          /* applique le flou */
-        -webkit-backdrop-filter: blur(10px);  /* pour Safari */
-        border-radius: 1rem;
-        padding: 2rem;
+        padding: 1rem;
     }
 
     .fc-toolbar-chunk .fc-button {
-        margin: 0.5rem 0.5rem;
+        margin: 0.2rem;
+        background: $secondary-color;
+        color: $primary-color;
+        border-radius: 12px;
+    }
 
+    .fc-view {
+        background: $secondary-color;
+        color: $tertiary-color;
+        padding: 1rem;
+        border-radius: 15px;
+    }
+
+    .fc-daygrid-event {
+        background: $primary-color;
+        padding: 0.5rem;
+        border-radius: 30px;
+    }
+
+    .pinup-cd {
+        position: absolute;
+        right: -1rem;
+        bottom: -11.35rem;
+        width: 7.7rem;
+        z-index: 5;
+        pointer-events: none;
+        filter: drop-shadow(5px 8px 6px rgba(0, 0, 0, 0.4));
     }
 }
 
@@ -62,6 +88,9 @@
     min-height: 15.625rem;
     text-align: center;
     box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.3);
+    h3 {
+        font-weight: $font-weight-regular;
+    }
 }
 
 #closeModal {
@@ -112,7 +141,7 @@
         border-radius: 1.8rem;
         padding: 1rem;
         gap: .5rem;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
         box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
 
         .tab-btn {
@@ -157,4 +186,65 @@
             }
         }
     }
+}
+
+/****************************************** Article qui déroule ******************************************/
+.article-card {
+    position: relative;
+
+    .article-title {
+        margin: 0;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: $primary-color;
+        transition: color 0.3s ease;
+        display: inline-block;
+
+        &::after {
+            content: "Lire plus";
+            font-size: 0.8rem;
+            margin-left: 2rem;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    .category-name {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: $primary-color;
+        margin-bottom: 0.3rem;
+    }
+
+    .article-content {
+        display: none;
+        margin-top: 0.8rem;
+        background: $primary-color;
+        padding: 0.8rem;
+        border-radius: 0.8rem;
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+        color: white;
+        line-height: 1.4;
+        font-size: 0.95rem;
+
+        // Empêche le dépassement du contenu
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+        max-width: 100%;
+    }
+
+    &.open {
+        .article-content {
+            display: block;
+        }
+
+        .article-title::after {
+            content: "Fermer";
+        }
+    }
+}
+
+h2:first-of-type {
+    margin-top: 0 !important;
 }

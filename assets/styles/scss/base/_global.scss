@@ -23,12 +23,14 @@ html, body {
         }
 }
 
-h1, h2 {
-    border-radius: 3rem;
-    background: transparent;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);  /* pour Safari */
-    padding: 0.7rem 0;
+h1 {
+    display: none;
+}
+
+h2 {
+    padding: 0.6rem 0.2rem;
+    font-size: $font-size-h2;
+    font-family: $font-family-primary;
 }
 
 .stars {

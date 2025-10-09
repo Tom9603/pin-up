@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 right: 'prev,next today'
             },
 
+            buttonText:{
+                today: "Aujourd'hui",
+                prev: "Préc",
+                next: "Suiv",
+            },
             eventClick: function(info) {
                 let eventId = info.event.id;
 
