@@ -2,7 +2,6 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 @import 'abstract/variables';
-@import 'abstract/mixins';
 
 /* Base */
 @import 'base/global';
@@ -12,11 +11,8 @@
 @import 'layout/header';
 @import 'layout/footer';
 
-/* Components */
-@import 'components/buttons';
-@import 'components/forms';
-
 /* Pages */
 @import 'pages/home';
 @import 'pages/events';
 @import 'pages/contact';
+@import 'pages/login';

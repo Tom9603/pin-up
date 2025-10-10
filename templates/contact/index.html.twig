@@ -3,17 +3,28 @@
 {% block title %}Contact{% endblock %}
 
 {% block body %}
-    <div class="contact-page">
+    <section class="contact-page">
+
+        <div class="mail-container">
+            <img src="{{ asset('images/mail.png') }}" alt="">
+        </div>
+
         <h1>Contactez-nous</h1>
 
-        {{ form_start(contactForm, {'method': 'POST'}) }}
-        {{ form_row(contactForm.nom) }}
+        <h2 class="contact">Contactez-nous !</h2>
+
+        <div class="form-container">
+            {{ form_start(contactForm, {'method': 'POST'}) }}
+            {{ form_row(contactForm.nom) }}
             {{ form_row(contactForm.email) }}
             {{ form_row(contactForm.message) }}
             {{ form_row(contactForm.envoyer) }}
-        {% if confirmation %}
-            <p class="success">{{ confirmation }}</p>
-        {% endif %}
-        {{ form_end(contactForm) }}
-    </div>
+            {% if confirmation %}
+                <p class="success">{{ confirmation }}</p>
+            {% endif %}
+            {{ form_end(contactForm) }}
+            <img class ="tel" src="{{ asset('images/tel.png') }}" alt="">
+        </div>
+
+    </section>
 {% endblock %}
