@@ -11,7 +11,6 @@ html, body {
     width: 100%;
     overflow-x: hidden;
     margin: 0;
-    padding: 0;
     padding-top: 5rem;
     font-family: Inter, sans-serif;
     font-size: 16px;
@@ -73,11 +72,20 @@ a {
     background-color: $primary-color;
     color: $secondary-color;
     font-family: $font-family-primary;
-    font-size: $font-size-p*0.8;
+    font-size: $font-size-p*0.6;
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: 12px 24px;
     border-radius: 50px;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+input,
+textarea {
+    transform: scale(0.9);
+}
+
+::placeholder {
+    font-size: 0.9rem;
 }

@@ -1,0 +1,9 @@
+.register-container {
+    background-color: rgba(228, 225, 217, 0.73);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    backdrop-filter: blur(10px);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    border: 1px solid $tertiary-color;
+    padding: 1rem;
+}

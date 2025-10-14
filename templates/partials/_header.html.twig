@@ -12,9 +12,16 @@
 
         <div class="menu-icons">
 
-            <a href="{{ path('app_login') }}" title="Connexion"> <i class="fa-regular fa-user"></i></a>
+            {% if app.user %}
 
             <a href="#" title="Notifications"><i class="fa-regular fa-bell"></i></a>
+            <a href="{{ path('app_profil') }}" title="Connexion"> <i class="fa-regular fa-user"></i></a>
+
+            {% else %}
+            <i class="fa-regular fa-bell" style="visibility: hidden;"></i>
+            <a href="{{ path('app_login') }}" title="Profil"> <i class="fa-regular fa-user"></i></a>
+
+            {% endif %}
 
             <button class="menu-link hamburger" id="open-menu" type="button" title="Menu">
                 <i class="fa fa-bars"></i>

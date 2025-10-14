@@ -9,15 +9,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Lobster&display=swap" rel="stylesheet">
 
-
-    {# CSS compilé par Encore #}
     {% block stylesheets %}
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
-<body>
+
+<body class="{{ body_class|default('') }}">
+
+{% if body_class|default('') != 'login-page' %}
+    {% include 'partials/_header.html.twig' %}
+{% endif %}
+
 <div class="stars"></div>
-{% include 'partials/_header.html.twig' %}
 
 <main>
     {% block body %}{% endblock %}
@@ -25,9 +28,9 @@
 
 {% include 'partials/_footer.html.twig' %}
 
-{# JS compilé par Encore #}
 {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
+
 </body>
 </html>

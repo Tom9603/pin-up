@@ -1,8 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const container = document.querySelector(".stars");
-    const images = ["star6.png"];
+    if (document.body.classList.contains('login-page')) {
+        return;
+    }
 
-    for (let i = 0; i < 40; i++) {
+    const container = document.querySelector(".stars");
+    const images = ["star1.png", "star2.png"];
+
+    for (let i = 0; i < 60; i++) {
         const star = document.createElement("img");
         star.src = "/images/stars/" + images[Math.floor(Math.random() * images.length)];
         star.className = "star";
