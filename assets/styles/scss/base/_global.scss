@@ -84,6 +84,8 @@ a {
 input,
 textarea {
     transform: scale(0.9);
+    width: 90%;
+    border: $tertiary-color;
 }
 
 ::placeholder {

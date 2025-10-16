@@ -1,9 +1,48 @@
 .register-container {
-    background-color: rgba(228, 225, 217, 0.73);
+    background-color: rgba(228, 225, 217, 0.12);
     -webkit-backdrop-filter: blur(10px) saturate(120%);
     backdrop-filter: blur(10px);
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
     border-radius: 30px;
     border: 1px solid $tertiary-color;
     padding: 1rem;
+
+    input {
+        border: $tertiary-color;
+    }
+
+    a {
+        color: $tertiary-color;
+    }
 }
+
+.register-container label {
+    background: none;
+    color: $tertiary-color;
+    font-weight: $font-weight-regular;
+}
+
+input[type="checkbox"] {
+    all: unset;
+    appearance: auto;
+    cursor: pointer;
+    margin: 0;
+    margin-right: 0.15rem;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-left: 0.9rem;
+}
+
+.form-check label {
+    margin: 0;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.log {
+    margin: 2rem 0 1rem 0.5rem;
+}
+

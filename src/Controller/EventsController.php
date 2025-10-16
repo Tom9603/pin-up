@@ -32,12 +32,26 @@ class EventsController extends AbstractController
 
         $data = [];
         foreach ($events as $event) {
+
+            //Pour chaque image
+
+            $imageUrl = null;
+            if (count($event->getMedias()) > 0) {
+                $firstMedia = $event->getMedias()->first();
+                if ($firstMedia && method_exists($firstMedia, 'getFilename')) {
+                    $imageUrl = '/media/' . $firstMedia->getFilename();
+                }
+            }
+
             $data[] = [
                 'id' => $event->getId(),
                 'title' => $event->getTitle(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()?->format('Y-m-d H:i:s'),
-                'content' => $event->getContent(),
+                'extendedProps' => [
+                    'content' => $event->getContent(),
+                    'imageUrl' => $imageUrl,
+                    ]
             ];
         }
 

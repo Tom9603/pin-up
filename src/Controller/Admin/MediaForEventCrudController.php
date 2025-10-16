@@ -6,7 +6,7 @@ use App\Entity\Media;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
-class MediaCrudController extends AbstractCrudController
+class MediaForEventCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
@@ -20,9 +20,11 @@ class MediaCrudController extends AbstractCrudController
                 ->setLabel('Image')
                 ->setUploadDir('public/media/')
                 ->setBasePath('media/')
-                ->setUploadedFileNamePattern('[timestamp]-[slug].[extension]')
-                ->setRequired(false)
-                ->setTemplatePath('admin/fields/media_preview.html.twig'),
+                ->setRequired(true)
+                ->setFormTypeOption('attr', [
+                    'onchange' => "const img=this.closest('.form-widget').querySelector('.image-preview'); if(img && this.files[0]) img.src=window.URL.createObjectURL(this.files[0]);"
+                ])
+                ->setHelp('<img class="image-preview" style="margin-top:10px;max-width:150px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.3);" />'),
         ];
     }
 }

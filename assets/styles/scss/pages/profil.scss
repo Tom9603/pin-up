@@ -1,0 +1,24 @@
+.profil-container {
+    background-color: rgba(228, 225, 217, 0.11);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    backdrop-filter: blur(10px);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    border: 1px solid $tertiary-color;
+    padding: 2rem 1rem 2rem;
+
+    label {
+        all: unset;
+        display: block;
+        background: none;
+        color: $tertiary-color;
+        cursor: pointer;
+        margin-bottom: 1rem;
+        margin-left: 1.2rem;
+    }
+
+    p {
+        margin-top: 1rem;
+        color: green
+    }
+}

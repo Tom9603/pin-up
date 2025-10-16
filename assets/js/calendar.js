@@ -1,94 +1,97 @@
-document.addEventListener('DOMContentLoaded', function() {
-    let calendarEl = document.getElementById('calendar');
+document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
+    if (!calendarEl) return;
 
-    if (calendarEl) {
-        let calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'fr',
-            events: '/api/events',
+    // Conteneur des cards
+    const eventContainer = document.createElement('div');
+    eventContainer.classList.add('event-list');
+    calendarEl.insertAdjacentElement('afterend', eventContainer);
 
-            headerToolbar: {
-                left: 'title',
-                center: '',
-                right: 'prev,next today'
-            },
+    // FullCalendar (header seul, mais on garde la logique standard)
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'fr',
+        events: '/api/events',
+        headerToolbar: { left: 'title', center: '', right: 'prev,next today' },
+        buttonText: { today: "Aujourd'hui", prev: "Précédent", next: "Suivant" },
 
-            buttonText:{
-                today: "Aujourd'hui",
-                prev: "Préc",
-                next: "Suiv",
-            },
-            eventClick: function(info) {
-                let eventId = info.event.id;
+        // Chaque changement de mois -> recharge les cards
+        datesSet() {
+            loadMonthEvents();
+        },
+    });
 
-                // On stocke l'ID de l'événement dans un data-attribute
-                document.getElementById('modal').dataset.eventId = eventId;
+    calendar.render();
 
-                // On récupère la liste des réservations
-                fetch(`/api/event/${eventId}/reservations`)
-                    .then(res => res.json())
-                    .then(data => {
-                        let list = document.getElementById('reservationList');
-                        list.innerHTML = "";
+    function loadMonthEvents() {
+        // Mois/année réellement affichés (pas la plage visible étendue)
+        const center = calendar.getDate();
+        const curMonth = center.getMonth();
+        const curYear = center.getFullYear();
 
-                        if (data.length === 0) {
-                            list.innerHTML = "<li>Aucune réservation</li>";
-                        } else {
-                            data.forEach(user => {
-                                list.innerHTML += `<li>${user}</li>`;
-                            });
-                        }
+        fetch('/api/events')
+            .then(res => res.json())
+            .then(data => {
+                // Filtre strict: même mois + même année
+                const monthEvents = data
+                    .map(e => ({ ...e, _date: new Date(e.start) }))
+                    .filter(e => e._date.getMonth() === curMonth && e._date.getFullYear() === curYear)
+                    .sort((a, b) => a._date - b._date); // tri chronologique
 
-                        // Efface les anciens messages
-                        document.getElementById('reservationMessage').innerText = "";
+                eventContainer.innerHTML = '';
 
-                        // Ouvre la modale
-                        document.getElementById('modal').style.display = "flex";
+                if (monthEvents.length === 0) {
+                    eventContainer.innerHTML = `<p class="no-events">Aucun événement ce mois-ci.</p>`;
+                    return;
+                }
+
+                monthEvents.forEach(event => {
+                    const formattedDate = event._date.toLocaleDateString('fr-FR', {
+                        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
                     });
-            }
-        });
 
-        calendar.render();
+                    const card = document.createElement('div');
+                    card.classList.add('event-card');
 
-        // Bouton Réserver
-        document.getElementById('reserveBtn').addEventListener('click', function() {
-            let eventId = document.getElementById('modal').dataset.eventId;
+                    const hasImg = !!event.extendedProps?.imageUrl;
+                    const imgHtml = hasImg
+                        ? `<img src="${event.extendedProps.imageUrl}"
+                    alt="${event.title}"
+                    class="event-thumb"
+                    loading="lazy"
+                    onerror="this.style.display='none';">`
+                        : '';
 
-            fetch(`/api/reserve/${eventId}`, { method: "POST" })
-                .then(res => res.json())
-                .then(data => {
-                    let msg = document.getElementById('reservationMessage');
-                    if (data.success) {
-                        msg.innerText = "Réservation réussie !";
-                        msg.style.color = "green";
-                    } else {
-                        msg.innerText = "Erreur : " + data.error;
-                        msg.style.color = "red";
-                    }
+                    card.innerHTML = `
+            <div class="event-header">
+              ${imgHtml}
+              <div class="event-meta">
+                <h3 class="event-title">${event.title}</h3>
+                <p class="event-date">${formattedDate}</p>
+              </div>
+            </div>
+            <div class="event-details" style="display:none;">
+              <p>${event.extendedProps?.content || "Pas de description."}</p>
+            </div>
+          `;
+
+                    // Toggle description au clic
+                    card.addEventListener('click', () => {
+                        const details = card.querySelector('.event-details');
+                        const open = details.style.display === 'block';
+                        details.style.display = open ? 'none' : 'block';
+                        card.classList.toggle('open', !open);
+                    });
+
+                    eventContainer.appendChild(card);
                 });
-        });
-
-        // Bouton Annuler
-        document.getElementById('unreserveBtn').addEventListener('click', function() {
-            let eventId = document.getElementById('modal').dataset.eventId;
-
-            fetch(`/api/unreserve/${eventId}`, { method: "DELETE" })
-                .then(res => res.json())
-                .then(data => {
-                    let msg = document.getElementById('reservationMessage');
-                    if (data.success) {
-                        msg.innerText = "🗑Réservation annulée.";
-                        msg.style.color = "orange";
-                    } else {
-                        msg.innerText = "Erreur : " + data.error;
-                        msg.style.color = "red";
-                    }
-                });
-        });
-
-        // Bouton Fermer
-        document.getElementById('closeModal').addEventListener('click', function () {
-            document.getElementById('modal').style.display = "none";
-        });
+            })
+            .catch(err => {
+                console.error('Erreur de chargement des événements :', err);
+                eventContainer.innerHTML = `<p class="no-events">Erreur de chargement des événements.</p>`;
+            });
     }
+
+    // Première charge (mois courant)
+    loadMonthEvents();
 });

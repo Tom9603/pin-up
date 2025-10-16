@@ -52,7 +52,7 @@ class EventCrudController extends AbstractCrudController
 
             CollectionField::new('medias')
                 ->setLabel('Médias')
-                ->useEntryCrudForm(MediaCrudController::class)
+                ->useEntryCrudForm(MediaForEventCrudController::class)
                 ->allowAdd()
                 ->allowDelete()
                 ->setFormTypeOptions([

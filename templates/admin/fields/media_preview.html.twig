@@ -1,7 +1,7 @@
-{% for media in field.value %}
-    <img src="{{ asset('uploads/media/' ~ media.filename) }}"
-         alt="{{ media.filename }}"
-         style="max-width: 150px; max-height: 150px; margin: 5px; border-radius: 5px; box-shadow: 0 0 5px rgba(0,0,0,0.3);" />
+{% if field.value %}
+    <img src="{{ asset('media/' ~ field.value) }}"
+         alt="aperçu"
+         style="max-width: 100px; border-radius: 8px; margin-top: 10px;">
 {% else %}
-    <span>Aucun média</span>
-{% endfor %}
+    <em>Aucune image</em>
+{% endif %}

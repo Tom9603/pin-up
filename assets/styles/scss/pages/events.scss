@@ -1,96 +1,209 @@
-/****************************************** FULLCALENDAR ******************************************/
-
-h2 {
-    padding: 0.6rem 0.2rem;
-    font-size: $font-size-h2;
-    font-family: $font-family-primary;
-}
+/****************************************** CALENDRIER HEADER SEUL ******************************************/
 
 .events-page {
-
     position: relative;
+}
 
-    h2 {
-        font-family: $font-family-tertiary;
-        text-transform: uppercase;
-        font-weight: $font-weight-regular;
-        color: $secondary-color;
-        padding-right: 2rem;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-        filter: none !important;
-        background: transparent !important;
-        &::after {
-            background-color: transparent !important;
-        }
-    }
+/* Masque totalement la grille du calendrier mais garde le header */
+#calendar .fc-view-harness,
+#calendar .fc-scrollgrid,
+#calendar .fc-daygrid,
+#calendar .fc-daygrid-body,
+#calendar .fc-daygrid-day {
+    display: none !important;
+}
 
-    #calendar {
-        min-height: 90vh;
-        background: $primary-color;
-        color: $secondary-color;
-        border-radius: 30px;
-        margin-bottom: 4rem;
-    }
+#calendar {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 0;
+}
 
-    .fc {
-        padding: 1rem;
-    }
+.fc-toolbar {
+    position: relative;
+    display: block !important;
+    background-color: $primary-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    padding: 0.4rem 1rem 3.2rem; /* espace pour les boutons en bas */
+    margin-bottom: 2rem;
+    text-align: center;
+}
 
-    .fc-toolbar-chunk .fc-button {
-        margin: 0.2rem;
-        background: $secondary-color;
-        color: $primary-color;
-        border-radius: 12px;
-    }
+/* Titre du mois/année en haut */
+.fc-toolbar-title {
+    font-family: $font-family-secondary;
+    background: none;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: $secondary-color;
+}
 
-    .fc-view {
-        background: $secondary-color;
-        color: $tertiary-color;
-        padding: 1rem;
-        border-radius: 15px;
-    }
+/* Boutons centrés et fixés en bas */
+.fc-toolbar-chunk:last-child {
+    position: absolute;
+    bottom: 0.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
 
-    .fc-daygrid-event {
-        background: $primary-color;
-        padding: 0.5rem;
-        border-radius: 30px;
-    }
+/* Espace entre les boutons */
+.fc-toolbar-chunk:last-child .fc-button:not(:last-child) {
+    margin-right: 0.6rem;
+}
 
-    .pinup-cd {
-        position: absolute;
-        right: -1rem;
-        bottom: -11.35rem;
-        width: 7.7rem;
-        z-index: 5;
-        pointer-events: none;
-        filter: drop-shadow(5px 8px 6px rgba(0, 0, 0, 0.4));
-    }
+
+/* Style des boutons */
+.fc-button {
+    background: $secondary-color !important;
+    color: $tertiary-color !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 0.4rem 0.8rem !important;
+    font-size: 0.85rem;
+    transition: 0.3s ease;
+}
+
+.fc-today-button {
+    background: $secondary-color !important;
+    color: $tertiary-color !important;
+}
+
+/****************************************** LISTE D'ÉVÉNEMENTS (CARDS MODERNES BLANCHES) ******************************************/
+
+.event-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+
+/* Structure de la carte */
+.event-card {
+    background: #ffffff;
+    border: 2px solid #e6d0c4;
+    border-radius: 1rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+}
+
+.event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* En-tête : image + infos */
+.event-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* Image miniature */
+.event-thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: 0.8rem;
+    object-fit: cover;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Zone texte */
+.event-meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.event-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: #a13b2d;
+    text-transform: uppercase;
+}
+
+.event-date {
+    font-size: 0.9rem;
+    color: #6c4b3c;
+    margin-top: 0.3rem;
+}
+
+/* Contenu caché (description) */
+.event-details {
+    padding: 0.9rem 1rem;
+    border-top: 1px solid #f0e2da;
+    background: #fefcfb;
+    color: #4d2a1b;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+/* Affichage au clic */
+.event-card.open .event-details {
+    display: block;
+}
+
+/* Aucun événement */
+.no-events {
+    text-align: center;
+    font-style: italic;
+    color: $tertiary-color;
+    margin-top: 2rem;
+}
+
+
+/****************************************** FULLCALENDAR IMAGE DE FOND ******************************************/
+
+.fc-daygrid-day {
+    position: relative;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    overflow: hidden;
+}
+
+.fc-daygrid-day-frame {
+    position: relative;
+    z-index: 1; /* pour que le contenu du jour reste au-dessus de l’image */
 }
 
 /****************************************** MODALE ******************************************/
 .modal {
+    inset: 0;
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.6);
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* pour que ça commence en haut */
+    padding: 0;
+    margin: 0;
+    overflow-y: auto; /* permet de scroller si c’est long */
     z-index: 9999;
 }
 
 .modal-content {
     background: #fff;
     padding: 1.25rem;
-    border-radius: 0.5rem;
-    width: 20rem;
-    min-height: 15.625rem;
+    border-radius: 0.8rem;
+    width: 90%;
+    max-width: 22rem;
+    margin: auto;
     text-align: center;
     box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.3);
-    h3 {
-        font-weight: $font-weight-regular;
-    }
+    line-height: 1.5;
+    box-sizing: border-box;
 }
 
 #closeModal {
@@ -118,18 +231,15 @@ h2 {
 }
 
 #reservationList {
+    padding: 0 !important;
     text-align: left;
-    padding-left: 1.25rem;
-    margin: 0.625rem 0;
-    list-style-type: disc;
+    list-style-type: none;
 }
 
 /****************************************** BLOG ******************************************/
 .blog-section {
-    background: $secondary-color;
     padding: 1rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     max-width: 800px;
     margin: 2rem auto;
     overflow: hidden;
@@ -163,7 +273,7 @@ h2 {
 
     .articles-container {
         .article-card {
-            background: #f7e5c3;
+            background: #ffffff;
             border: 2px solid $primary-color;
             border-radius: 1.4rem;
             padding: 0.7rem;
@@ -189,6 +299,7 @@ h2 {
 }
 
 /****************************************** Article qui déroule ******************************************/
+
 .article-card {
     position: relative;
 
@@ -217,15 +328,29 @@ h2 {
     }
 
     .article-content {
-        display: none;
+        display: flex;
+        flex-wrap: wrap; /* passe à la ligne si trop large */
+        gap: 1rem; /* espace entre les images */
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: row;
         margin-top: 0.8rem;
-        background: $primary-color;
         padding: 0.8rem;
         border-radius: 0.8rem;
-        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
-        color: white;
+        color: $tertiary-color;
         line-height: 1.4;
         font-size: 0.95rem;
+        img {
+            display: block;
+            max-width: 100%;
+            max-height: 400px;
+            width: auto;
+            height: auto;
+            margin: 1rem 2rem 1rem 0;
+            border-radius: 10px;
+            object-fit: contain;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
 
         // Empêche le dépassement du contenu
         overflow-wrap: break-word;

@@ -20,7 +20,7 @@ class Media
     private ?Article $article = null;
 
     #[ORM\ManyToOne(inversedBy: 'medias')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)] // ✅ corrigé : peut être null
     private ?Event $event = null;
 
     public function getId(): ?int

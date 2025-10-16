@@ -8,14 +8,12 @@
     <h2>Calendrier événementiel</h2>
     <div class="events-page">
 
-        <img src="{{ asset('images/porte-calendar.png') }}" alt="" class="pinup pinup-cd">
         {# FullCalendar #}
         <div id="calendar"></div>
     </div>
     {# Modale pour réservations #}
     <div id="modal" class="modal">
         <div class="modal-content">
-            <h3>Réservations</h3>
             <ul id="reservationList"></ul>
 
             <div id="reservationMessage"></div>
@@ -41,12 +39,17 @@
                 <div class="articles-list" id="cat-{{ category.id }}" style="display: none;">
                     {% for article in category.articles %}
                         <article class="article-card" data-id="{{ article.id }}">
+
                             <h3 class="article-title">{{ article.title|upper }}</h3>
                             <p class="category-name">Catégorie : {{ category.name }}</p>
 
                             <div class="article-content">
-                                <p>{{ article.content|raw }}</p>
+                                {% if article.medias|length > 0 %}
+                                    <img src="{{ asset('media/' ~ article.medias[0].fileName) }}" alt="{{ article.title }}" class="article-image">
+                                {% endif %}
+                                {{ article.content|raw }}
                             </div>
+
                         </article>
                     {% else %}
                         <p class="no-article">Aucun article dans cette catégorie.</p>
