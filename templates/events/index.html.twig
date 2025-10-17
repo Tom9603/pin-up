@@ -6,20 +6,19 @@
 
     <h1>Calendrier des événements</h1>
     <h2>Calendrier événementiel</h2>
-    <div class="events-page">
 
+    <div class="events-page">
         {# FullCalendar #}
         <div id="calendar"></div>
     </div>
+
     {# Modale pour réservations #}
     <div id="modal" class="modal">
         <div class="modal-content">
             <ul id="reservationList"></ul>
-
             <div id="reservationMessage"></div>
-
-            <button id="reserveBtn">Réserver</button>
-            <button id="unreserveBtn">Annuler ma réservation</button>
+            <button id="reserveBtn">S'inscrire</button>
+            <button id="unreserveBtn">Se désinscrire</button>
             <button id="closeModal">Fermer</button>
         </div>
     </div>
@@ -34,23 +33,53 @@
             {% endfor %}
         </div>
 
-        <div class="articles-container" >
+        <div class="articles-container">
             {% for category in categories %}
                 <div class="articles-list" id="cat-{{ category.id }}" style="display: none;">
                     {% for article in category.articles %}
                         <article class="article-card" data-id="{{ article.id }}">
-
                             <h3 class="article-title">{{ article.title|upper }}</h3>
                             <p class="category-name">Catégorie : {{ category.name }}</p>
+                            <p class="toggle-text"></p>
 
                             <div class="article-content">
                                 {% if article.medias|length > 0 %}
-                                    <img src="{{ asset('media/' ~ article.medias[0].fileName) }}" alt="{{ article.title }}" class="article-image">
+                                    <div class="article-images">
+                                        {% for media in article.medias %}
+                                            <img src="{{ asset('media/' ~ media.fileName) }}" alt="{{ article.title }}" class="article-image">
+                                        {% endfor %}
+                                    </div>
                                 {% endif %}
                                 {{ article.content|raw }}
-                            </div>
 
+                                <div class="comments">
+                                    <h4>Commentaires</h4>
+                                    {% if article.comments|length > 0 %}
+                                        {% for comment in article.comments %}
+                                            <div class="comment">
+                                                <strong>{{ comment.user ? comment.user.name : 'Anonyme' }}</strong>
+                                                <small>– {{ comment.dateComment|date('d/m/Y') }}</small>
+                                                <p>{{ comment.content }}</p>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <p>Aucun commentaire pour le moment.</p>
+                                    {% endif %}
+                                </div>
+
+                                {% if app.user %}
+                                    <form action="{{ path('comment_add', {'articleId': article.id}) }}" method="POST" class="comment-form">
+                                        <textarea name="content" placeholder="Votre commentaire..." required></textarea>
+                                        <button type="submit">Envoyer</button>
+                                    </form>
+                                {% else %}
+                                    <p class="login-notice">
+                                        <a href="{{ path('app_login') }}">Connectez-vous</a> pour laisser un commentaire.
+                                    </p>
+                                {% endif %}
+                            </div>
                         </article>
+
                     {% else %}
                         <p class="no-article">Aucun article dans cette catégorie.</p>
                     {% endfor %}
@@ -63,5 +92,12 @@
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
+    <script>
+        const IS_LOGGED_IN = {{ app.user ? 'true' : 'false' }};
+        const LOGIN_URL = "{{ path('app_login') }}";
+        const USERNAME = "{{ app.user ? app.user.name : '' }}";
+    </script>
+
     <script src="{{ asset('js/calendar.js') }}"></script>
+
 {% endblock %}

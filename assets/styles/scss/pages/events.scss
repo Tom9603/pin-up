@@ -1,10 +1,12 @@
-/****************************************** CALENDRIER HEADER SEUL ******************************************/
+/****************************************** FullCalendar ******************************************/
 
 .events-page {
     position: relative;
 }
 
-/* Masque totalement la grille du calendrier mais garde le header */
+/* Masque totalement la grille du calendrier FullCalendar, pour une version plus compacte avec juste le header et ses boutons,
+permettant de naviguer entre les mois et d'accéder au mois en cours. */
+
 #calendar .fc-view-harness,
 #calendar .fc-scrollgrid,
 #calendar .fc-daygrid,
@@ -27,12 +29,11 @@
     background-color: $primary-color;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 1rem;
-    padding: 0.4rem 1rem 3.2rem; /* espace pour les boutons en bas */
+    padding: 0.4rem 1rem 3.2rem;
     margin-bottom: 2rem;
     text-align: center;
 }
 
-/* Titre du mois/année en haut */
 .fc-toolbar-title {
     font-family: $font-family-secondary;
     background: none;
@@ -42,7 +43,6 @@
     color: $secondary-color;
 }
 
-/* Boutons centrés et fixés en bas */
 .fc-toolbar-chunk:last-child {
     position: absolute;
     bottom: 0.8rem;
@@ -51,13 +51,10 @@
     display: flex;
 }
 
-/* Espace entre les boutons */
 .fc-toolbar-chunk:last-child .fc-button:not(:last-child) {
     margin-right: 0.6rem;
 }
 
-
-/* Style des boutons */
 .fc-button {
     background: $secondary-color !important;
     color: $tertiary-color !important;
@@ -73,7 +70,7 @@
     color: $tertiary-color !important;
 }
 
-/****************************************** LISTE D'ÉVÉNEMENTS (CARDS MODERNES BLANCHES) ******************************************/
+/****************************************** LISTE D'ÉVÉNEMENTS ******************************************/
 
 .event-list {
     display: flex;
@@ -82,7 +79,6 @@
     margin-top: 1rem;
 }
 
-/* Structure de la carte */
 .event-card {
     background: #ffffff;
     border: 2px solid #e6d0c4;
@@ -98,7 +94,6 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* En-tête : image + infos */
 .event-header {
     display: flex;
     align-items: center;
@@ -106,7 +101,7 @@
     padding: 1rem;
 }
 
-/* Image miniature */
+// Image miniature de l'événement
 .event-thumb {
     width: 80px;
     height: 80px;
@@ -116,7 +111,6 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* Zone texte */
 .event-meta {
     display: flex;
     flex-direction: column;
@@ -137,7 +131,7 @@
     margin-top: 0.3rem;
 }
 
-/* Contenu caché (description) */
+// Contenu caché avant le clic
 .event-details {
     padding: 0.9rem 1rem;
     border-top: 1px solid #f0e2da;
@@ -149,12 +143,12 @@
     transition: all 0.3s ease;
 }
 
-/* Affichage au clic */
+// Affichage au clic
 .event-card.open .event-details {
     display: block;
 }
 
-/* Aucun événement */
+// Si aucun événement
 .no-events {
     text-align: center;
     font-style: italic;
@@ -162,36 +156,35 @@
     margin-top: 2rem;
 }
 
-
-/****************************************** FULLCALENDAR IMAGE DE FOND ******************************************/
-
-.fc-daygrid-day {
-    position: relative;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    overflow: hidden;
+.event-reserve {
+    text-align: center;
+    margin-top: 1rem;
 }
 
-.fc-daygrid-day-frame {
-    position: relative;
-    z-index: 1; /* pour que le contenu du jour reste au-dessus de l’image */
+.reserve-button {
+    background-color: #a13b2d;
+    color: #fff;
+    border: none;
+    border-radius: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 /****************************************** MODALE ******************************************/
+
 .modal {
-    inset: 0;
     display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
     justify-content: center;
-    align-items: flex-start; /* pour que ça commence en haut */
-    padding: 0;
-    margin: 0;
-    overflow-y: auto; /* permet de scroller si c’est long */
+    align-items: center;
     z-index: 9999;
 }
+
 
 .modal-content {
     background: #fff;
@@ -206,11 +199,11 @@
     box-sizing: border-box;
 }
 
-#closeModal {
+#closeModal, #reserveBtn, #unreserveBtn {
     margin-top: 0.9375rem;
     padding: 0.5rem 0.75rem;
     border: none;
-    background: #333;
+    background: $primary-color;
     color: white;
     border-radius: 0.3125rem;
     cursor: pointer;
@@ -237,6 +230,7 @@
 }
 
 /****************************************** BLOG ******************************************/
+
 .blog-section {
     padding: 1rem;
     border-radius: 10px;
@@ -298,7 +292,30 @@
     }
 }
 
-/****************************************** Article qui déroule ******************************************/
+.toggle-text {
+    font-size: 0.85rem;
+    color: #a13b2d;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-align: left;
+}
+
+.article-card.open .toggle-text {
+    content: none;
+    color: #6c4b3c;
+}
+
+.article-card.open .toggle-text::after {
+    content: "Fermer";
+}
+
+.article-card:not(.open) .toggle-text::after {
+    content: "Lire plus";
+}
+
+/****************************************** Article blog qui déroule ******************************************/
 
 .article-card {
     position: relative;
@@ -311,13 +328,6 @@
         color: $primary-color;
         transition: color 0.3s ease;
         display: inline-block;
-
-        &::after {
-            content: "Lire plus";
-            font-size: 0.8rem;
-            margin-left: 2rem;
-            transition: transform 0.3s ease;
-        }
     }
 
     .category-name {
@@ -328,9 +338,9 @@
     }
 
     .article-content {
-        display: flex;
-        flex-wrap: wrap; /* passe à la ligne si trop large */
-        gap: 1rem; /* espace entre les images */
+        display: none;
+        flex-wrap: wrap;
+        gap: 1rem;
         align-items: flex-start;
         justify-content: flex-start;
         flex-direction: row;
@@ -340,6 +350,20 @@
         color: $tertiary-color;
         line-height: 1.4;
         font-size: 0.95rem;
+        .article-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+
+            img {
+                max-width: 230px;
+                border-radius: 10px;
+                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+                object-fit: cover;
+            }
+        }
+
         img {
             display: block;
             max-width: 100%;
@@ -361,15 +385,23 @@
 
     &.open {
         .article-content {
-            display: block;
-        }
-
-        .article-title::after {
-            content: "Fermer";
+            display: flex;
         }
     }
 }
 
 h2:first-of-type {
     margin-top: 0 !important;
+}
+
+.comment-form {
+    textarea {
+        width: 100%;
+        min-height: 120px;
+        padding: 0.5rem !important;
+    }
+}
+
+.article-card.open {
+    display: block;
 }
