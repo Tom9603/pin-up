@@ -43,6 +43,7 @@
                             <p class="toggle-text"></p>
 
                             <div class="article-content">
+                                {{ article.content|raw }}
                                 {% if article.medias|length > 0 %}
                                     <div class="article-images">
                                         {% for media in article.medias %}
@@ -50,7 +51,6 @@
                                         {% endfor %}
                                     </div>
                                 {% endif %}
-                                {{ article.content|raw }}
 
                                 <div class="comments">
                                     <h4>Commentaires</h4>

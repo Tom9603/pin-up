@@ -18,17 +18,20 @@
     bottom: -1rem;
 }
 
-label {
-    display: inline-block;
-    width: auto;
-    padding: 1rem 1rem 1rem 1rem;
-    background-image: url('../../images/bg.png');
-    background-size: 1000%;
-    background-position: center;
-    color: $tertiary-color;
+.form-container {
+    background-color: rgba(228, 225, 217, 0.012);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+    backdrop-filter: blur(10px);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
     border-radius: 30px;
-    font-weight: bold;
-    font-size: $font-size-p*0.8;
+    h2 {
+        background: none;
+        font-family: $font-family-quaternary;
+    }
+    label {
+        color: $tertiary-color;
+    }
 }
 
 input, textarea, select {
@@ -76,7 +79,12 @@ button[type="submit"] {
 
 .tel {
     position: absolute;
-    bottom: -10rem;
-    width: 80%;
-    left: 12rem;
+    bottom: 0;
+    right: 0;
+    width: clamp(250px, 50vw, 600px);
+    height: auto;
+    transform: translate(clamp(20%, 25vw, 40%), 25%);
+    object-fit: contain;
+    filter: drop-shadow(7px 10px 6px rgba(0, 0, 0, 0.3));
+    z-index: 10;
 }

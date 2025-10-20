@@ -29,22 +29,31 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     background-color: $primary-color;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 1rem;
-    padding: 0.4rem 1rem 3.2rem;
+    padding: 1rem;
     margin-bottom: 2rem;
     text-align: center;
-}
-
-.fc-toolbar-title {
-    font-family: $font-family-secondary;
-    background: none;
-    font-size: 1.6rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    color: $secondary-color;
+    h2 {
+        background: none;
+        color: $secondary-color;
+        text-transform: uppercase;
+    }
 }
 
 .fc-toolbar-chunk:last-child {
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+
+.fc-toolbar-chunk:last-child {
+    position: relative;
+    flex-wrap: wrap;
     bottom: 0.8rem;
     left: 50%;
     transform: translateX(-50%);
@@ -134,7 +143,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 // Contenu caché avant le clic
 .event-details {
     padding: 0.9rem 1rem;
-    border-top: 1px solid #f0e2da;
+    border-top: 1px solid $primary-color;
     background: #fefcfb;
     color: #4d2a1b;
     font-size: 0.9rem;
@@ -241,29 +250,36 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     .category-tabs {
         display: flex;
         justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
         background: $primary-color;
         border-radius: 1.8rem;
         padding: 1rem;
-        gap: .5rem;
         margin-bottom: 3rem;
         box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+        overflow: hidden;
+    }
 
-        .tab-btn {
-            background: transparent;
-            color: $secondary-color;
-            border: none;
-            padding: .9rem 0.6rem;
-            border-radius: 0.7rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
+    .tab-btn {
+        flex: 1 1 auto;
+        min-width: 90px;
+        max-width: 150px;
+        text-align: center;
+        background: transparent;
+        color: $secondary-color;
+        border: none;
+        padding: .9rem 0.6rem;
+        border-radius: 0.7rem;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
 
             &.active {
                 background: $secondary-color;
                 color: $primary-color;
             }
         }
-    }
 
     .articles-container {
         .article-card {
@@ -337,55 +353,55 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
         margin-bottom: 0.3rem;
     }
 
+    .article-content > * {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box;
+        text-align: left;
+    }
+
     .article-content {
         display: none;
-        flex-wrap: wrap;
+        flex-direction: column; /* texte en haut, images en dessous */
+        align-items: center;
         gap: 1rem;
-        align-items: flex-start;
-        justify-content: flex-start;
-        flex-direction: row;
         margin-top: 0.8rem;
         padding: 0.8rem;
         border-radius: 0.8rem;
         color: $tertiary-color;
-        line-height: 1.4;
+        line-height: 1.5;
         font-size: 0.95rem;
+        width: 100%;
+        box-sizing: border-box;
+
+        p {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+
         .article-images {
             display: flex;
             flex-wrap: wrap;
+            justify-content: center; /* centre les images */
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-top: 1rem;
 
             img {
-                max-width: 230px;
+                width: 80%;
+                max-width: 220px;
                 border-radius: 10px;
                 box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
                 object-fit: cover;
             }
         }
 
-        img {
-            display: block;
-            max-width: 100%;
-            max-height: 400px;
-            width: auto;
-            height: auto;
-            margin: 1rem 2rem 1rem 0;
-            border-radius: 10px;
-            object-fit: contain;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        // Empêche le dépassement du contenu
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        white-space: normal;
-        max-width: 100%;
-    }
-
-    &.open {
-        .article-content {
-            display: flex;
+        p, .comments, .login-notice {
+            width: 100%;
+            text-align: left;
         }
     }
 }
@@ -404,4 +420,8 @@ h2:first-of-type {
 
 .article-card.open {
     display: block;
+}
+
+.article-card.open .article-content {
+    display: flex;
 }

@@ -89,5 +89,18 @@ textarea {
 }
 
 ::placeholder {
+    transform: translateY(-1px);
     font-size: 0.9rem;
+}
+
+label {
+    display: inline-block;
+    width: auto;
+    padding: 1rem 1rem 1rem 1rem;
+    background-size: 1000%;
+    background-position: center;
+    font-family: $font-family-quaternary;
+    border-radius: 30px;
+    font-weight: 400;
+    font-size: $font-size-p*0.8;
 }

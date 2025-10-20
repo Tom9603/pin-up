@@ -31,40 +31,46 @@ h2 {
     display: none;
 }
 
+.presentation-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3rem;
+}
+
 .presentation {
-    font-family: $font-family-secondary;
-    font-size: $font-size-p*0.7;
+    position: relative;
     background-color: $primary-color;
     box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
     border-radius: 50px;
     color: $secondary-color;
+    font-family: $font-family-secondary;
+    font-size: $font-size-p * 0.7;
     padding: 3rem;
-    position: relative;
+    width: 90%;
+    max-width: 500px;
     overflow: visible;
 }
 
-.presentation-container {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 3rem;
-}
-
 .presentation img.pinup {
-    transform: scaleX(-1);
-    width: 70%;
-    height: auto;
-    bottom: -8rem;
-    right: -4rem;
     position: absolute;
+    bottom: 0;
+    right: 0;
+    width: clamp(120px, 22vw, 220px);
+    height: auto;
+    transform: translate(15%, 20%) scale(1.5) scaleX(-1);
+    object-fit: contain;
     filter: drop-shadow(7px 15px 6px rgba(0, 0, 0, 0.3));
 }
 
 .presentation img.vinyle {
     position: absolute;
-    z-index: 1;
-    width: 40%;
-    left: -2rem;
-    top: -3.5rem;
+    top: 0;
+    left: 0;
+    width: clamp(90px, 13vw, 160px); /* taille adaptative sans media */
+    height: auto;
+    transform: translate(-15%, -30%);
+    object-fit: contain;
     filter: drop-shadow(7px 15px 6px rgba(0, 0, 0, 0.3));
 }
 
@@ -108,8 +114,8 @@ h2 {
 .carousel {
     position: relative;
     overflow: hidden;
-    width: 100%;
-    height: 50%;
+    max-width: 800px;
+    height: 400px;
     margin: auto;
     box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
@@ -117,16 +123,22 @@ h2 {
 
     .carousel-track {
         display: flex;
-        overflow-x: auto;
+        overflow: hidden;
         transition: transform 0.3s ease;
+        height: 100%;
     }
 
     .carousel-item {
         flex: 0 0 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         img {
-            object-fit: cover;
             width: 100%;
             height: 100%;
+            object-fit: cover;
             display: block;
         }
     }
@@ -155,4 +167,23 @@ h2 {
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 360px) {
+    .grid-home {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 1.5rem;
+        padding: 0 1rem 2rem 1rem;
+    }
+
+    .grid-home img {
+        width: 40%;
+    }
+
+    .grid-home p {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
 }
