@@ -19,8 +19,8 @@ h2 {
     background-image: url('../../images/bg.png');
     border-radius: 20px;
     font-size: $font-size-h2*0.9;
-    font-family: $font-family-secondary;
-    color: $tertiary-color;
+    font-family: $font-family-primary;
+    color: #a33b2a;
     font-weight: $font-weight-regular;
     text-align: center;
     position: relative;
@@ -74,6 +74,8 @@ h2 {
     filter: drop-shadow(7px 15px 6px rgba(0, 0, 0, 0.3));
 }
 
+/************************** GRID ****************************/
+
 .grid-home {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -90,10 +92,14 @@ h2 {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        min-height: 245px;
+        justify-content: space-between;
     }
+
     img {
         display: block;
-        width: 50%;
+        width: 70%;
+        max-width: 140px;
         height: auto;
         margin-bottom: 1rem;
     }
@@ -102,10 +108,11 @@ h2 {
         font-size: $font-size-p;
         font-family: $font-family-primary;
         background-color: $primary-color;
-        box-shadow: 6px 8px 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
         border-radius: 20px;
         color: $secondary-color;
         padding: 0.75rem;
+        margin-top: auto;
     }
 }
 
@@ -118,6 +125,8 @@ h2 {
     margin: auto;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
 }
 
 .carousel-track {
@@ -137,7 +146,7 @@ h2 {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    background-color: transparent;
+    background-color: black;
 }
 
 .prev, .next {
@@ -166,21 +175,28 @@ h2 {
     margin-right: auto;
     font-size: 1.2rem;
 }
+/************************** MEDIA QUERIES POUR LE GRID EN UNE COLONNE ****************************/
 
 @media (max-width: 360px) {
     .grid-home {
         grid-template-columns: 1fr;
-        column-gap: 0;
-        row-gap: 1.5rem;
+        row-gap: 1rem;
         padding: 0 1rem 2rem 1rem;
     }
 
+    .grid-home div {
+        min-height: auto;
+        margin-bottom: 1.5rem;
+    }
+
     .grid-home img {
-        width: 40%;
+        width: 50%;
+        margin-bottom: 0.5rem;
     }
 
     .grid-home p {
-        font-size: 0.9rem;
-        padding: 0.6rem;
+        font-size: 0.95rem;
+        padding: 0.5rem 0.75rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     }
 }

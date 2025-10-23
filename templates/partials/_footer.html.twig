@@ -12,6 +12,7 @@
                 <li><a href="{{ path('app_home') }}">Accueil</a></li>
                 <li><a href="{{ path('app_events') }}">Événement</a></li>
                 <li><a href="{{ path('app_shop') }}">Boutique</a></li>
+                <li><a href="{{ path('app_contact') }}">Contact</a></li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
                 {% else %}
@@ -23,18 +24,16 @@
         <div>
             <h3>Association</h3>
             <ul>
-                <li><a href="#">Mentions légales</a></li>
-                <li><a href="#">Politique de confidentialité</a></li>
-                <li><a href="#">Politique de cookies</a></li>
-                <li><a href="#">CGV</a></li>
+                <li><a href="{{ path('mentions_legales') }}">Mentions légales</a></li>
+                <li><a href="{{ path('politique_confidentialite') }}">Politique de confidentialité</a></li>
+                <li><a href="{{ path('cgv') }}">CGV</a></li>
             </ul>
         </div>
 
         <div>
             <h3>contact</h3>
-            <ul>
-                <li><a href="{{ path('app_contact') }}">Formulaire de contact</a></li>
-                <li><a href="mailto:misspinupbretagne@gmail.com">Adresse e-mail</a></li>
+            <ul class="mailto">
+                <li><a href="mailto:misspinupbretagne@gmail.com">misspinupbretagne@gmail.com</a></li>
             </ul>
         </div>
 
@@ -42,9 +41,9 @@
             <h3>Nos réseaux</h3>
             <ul>
                 <li>
-                    <a href="https://www.facebook.com/misspinupbretagne/"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/misspinupbretagne/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                 </li>
-                <li><a href="https://www.instagram.com/misspinupbretagne/"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="https://www.instagram.com/misspinupbretagne/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
             </ul>
         </div>
 

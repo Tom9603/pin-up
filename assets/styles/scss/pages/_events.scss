@@ -27,7 +27,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     position: relative;
     display: block !important;
     background-color: $primary-color;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     border-radius: 1rem;
     padding: 1rem;
     margin-bottom: 2rem;
@@ -89,7 +89,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 }
 
 .event-card {
-    background: #ffffff;
+    background: #F5F5F7;
     border: 2px solid #e6d0c4;
     border-radius: 1rem;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
@@ -144,7 +144,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 .event-details {
     padding: 0.9rem 1rem;
     border-top: 1px solid $primary-color;
-    background: #fefcfb;
+    background: #F5F5F7;
     color: #4d2a1b;
     font-size: 0.9rem;
     line-height: 1.45;
@@ -196,7 +196,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 
 
 .modal-content {
-    background: #fff;
+    background: #F5F5F7;
     padding: 1.25rem;
     border-radius: 0.8rem;
     width: 90%;
@@ -206,6 +206,10 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.3);
     line-height: 1.5;
     box-sizing: border-box;
+
+    h3 {
+        font-weight: bold;
+    }
 }
 
 #closeModal, #reserveBtn, #unreserveBtn {
@@ -233,7 +237,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 }
 
 #reservationList {
-    padding: 0 !important;
+    padding: 0;
     text-align: left;
     list-style-type: none;
 }
@@ -257,7 +261,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
         border-radius: 1.8rem;
         padding: 1rem;
         margin-bottom: 3rem;
-        box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         overflow: hidden;
     }
 
@@ -283,7 +287,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 
     .articles-container {
         .article-card {
-            background: #ffffff;
+            background: #F5F5F7;
             border: 2px solid $primary-color;
             border-radius: 1.4rem;
             padding: 0.7rem;
@@ -314,7 +318,6 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     font-weight: bold;
     margin-top: 1rem;
     cursor: pointer;
-    transition: color 0.3s ease;
     text-align: left;
 }
 
@@ -328,7 +331,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 }
 
 .article-card:not(.open) .toggle-text::after {
-    content: "Lire plus";
+    content: "Voir plus";
 }
 
 /****************************************** Article blog qui déroule ******************************************/

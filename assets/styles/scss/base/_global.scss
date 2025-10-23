@@ -104,3 +104,16 @@ label {
     font-weight: 400;
     font-size: $font-size-p*0.8;
 }
+
+.register-container ul {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    text-align: left;
+}
+
+.register-container ul li {
+    text-align: left;
+    margin-left: 0;
+    padding-left: 0;
+}

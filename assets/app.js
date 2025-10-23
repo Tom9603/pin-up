@@ -12,5 +12,6 @@ import './js/stars.js';
 import './js/blog.js';
 import './js/article.js';
 import './js/carrousel.js';
+import './js/bell.js';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

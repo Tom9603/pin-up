@@ -44,21 +44,36 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Mot de passe',
                 'mapped' => false,
                 'attr' =>
-                ['autocomplete' => 'new-password',
+                ['autocomplete' => 'Nouveau mot de passe',
                 'placeholder' => 'Entrez votre mot de passe'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Entez un mot de passe',
                     ]),
                     new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'min' => 8,
+                        'minMessage' => 'Il manque {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
+                    new \Symfony\Component\Validator\Constraints\Regex([
+                        'pattern' => '/[A-Z]/',
+                        'message' => 'Il manque une majuscule.',
+                    ]),
+                    new \Symfony\Component\Validator\Constraints\Regex([
+                        'pattern' => '/[a-z]/',
+                        'message' => 'Il manque une minuscule.',
+                    ]),
+                    new \Symfony\Component\Validator\Constraints\Regex([
+                        'pattern' => '/\d/',
+                        'message' => 'Il manque un chiffre.',
+                    ]),
+                    new \Symfony\Component\Validator\Constraints\Regex([
+                        'pattern' => '/[\W_]/',
+                        'message' => 'Il manque un caractère spécial.',
+                    ]),
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
