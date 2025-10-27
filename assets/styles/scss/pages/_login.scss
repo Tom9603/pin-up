@@ -77,3 +77,38 @@ body.login-page {
         margin-top: 1rem;
     }
 }
+
+/* Media Queries */
+@media (min-width: 640px) and (max-width: 1199px) {
+    body.login-page {
+        background-size: 130% auto;
+        background-position: -5rem -10rem;
+        background-repeat: no-repeat;
+    }
+    .back {
+        margin-left: 5rem
+    }
+}
+
+/* Media Queries */
+@media (min-width: 1200px) {
+    body.login-page {
+        background-size: 90% auto;
+        background-position: 15rem -10rem;
+        background-repeat: no-repeat;
+    }
+    .back {
+        margin-left: 8.5rem
+    }
+}
+
+@media (min-width: 2160px) {
+    body.login-page {
+        background-size: 70% auto;
+        background-position: 40rem -25rem;
+        background-repeat: no-repeat;
+    }
+    .back {
+        margin-left: 9rem;
+    }
+}

@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const star = document.createElement("img");
         star.src = "/images/stars/" + images[Math.floor(Math.random() * images.length)];
         star.className = "star";
+        star.alt = "étoiles décoratives";
 
         star.style.left = Math.random() * 100 + "%";
         star.style.top = Math.random() * 100 + "%";

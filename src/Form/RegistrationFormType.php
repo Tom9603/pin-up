@@ -68,10 +68,6 @@ class RegistrationFormType extends AbstractType
                         'pattern' => '/\d/',
                         'message' => 'Il manque un chiffre.',
                     ]),
-                    new \Symfony\Component\Validator\Constraints\Regex([
-                        'pattern' => '/[\W_]/',
-                        'message' => 'Il manque un caractère spécial.',
-                    ]),
                 ],
             ]);
     }

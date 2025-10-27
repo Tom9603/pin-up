@@ -94,6 +94,8 @@ h2 {
         text-align: center;
         min-height: 245px;
         justify-content: space-between;
+        height: 100%;
+        width: 100%;
     }
 
     img {
@@ -102,6 +104,8 @@ h2 {
         max-width: 140px;
         height: auto;
         margin-bottom: 1rem;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
     }
 
     p {
@@ -113,6 +117,8 @@ h2 {
         color: $secondary-color;
         padding: 0.75rem;
         margin-top: auto;
+        width: 80%;
+        min-height: 60px;
     }
 }
 
@@ -198,5 +204,57 @@ h2 {
         font-size: 0.95rem;
         padding: 0.5rem 0.75rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    }
+}
+/************************** MEDIA QUERIES DESKTOP (1200px et +) ****************************/
+
+@media (min-width: 1200px) {
+
+    h2 {
+        font-size: $font-size-h2*1.5;
+    }
+
+    .logo {
+        width: 30%;
+        margin-bottom: 3rem;
+    }
+
+    .presentation-container {
+        padding-bottom: 5rem;
+    }
+
+    .presentation {
+        font-size: $font-size-p;
+        max-width: 800px;
+        padding: 4rem;
+    }
+
+    .presentation img.pinup {
+        transform: translate(10%, 30%) scale(1.8) scaleX(-1);
+    }
+
+    .presentation img.vinyle {
+        transform: translate(-40%, -40%) scale(1.2);
+    }
+
+    .grid-home {
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 4rem;
+        row-gap: 3rem;
+        padding: 2rem 0 4rem 0;
+    }
+
+    .carousel {
+        max-width: 1000px;
+        height: 400px;
+    }
+
+    .carousel-item {
+        max-height: 400px;
+    }
+
+    .btn {
+        font-size: 1.3rem;
+        margin-top: 5rem;
     }
 }

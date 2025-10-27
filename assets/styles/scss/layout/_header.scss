@@ -21,7 +21,8 @@ header {
     margin: 20px auto;
     box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
 
-    /*********** menu qui suit au scroll ***********/
+    /*********** Menu qui suit au scroll ***********/
+
     position: fixed;
     top: 2.5rem;
     z-index: 9999;
@@ -65,12 +66,14 @@ header {
         display: flex;
         grid-column: 7;
         justify-content: flex-end;
-        align-items: center; // aligne verticalement les icônes
-        gap: 0.3rem;          // espace normal
-        margin-left: 0;      // supprime le décalage négatif
+        align-items: center;
+        gap: 0.3rem;
+        margin-left: 0;
         font-size: 2rem;
+        &:hover {
+            color: lighten($secondary-color, 15%);
+        }
 
-        // Icone du menu déroulant
         .menu-link {
             font-size: 2rem;
             background: none;
@@ -110,7 +113,6 @@ header {
     opacity: 0;
     transition: transform 0.2s ease, opacity 0.2s ease;
 
-    // Liens du menu ouvert
     ul {
         list-style: none;
         padding: 0;
@@ -134,23 +136,22 @@ header {
 
                 &:hover {
                     color: lighten($secondary-color, 15%);
-                    transform: translateX(-5px);
                 }
             }
         }
     }
 
     .menu-socials {
-        text-align: center; // pour centrer les icônes
+        text-align: center;
         position: relative;
 
         &::before {
             content: "";
             display: block;
-            width: 30%; // longueur réduite
+            width: 30%;
             height: 2px;
             background-color: $secondary-color;
-            margin: 0 auto 0.5rem auto; // centré et avec marge en bas
+            margin: 0 auto 0.5rem auto;
         }
 
         ul {
@@ -169,12 +170,9 @@ header {
         a {
             font-size: 2rem;
             color: $secondary-color;
-            transition: color 0.2s ease;
         }
     }
 
-
-    // Bouton fermer (croix)
     .close-btn {
         position: absolute;
         top: 50px;
@@ -186,11 +184,10 @@ header {
         color: $secondary-color;
     }
 
-    // Image pinup qui apparait avec le menu
     .img-menu {
         position: absolute;
         top: 60%;
-        left: -175px;
+        left: -185px;
         transform: translateY(-50%) translateX(100px);
         opacity: 0;
         filter: drop-shadow(25px 15px 4px rgba(0, 0, 0, 0.3));
@@ -205,45 +202,43 @@ header {
         margin:0 3rem;
     }
 
-    // Quand ouvert
     &.open {
         transform: scaleX(1);
         opacity: 1;
 
         .img-menu {
-            transform: translateY(-50%) translateX(0); // Centrer verticalement l'image quand le menu est ouvert
+            transform: translateY(-50%) translateX(0);
             opacity: 1;
         }
     }
 
     &.closing {
-        transform: scaleX(0); // revient à gauche
+        transform: scaleX(0);
         opacity: 0;
 
         .img-menu {
-            transform: translateY(-50%) translateX(100px); // repart à droite
+            transform: translateY(-50%) translateX(100px);
             opacity: 0;
         }
     }
 }
 
-// Augmentation de la taille du bouton de menu
 #open-menu {
     min-width: 50px;
     min-height: 70px;
+    &:hover {
+        color: $quaternary-color;
+    }
 }
 
-// La croix est cachée au début
 #open-menu .fa-times {
     display: none;
 }
 
-// Quand le menu est ouvert, on cache le burger
 #open-menu.active .fa-bars {
     display: none;
 }
 
-// Et on affiche la croix à la place
 #open-menu.active .fa-times {
     display: inline;
 }
@@ -273,29 +268,125 @@ header {
     overflow: hidden;
 }
 
-@media (max-width: 390px) {
+@media (min-width: 640px) and (max-width: 1199px) {
+
     .menu {
-        max-width: 95vw;
-        padding: 0.3rem 0.8rem;
-        gap: 0.8rem;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 700px;
+        width: 90%;
+        border-radius: 50px;
+        .title-main1,
+        .title-main2 {
+            font-size: 2.5rem;
+            margin-right: 0.5rem;
+        }
     }
 
-    .title-main {
-        font-size: 1.4rem;
-    }
-
-    .title-sub {
-        font-size: 1rem;
-        letter-spacing: 1px;
-    }
-
-    .menu-icons {
-        font-size: 1.6rem;
-        gap: 0.2rem;
+    .menu-title {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .pinup-img {
+        position: absolute !important;
+        top: 41% !important;
+        left: 45% !important;
+        transform: scale(1.4) scaleX(-1) !important;
+        height: 110px !important;
+    }
+}
+
+
+/*********** MEDIA QUERIES 1200px et + ***********/
+@media (min-width: 1200px) {
+
+    .menu {
+        max-width: 1300px;
+        width: 90%;
+        padding: 1.5rem 4rem;
+        border-radius: 90px;
+        gap: 3rem;
+        top: 1rem;
         left: 50%;
-        transform: translateX(-30%) scale(0.85); /* recentre et réduit légèrement */
+        transform: translateX(-50%);
+        justify-content: center; /* ✅ centre horizontalement tout le contenu */
+        text-align: center;
+
+        .menu-title {
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .title-main1 {
+            font-size: 4rem;
+            letter-spacing: 1px;
+            margin-right: 1.2rem;
+        }
+        .title-main1,
+        .title-main2 {
+            font-size: 4rem;
+            letter-spacing: 2px;
+        }
+
+        .title-sub {
+            font-size: 2rem;
+            letter-spacing: 4px;
+            margin-top: .3rem;
+        }
+
+        .menu-icons {
+            position: absolute;
+            font-size: 3rem;
+            right: 4rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #open-menu {
+            background: none;
+            border: none;
+            font-size: 3.2rem;
+            cursor: pointer;
+            min-width: 70px;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pinup-img {
+            top: 40px;
+            left: 5%;
+            transform: translateX(-50%) scale(1.6) scaleX(-1);
+            height: 220px;
+        }
+    }
+
+    .side-menu {
+        max-width: 500px;
+        width: 45vw;
+        padding: 14rem 3rem 3rem;
+
+        .img-menu {
+            height: 600px; left: -260px;
+        }
+
+        ul li {
+            margin-bottom: 2rem;
+        }
+        ul li a {
+            font-size: 1.5rem;
+        }
+
+        .logo-light {
+            height: 200px;
+            margin-top: -1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-socials a { font-size: 2.4rem; }
     }
 }

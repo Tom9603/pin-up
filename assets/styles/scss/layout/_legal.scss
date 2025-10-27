@@ -1,6 +1,6 @@
 body.legal-page-body {
     position: relative;
-    background-color: #F5F5F7;
+    background-color: $secondary-color;
     background-image: none;
 
     .stars {
@@ -8,12 +8,12 @@ body.legal-page-body {
     }
 
     header {
-        background: #F5F5F7;
+        background: $secondary-color;
         color: #1D1D1F;
     }
 
     .overlay {
-        background: #F5F5F7;
+        background: $secondary-color;
         backdrop-filter: none;
     }
 
@@ -24,39 +24,45 @@ body.legal-page-body {
         left: 0;
         right: 0;
         height: 180px;
-        background: #F5F5F7;
+        background: $secondary-color;
         z-index: 500;
         pointer-events: none;
     }
 
     main {
         box-shadow: none;
-        background: #F5F5F7;
+        background: $secondary-color;
         text-align: left;
-
+        h1 {
+            color: $primary-color;
+            font-size: 2rem !important;
+            text-transform: uppercase;
+            padding-bottom: 2rem;
+        }
         h2 {
             background: none;
-            color: #1D1D1F;
+            color: $primary-color;
             text-shadow: none;
-            text-align: left; /* ← Force l’alignement à gauche */
+            text-align: left;
             margin-left: 0;
+            font-size: 2rem;
         }
     }
 
     .legal-container {
-        background-color: #F5F5F7;
-        color: #1D1D1F;
+        background-color: $secondary-color;
+        color: #171717;
     }
 }
 
 html:has(body.legal-page-body) {
-    background: #F5F5F7;
+    background: $secondary-color;
     background-image: none;
 }
 body.legal-page-body h1 {
-    display: block !important;  /* remet le h1 visible */
+    display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     text-align: left;
-    margin-bottom: 2rem;        /* un petit espace sous le titre */
+    margin-bottom: 2rem;
 }

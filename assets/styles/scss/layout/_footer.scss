@@ -9,9 +9,9 @@ footer {
 
     img {
         position: absolute;
-        top: -16%;
-        left: 25%;
-        transform: translateX(-50%);
+        bottom: 35.5rem;          /* fixée en bas du footer */
+        left: 0;            /* fixée à gauche */
+        transform: none;    /* on supprime le translate */
         max-height: 150px;
         filter: drop-shadow(20px 20px 15px rgba(0, 0, 0, 0.6));
     }

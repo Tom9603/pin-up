@@ -88,3 +88,34 @@ button[type="submit"] {
     filter: drop-shadow(7px 10px 6px rgba(0, 0, 0, 0.3));
     z-index: 10;
 }
+
+
+@media (min-width: 640px) and (max-width: 1199px) {
+    .form-container label {
+        display: block;
+        margin-left: 1.5rem; /* ✅ décale le label à droite */
+    }
+}
+
+
+/************************** MEDIA QUERIES DESKTOP (1200px et +) ****************************/
+
+@media (min-width: 1200px) {
+    .tel {
+        position: absolute;
+        bottom: 0;
+        left: 45rem;
+        width: clamp(350px, 28vw, 550px);
+        height: auto;
+        transform: translate(20%, 15%);
+        object-fit: contain;
+        z-index: 10;
+        filter: drop-shadow(7px 10px 6px rgba(0, 0, 0, 0.3));
+    }
+
+    .form-container label {
+        display: block;
+        margin-left: 2rem;
+    }
+}
+

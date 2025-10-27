@@ -3,8 +3,9 @@
 {% block title %}Mon profil{% endblock %}
 
 {% block body %}
-    <section class="profil-container">
-        <h1>Modifier mon profil</h1>
+    <section class="profil-container" role="main">
+
+    <h1>Modifier mon profil</h1>
 
         {{ form_start(profilForm) }}
         {{ form_row(profilForm.name) }}
@@ -14,7 +15,7 @@
         {{ form_end(profilForm) }}
 
         {% if message is defined %}
-            <p>{{ message }}</p>
+            <p aria-live="polite">{{ message }}</p>
         {% endif %}
 
     </section>

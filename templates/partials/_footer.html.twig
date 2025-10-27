@@ -1,10 +1,10 @@
-<footer>
+<footer role="contentinfo">
 
-    <img src="{{ asset('images/femme 7.png') }}" alt="#">
+    <img src="{{ asset('images/femme 7.png') }}" alt="Pin-up allongée">
 
     <h2 class="h2-footer">comité miss pin-up bretagne</h2>
 
-    <nav>
+    <nav role="navigation" aria-label="Liens du pied de page">
 
         <div>
             <h3>Navigation</h3>
@@ -41,9 +41,16 @@
             <h3>Nos réseaux</h3>
             <ul>
                 <li>
-                    <a href="https://www.facebook.com/misspinupbretagne/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/misspinupbretagne/" target="_blank" aria-label="Page Facebook du comité Miss Pin-Up Bretagne">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
                 </li>
-                <li><a href="https://www.instagram.com/misspinupbretagne/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+
+                <li>
+                    <a href="https://www.instagram.com/misspinupbretagne/" target="_blank" aria-label="Page Instagram du comité Miss Pin-Up Bretagne">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </li>
             </ul>
         </div>
 

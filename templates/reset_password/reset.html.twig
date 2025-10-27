@@ -3,10 +3,18 @@
 {% block title %}Réinitialisation de mot de passe{% endblock %}
 
 {% block body %}
-    <h1>Réinitialisation de mot de passe</h1>
+
+<section role="main">
+
+    <h1 role="heading" aria-level="1">Réinitialisation de mot de passe</h1>
 
     {{ form_start(resetForm) }}
         {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Valider</button>
+
+    <button class="btn btn-primary" aria-label="Valider la réinitialisation du mot de passe">Valider</button>
+
     {{ form_end(resetForm) }}
+
+</section>
+
 {% endblock %}

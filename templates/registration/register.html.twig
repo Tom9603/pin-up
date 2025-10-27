@@ -4,27 +4,34 @@
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+        <div class="alert alert-danger" role="alert" aria-live="assertive">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Inscripion</h1>
+    <h1>Inscription</h1>
 
     {{ form_errors(registrationForm) }}
-    <section class="register-container">
+    <section class="register-container" role="main">
 
-    {{ form_start(registrationForm) }}
+        {{ form_start(registrationForm) }}
 
         {{ form_row(registrationForm.name) }}
         {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
+
+        <div class="password-wrapper">
+            {{ form_label(registrationForm.plainPassword) }}
+            <div class="password-field">
+                {{ form_widget(registrationForm.plainPassword) }}
+                <i class="fa-solid fa-eye toggle-password"
+                   onclick="togglePassword(this)"
+                   aria-label="Afficher ou masquer le mot de passe"></i>
+            </div>
+            {{ form_errors(registrationForm.plainPassword) }}
+        </div>
+
         <p>
             Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule et un chiffre.
         </p>
-        <ul>
-            <li>
 
-            </li>
-        </ul>
         <div class="form-check">
             {{ form_widget(registrationForm.agreeTerms) }}
             {{ form_label(registrationForm.agreeTerms) }}
@@ -32,10 +39,27 @@
 
         <button type="submit" class="btn">S'inscrire</button>
 
-    {{ form_end(registrationForm) }}
-        <div class ="log">
-            <a href="{{ path('app_login') }}"> Déjà un compte ? Connectez-vous</a>
+        {{ form_end(registrationForm) }}
+
+        <div class="log">
+            <a href="{{ path('app_login') }}">Déjà un compte ? Connectez-vous</a>
         </div>
     </section>
+
+    {# JS POUR L'ŒIL DU MDP #}
+    <script>
+        function togglePassword(icon) {
+            const input = icon.previousElementSibling;
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+            }
+        }
+    </script>
 
 {% endblock %}

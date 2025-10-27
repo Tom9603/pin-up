@@ -105,6 +105,14 @@ label {
     font-size: $font-size-p*0.8;
 }
 
+button,
+button[type="submit"] {
+    cursor: pointer;
+}
+
+
+/********************** REGISTER PAGE **********************/
+
 .register-container ul {
     list-style: none;
     padding-left: 0;
@@ -116,4 +124,51 @@ label {
     text-align: left;
     margin-left: 0;
     padding-left: 0;
+}
+
+/********************** INPUT REGISTER/LOGIN **********************/
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+/* Le champ et l’œil sont ensemble */
+.password-field {
+    position: relative;
+    width: 100%;
+}
+
+/* L’œil reste FIXE */
+.password-field .toggle-password {
+    position: absolute;
+    right: 2.5rem;
+    top: 40%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1rem;
+    color: #333;
+    z-index: 10;
+    background-color: $quaternary-color;
+    border-radius: 50%;
+    padding: 2px;
+    pointer-events: all;
+}
+
+/* L’input garde de la place pour l’œil */
+.password-field input {
+    width: 100%;
+    padding-right: 3rem;
+    border-radius: 10px;
+}
+
+/* Les erreurs sont en dehors : elles ne bougent plus rien */
+.password-wrapper .form-error-message,
+.password-wrapper ul {
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    color: #b30000;
+    font-size: 0.9rem;
+    line-height: 1.2;
 }

@@ -1,8 +1,10 @@
-<header>
-    <div class="overlay"></div>
+<header role="banner">
 
-    <nav class="menu">
-        <img src="{{ asset('images/femme 5.png') }}" alt="" class="pinup-img">
+<div class="overlay"></div>
+
+    <nav class="menu" role="navigation" aria-label="Navigation principale">
+
+    <img src="{{ asset('images/femme 5.png') }}" alt="Pin-up assise" class="pinup-img">
         <p class="menu-title">
             <a href="{{ path('app_home') }}">
                 <span class="title-main1">MISS</span>
@@ -24,9 +26,11 @@
 
             {% endif %}
 
-            <button class="menu-link hamburger" id="open-menu" type="button" title="Menu">
-                <i class="fa fa-bars"></i>
+            <button class="menu-link hamburger" id="open-menu" type="button" title="Menu" aria-controls="side-menu" aria-expanded="false">
+
+            <i class="fa fa-bars"></i>
                 <i class="fa fa-times"></i>
+
             </button>
 
         </div>
@@ -35,10 +39,11 @@
 </header>
 
 {# Action de fermeture du menu #}
-<aside class="side-menu" id="side-menu">
+<aside class="side-menu" id="side-menu" role="navigation" aria-label="Menu latéral">
+
     {# Menu hamburger ouvert #}
-    <img src="{{ asset('images/femme 8.png') }}" alt="" class="img-menu">
-    <img src="{{ asset('images/logo_light.png') }}" alt="" class="logo-light">
+    <img src="{{ asset('images/femme 8.png') }}" alt="Pin-up adossée" class="img-menu">
+    <img src="{{ asset('images/logo_light.png') }}" alt="Logo du menu" class="logo-light">
     <ul>
         <li><a href="{{ path('app_home') }}">Accueil</a></li>
         <li><a href="{{ path('app_events') }}">Événements</a></li>

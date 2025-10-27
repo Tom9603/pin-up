@@ -72,6 +72,9 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     padding: 0.4rem 0.8rem !important;
     font-size: 0.85rem;
     transition: 0.3s ease;
+    &:hover {
+        background: #F5F5F7 !important;
+    }
 }
 
 .fc-today-button {
@@ -163,6 +166,8 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     font-style: italic;
     color: $tertiary-color;
     margin-top: 2rem;
+    background-color: #F5F5F7;
+    padding: 1rem;
 }
 
 .event-reserve {
@@ -281,6 +286,10 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 
             &.active {
                 background: $secondary-color;
+                color: $primary-color;
+            }
+            &:hover {
+                background: #F5F5F7;
                 color: $primary-color;
             }
         }
@@ -427,4 +436,13 @@ h2:first-of-type {
 
 .article-card.open .article-content {
     display: flex;
+}
+
+.no-article {
+    text-align: center;
+    font-style: italic;
+    color: $tertiary-color;
+    margin-top: 2rem;
+    background-color: #F5F5F7;
+    padding: 1rem;
 }

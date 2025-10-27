@@ -1,8 +1,9 @@
-<h1>Réinitialisation de votre mot de passe</h1>
+<h1 role="heading" aria-level="1">Réinitialisation de votre mot de passe</h1>
+
 <p>Bonjour,</p>
 <p>Pour réinitialiser votre mot de passe, cliquez sur le lien suivant :</p>
 
-<a href="{{ app_url ~ path('app_reset_password', { token: resetToken.token }) }}">
+<a href="{{ app_url ~ path('app_reset_password', { token: resetToken.token }) }}" aria-label="Réinitialiser votre mot de passe sur le site Miss Pin-Up Bretagne">
     Réinitialiser mon mot de passe
 </a>
 
