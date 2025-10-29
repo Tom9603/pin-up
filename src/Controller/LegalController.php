@@ -30,4 +30,12 @@ class LegalController extends AbstractController
             'body_class' => 'legal-page-body'
         ]);
     }
+
+    #[Route('/cgu', name: 'cgu')]
+    public function cgu(): Response
+    {
+        return $this->render('legal/cgu.html.twig', [
+            'body_class' => 'legal-page-body'
+        ]);
+    }
 }

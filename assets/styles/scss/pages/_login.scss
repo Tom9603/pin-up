@@ -78,6 +78,13 @@ body.login-page {
     }
 }
 
+.login-error {
+    color: red;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8d7da !important;
+}
+
 /* Media Queries */
 @media (min-width: 640px) and (max-width: 1199px) {
     body.login-page {

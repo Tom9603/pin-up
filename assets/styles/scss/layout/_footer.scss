@@ -9,9 +9,9 @@ footer {
 
     img {
         position: absolute;
-        bottom: 35.5rem;          /* fixée en bas du footer */
-        left: 0;            /* fixée à gauche */
-        transform: none;    /* on supprime le translate */
+        top: -7rem;
+        left: 0;
+        transform: none;
         max-height: 150px;
         filter: drop-shadow(20px 20px 15px rgba(0, 0, 0, 0.6));
     }
@@ -104,5 +104,70 @@ footer {
 }
     .admin {
         font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    footer {
+        margin-top: 6rem;
+        padding: 2rem 0 1rem 0;
+        text-align: center;
+
+        img {
+            top: -5rem;
+            max-height: 120px;
+            left: 2rem;
+        }
+
+        .h2-footer {
+            font-size: $font-size-h2 * 1;
+            padding-top: 1rem;
+            margin-bottom: 4rem;
+
+            &::after {
+                width: 100px;
+                height: 2px;
+            }
+        }
+
+        nav {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            justify-items: center;
+            align-items: start;
+            gap: 2rem;
+            width: 80%;
+            margin: 0 auto;
+            padding: 0;
+
+            div {
+                h3 {
+                    font-size: $font-size-h3 * 0.6;
+                    margin-bottom: 1.5rem;
+                }
+
+                ul {
+                    font-size: 0.95rem;
+                    li {
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+
+            .socials ul {
+                justify-content: center;
+            }
+        }
+
+        .tom {
+            font-size: 0.9rem;
+        }
+
+        .admin {
+            position: absolute;
+            right: 2rem;
+            bottom: 1rem;
+            font-size: 0.9rem;
+        }
     }
 }

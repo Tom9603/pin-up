@@ -135,6 +135,11 @@ h2 {
     border-radius: 10px;
 }
 
+.carousel-section {
+    position: relative; /* référence pour l'image absolue */
+    overflow: visible; /* elle peut dépasser */
+}
+
 .carousel-track {
     display: flex;
     transition: transform 0.3s ease;
@@ -170,6 +175,18 @@ h2 {
 
 .prev { left: 10px; }
 .next { right: 10px; }
+
+.pinup-carrousel {
+    position: absolute;
+    top: 0.8rem;
+    left: 85%;
+    transform: translateX(-50%) scale(1.1);
+    width: 15%;
+    height: auto;
+    z-index: 10;
+    pointer-events: none;
+    filter: drop-shadow(5px 10px 6px rgba(0, 0, 0, 0.4));
+}
 
 /******************************************************/
 
@@ -256,5 +273,37 @@ h2 {
     .btn {
         font-size: 1.3rem;
         margin-top: 5rem;
+    }
+}
+ @media (max-width: 768px) {
+     .carousel-section {
+         position: relative;
+         overflow: visible;
+     }
+
+     .pinup-carrousel {
+         position: absolute;
+         top: 0 !important;
+         left: 0 !important;
+         right: 20% !important;
+         width: clamp(90px, 18vw, 150px);
+         height: auto;
+         transform: translateY(5px);
+         z-index: 10;
+         pointer-events: none;
+         filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+     }
+ }
+
+@media (min-width: 600px) and (max-width: 1200px) {
+
+    .carousel-section {
+        position: relative;
+        overflow: visible;
+    }
+
+    .pinup-carrousel {
+        top: -2.8rem !important;
+        left: 0 !important;
     }
 }

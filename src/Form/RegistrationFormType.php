@@ -31,7 +31,8 @@ class RegistrationFormType extends AbstractType
                 ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => "J'accepte les termes et conditions",
+                'label_html' => true,
+                'label' => "J’ai lu et j’accepte les <a href='/cgu' target='_blank' rel='noopener' class='important'>CGU</a> et la <a href='/politique-de-confidentialite' target='_blank' rel='noopener' class='important'>Politique de confidentialité</a>.",
                 'constraints' => [
                     new IsTrue([
                         'message' => 'Vous devez accepter les termes et conditions.',

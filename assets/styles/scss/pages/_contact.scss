@@ -89,11 +89,16 @@ button[type="submit"] {
     z-index: 10;
 }
 
+.success {
+    color: green;
+    background-color: #d4edda;
+    padding: 1rem;
+}
 
 @media (min-width: 640px) and (max-width: 1199px) {
     .form-container label {
         display: block;
-        margin-left: 1.5rem; /* ✅ décale le label à droite */
+        margin-left: 1.5rem;
     }
 }
 

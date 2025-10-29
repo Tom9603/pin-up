@@ -21,6 +21,7 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     box-shadow: none !important;
     padding: 0 !important;
     margin-bottom: 0;
+    margin-top: 5rem;
 }
 
 .fc-toolbar {
@@ -80,6 +81,21 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 .fc-today-button {
     background: $secondary-color !important;
     color: $tertiary-color !important;
+}
+
+.calendar-image {
+    position: absolute;
+    bottom: 93%;
+    left: 25%;
+    transform: translateX(-50%) rotate(-6deg);
+    width: 40%;
+    z-index: 1;
+}
+
+@media (min-width: 600px) {
+    .calendar-image {
+        bottom: 85%;
+    }
 }
 
 /****************************************** LISTE D'ÉVÉNEMENTS ******************************************/
@@ -446,3 +462,4 @@ h2:first-of-type {
     background-color: #F5F5F7;
     padding: 1rem;
 }
+

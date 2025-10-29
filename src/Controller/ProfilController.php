@@ -39,4 +39,32 @@ class ProfilController extends AbstractController
             'profilForm' => $form->createView(),
         ]);
     }
+
+    #[Route('/profil/delete', name: 'app_profil_delete', methods: ['POST'])]
+    public function delete(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $user = $this->getUser();
+        $password = $request->request->get('password'); // <-- on récupère le champ "password"
+
+        if (!$this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+            $this->addFlash('error', 'Échec de la vérification CSRF.');
+            return $this->redirectToRoute('app_profil');
+        }
+
+        if (!$passwordHasher->isPasswordValid($user, $password)) {
+            $this->addFlash('error', 'Mot de passe incorrect.');
+            return $this->redirectToRoute('app_profil');
+        }
+
+        $em->remove($user);
+        $em->flush();
+
+        $this->container->get('security.token_storage')->setToken(null);
+        $request->getSession()->invalidate();
+
+        $this->addFlash('success', 'Votre compte a bien été supprimé.');
+        return $this->redirectToRoute('app_home');
+    }
+
+
 }

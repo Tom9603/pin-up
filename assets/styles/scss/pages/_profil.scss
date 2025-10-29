@@ -21,4 +21,27 @@
         margin-top: 1rem;
         color: green
     }
+
+    h2 {
+        margin-top: 2rem !important;
+        font-size: 2rem;
+        background: none;
+    }
+}
+
+.validate {
+    color: green;
+    background-color: #d4edda;
+    padding: 1rem;
+}
+
+.delete-profil {
+    border: none;
+}
+
+@media (min-width: 1200px) {
+    .profil-container {
+        max-width: 450px;
+        margin: 0 auto;
+    }
 }

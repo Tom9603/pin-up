@@ -43,13 +43,39 @@ input[type="checkbox"] {
 .form-check label {
     margin: 0;
     font-size: 1rem;
-    white-space: nowrap;
+    white-space: normal;
     font-family: $font-family-secondary;
 }
 
 .log {
     margin: 2rem 0 1rem 0.5rem;
 }
+
+/********************** Message d'erreur **********************/
+
+.form-error {
+    background: rgba(255, 0, 0, 0.1);
+    color: #b30000;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    margin-top: 0.5rem;
+    margin-left: 0 !important;
+}
+
+.email-error {
+    background-color: rgba(255, 100, 100, 0.15);
+}
+
+.password-error {
+    background-color: rgba(255, 0, 0, 0.1);
+    font-style: italic;
+}
+
+.terms-error {
+    background-color: rgba(255, 200, 0, 0.2);
+}
+
 
 @media (min-width: 640px) and (max-width: 1199px) {
     .register-container {
@@ -59,6 +85,7 @@ input[type="checkbox"] {
 }
 
 @media (min-width: 1200px) {
+
     .register-container {
         max-width: 550px;
         margin: 0 auto;

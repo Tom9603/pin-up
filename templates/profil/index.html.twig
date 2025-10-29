@@ -15,8 +15,27 @@
         {{ form_end(profilForm) }}
 
         {% if message is defined %}
-            <p aria-live="polite">{{ message }}</p>
+            <p aria-live="polite" class="validate">{{ message }}</p>
         {% endif %}
+
+        <h2>Supprimer mon compte</h2>
+
+        <form method="post" action="{{ path('app_profil_delete') }}">
+            <label for="password">Confirmez votre mot de passe :</label>
+            <input type="password" name="password" id="password" required placeholder="Entrez votre mot de passe">
+
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+
+            <button class="btn btn-danger delete-profil" type="submit">Supprimer mon compte</button>
+        </form>
+
+        {% for message in app.flashes('success') %}
+            <div class="validate">{{ message }}</div>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+            <div class="login-error">{{ message }}</div>
+        {% endfor %}
 
     </section>
 {% endblock %}

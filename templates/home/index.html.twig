@@ -48,29 +48,27 @@
             </div>
         </div>
     </section>
-    <section>
+    <section class="carousel-section">
         <h2>Derniers évènements</h2>
+
         <div class="carousel">
             <button class="prev" aria-label="Image précédente">‹</button>
             <div class="carousel-track">
-
                 {% for image in images|reverse %}
-
                     <div class="carousel-item">
                         <img src="{{ asset('uploads/media/' ~ image.filename) }}" alt="Photo des événements Miss Pin-Up Bretagne">
-
                     </div>
-
                 {% else %}
-
                     <p>Aucune image disponible</p>
-
                 {% endfor %}
-
             </div>
             <button class="next" aria-label="Image suivante">›</button>
         </div>
+
+        {# 👇 La pin-up vient ici, juste après #}
+        <img src="{{ asset('images/femme12.png') }}" alt="Pin-up décorative" class="pinup-carrousel">
     </section>
+
     <a href="{{ path('app_events') }}" class="btn">Accéder aux événements</a>
 
 {% endblock %}

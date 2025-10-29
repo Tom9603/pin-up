@@ -37,7 +37,7 @@ body.legal-page-body {
             color: $primary-color;
             font-size: 2rem !important;
             text-transform: uppercase;
-            padding-bottom: 2rem;
+            padding-bottom: 1rem;
         }
         h2 {
             background: none;
@@ -65,4 +65,10 @@ body.legal-page-body h1 {
     opacity: 1 !important;
     text-align: left;
     margin-bottom: 2rem;
+}
+
+.maj {
+    margin-bottom : 2rem;
+    font-style: italic;
+
 }

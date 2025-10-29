@@ -19,7 +19,7 @@
             <form method="post">
 
                 {% if error %}
-                    <div class="alert alert-danger" role="alert" aria-live="assertive">
+                    <div class="alert alert-danger login-error" role="alert" aria-live="assertive">
                         {{ error.messageKey|trans(error.messageData, 'security') }}
                     </div>
                 {% endif %}
@@ -40,7 +40,7 @@
                         <input type="password" name="_password" placeholder="Saisissez votre mot de passe" id="password" class="form-control" autocomplete="current-password" required>
                         <i class="fa-solid fa-eye toggle-password" onclick="togglePassword(this)"></i>
                     </div>
-                    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}" class="login-error">
 
                     <div class="remember-container">
 
