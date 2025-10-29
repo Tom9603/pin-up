@@ -44,7 +44,7 @@
             </div>
             <div>
                 <img src="{{ asset('images/photo.png') }}" alt="Appareil photo">
-                <p>Photoshoot événementiel</p>
+                <p>Shooting événementiel</p>
             </div>
         </div>
     </section>
@@ -65,10 +65,10 @@
             <button class="next" aria-label="Image suivante">›</button>
         </div>
 
-        {# 👇 La pin-up vient ici, juste après #}
-        <img src="{{ asset('images/femme12.png') }}" alt="Pin-up décorative" class="pinup-carrousel">
     </section>
-
-    <a href="{{ path('app_events') }}" class="btn">Accéder aux événements</a>
+    <div class="event-btn-container">
+        <img src="{{ asset('images/femme12.png') }}" alt="Pin-up décorative" class="pinup-button">
+        <a href="{{ path('app_events') }}" class="btn event-home">Accéder aux événements</a>
+    </div>
 
 {% endblock %}
