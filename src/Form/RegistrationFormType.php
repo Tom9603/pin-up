@@ -55,7 +55,7 @@ class RegistrationFormType extends AbstractType
                         'min' => 8,
                         'minMessage' => 'Il manque {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 30,
                     ]),
                     new \Symfony\Component\Validator\Constraints\Regex([
                         'pattern' => '/[A-Z]/',
@@ -68,6 +68,10 @@ class RegistrationFormType extends AbstractType
                     new \Symfony\Component\Validator\Constraints\Regex([
                         'pattern' => '/\d/',
                         'message' => 'Il manque un chiffre.',
+                    ]),
+                    new \Symfony\Component\Validator\Constraints\Regex([
+                        'pattern' => '/[\W_]/',
+                        'message' => 'Il manque un caractère spécial.',
                     ]),
                 ],
             ]);

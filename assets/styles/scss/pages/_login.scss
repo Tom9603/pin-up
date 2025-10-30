@@ -46,6 +46,12 @@ body.login-page {
     border-radius: 30px;
     margin-bottom: 2rem;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    &:hover {
+        background-color: #F5F5F7;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        transition: 0.3s ease;
+    }
 }
 
 .remember-container {
@@ -83,6 +89,15 @@ body.login-page {
     padding: 1rem;
     margin-bottom: 1rem;
     background-color: #f8d7da !important;
+}
+
+.resend-link {
+    color: $tertiary-color;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.resend-link:hover {
+    color: $primary-color;
 }
 
 /* Media Queries */

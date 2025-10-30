@@ -92,10 +92,10 @@ h2 {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        min-height: 245px;
-        justify-content: space-between;
+        justify-content: center;
         height: 100%;
         width: 100%;
+        gap: 1rem;
     }
 
     img {
@@ -116,10 +116,20 @@ h2 {
         border-radius: 20px;
         color: $secondary-color;
         padding: 0.75rem;
-        margin-top: auto;
+        margin-top: 0;
         width: 90%;
         min-height: 80px;
+
     }
+}
+
+.grid-home p {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    height: 100px;
+    padding: 0 !important;
 }
 
 /************************** CARROUSEL ****************************/

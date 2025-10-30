@@ -200,6 +200,11 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s ease;
+    &:hover {
+        background-color:#F5F5F7;
+        color: $primary-color;
+        border: 2px solid $primary-color;
+    }
 }
 
 /****************************************** MODALE ******************************************/
@@ -241,10 +246,19 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     color: white;
     border-radius: 0.3125rem;
     cursor: pointer;
+    &:hover {
+        background-color:#F5F5F7;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        transition: 0.3s ease;
+    }
 }
 
 #closeModal:hover {
     background: #555;
+    color: #F5F5F7;
+    border: 1px solid #555;
+    transition: 0.3s ease;
 }
 
 #reservationMessage {

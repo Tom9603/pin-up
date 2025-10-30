@@ -79,6 +79,15 @@ a {
     padding: 12px 24px;
     border-radius: 50px;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+    &:hover {
+        background-color: #F5F5F7;
+        color: $primary-color;
+        transition: 0.3s ease;
+    }
+}
+
+* {
+    transition: 0.3s ease;
 }
 
 input,
@@ -110,6 +119,11 @@ button[type="submit"] {
     cursor: pointer;
 }
 
+.success {
+    color: green;
+    background-color: #d4edda;
+    padding: 1rem;
+}
 
 /********************** REGISTER PAGE **********************/
 

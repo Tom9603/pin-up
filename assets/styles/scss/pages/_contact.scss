@@ -75,6 +75,10 @@ button[type="submit"] {
     margin: 2rem auto 0;
     position: relative;
     z-index: 1000;
+    &:hover {
+        background-color:#F5F5F7;
+        color: $primary-color;
+    }
 }
 
 .tel {
@@ -87,12 +91,6 @@ button[type="submit"] {
     object-fit: contain;
     filter: drop-shadow(7px 10px 6px rgba(0, 0, 0, 0.3));
     z-index: 10;
-}
-
-.success {
-    color: green;
-    background-color: #d4edda;
-    padding: 1rem;
 }
 
 @media (min-width: 640px) and (max-width: 1199px) {

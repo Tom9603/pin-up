@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
-use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,33 +24,29 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $hasher, Security $security, EntityManagerInterface $em): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $plainPassword */
-            $plainPassword = $form->get('plainPassword')->getData();
 
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+            $user->setPassword($hasher->hashPassword($user, $form->get('plainPassword')->getData()));
+            $em->persist($user);
+            $em->flush();
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $security->login($user);
 
-            // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('no-reply@localhost.com', 'Comité Miss Pin-Up Bretagne'))
-                    ->to((string) $user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->to($user->getEmail())
+                    ->subject('Confirmez votre adresse e-mail')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
 
-            // do anything else you need here, like send an email
-
+            $this->addFlash('verify_banner', 'Un e-mail de confirmation vous a été envoyé.');
             return $this->redirectToRoute('app_login');
         }
 
@@ -61,24 +56,62 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
+    public function verifyUserEmail(Request $request, TranslatorInterface $translator, EntityManagerInterface $entityManager): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $userId = $request->query->get('id');
 
-        // validate email confirmation link, sets User::isVerified=true and persists
-        try {
-            /** @var User $user */
-            $user = $this->getUser();
-            $this->emailVerifier->handleEmailConfirmation($request, $user);
-        } catch (VerifyEmailExceptionInterface $exception) {
-            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
-
-            return $this->redirectToRoute('app_register');
+        if (!$userId) {
+            $this->addFlash('verify_banner', 'Lien invalide.');
+            return $this->redirectToRoute('app_login');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Your email address has been verified.');
+        $user = $entityManager->getRepository(User::class)->find($userId);
 
-        return $this->redirectToRoute('app_register');
+        if (!$user) {
+            $this->addFlash('verify_banner', 'Utilisateur introuvable.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        try {
+            $this->emailVerifier->handleEmailConfirmation($request, $user);
+            $this->addFlash('verify_banner', 'Email confirmé, vous pouvez vous connecter.');
+        } catch (VerifyEmailExceptionInterface $exception) {
+            $this->addFlash('verify_banner', 'Lien invalide ou expiré.');
+        }
+
+        return $this->redirectToRoute('app_login');
+    }
+
+    #[Route('/resend-verification', name: 'app_resend_verification')]
+    public function resend(Request $request, EntityManagerInterface $em): Response
+    {
+        $email = $request->query->get('email');
+        if (!$email) {
+            $this->addFlash('verify_banner', 'Aucun e-mail fourni.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $user = $em->getRepository(User::class)->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            $this->addFlash('verify_banner', 'E-mail inconnu.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($user->isVerified()) {
+            $this->addFlash('verify_banner', 'Ce compte est déjà vérifié.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            (new TemplatedEmail())
+                ->from(new Address('no-reply@localhost.com', 'Comité Miss Pin-Up Bretagne'))
+                ->to($user->getEmail())
+                ->subject('Confirmation de votre e-mail')
+                ->htmlTemplate('registration/confirmation_email.html.twig')
+        );
+
+        $this->addFlash('verify_banner', 'E-mail de confirmation renvoyé.');
+        return $this->redirectToRoute('app_login');
     }
 }

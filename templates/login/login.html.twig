@@ -12,6 +12,10 @@
 
     <section class ="login-container" role="main">
 
+        {% for message in app.flashes('verify_banner') %}
+            <div class="success">{{ message }}</div>
+        {% endfor %}
+
         <h1>Connectez-vous</h1>
         <a class ="back" href="{{ path('app_home') }}">Retour à l'accueil</a>
 
@@ -20,7 +24,17 @@
 
                 {% if error %}
                     <div class="alert alert-danger login-error" role="alert" aria-live="assertive">
-                        {{ error.messageKey|trans(error.messageData, 'security') }}
+
+                        {% if error.messageKey == 'Veuillez confirmer votre e-mail avant de vous connecter.' %}
+                            {{ error.messageKey }}
+                            <br>
+                            <a href="{{ path('app_resend_verification') }}?email={{ last_username }}" class="resend-link">
+                                Renvoyer le lien de confirmation
+                            </a>
+                        {% else %}
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        {% endif %}
+
                     </div>
                 {% endif %}
 

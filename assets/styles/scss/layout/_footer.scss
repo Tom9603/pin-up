@@ -67,6 +67,9 @@ footer {
 
             i {
                 font-size: 2rem;
+                &:hover {
+                    color:#F5F5F7;
+                }
             }
         }
     }
@@ -96,6 +99,9 @@ footer {
         li {
             margin-bottom: 1.5rem;
             font-family: 'Inter', sans-serif;
+            &:hover {
+                color:#F5F5F7;
+            }
         }
     }
 
@@ -168,6 +174,10 @@ footer {
             right: 2rem;
             bottom: 1rem;
             font-size: 0.9rem;
+            &:hover {
+                color:#F5F5F7;
+                transition: 0.3s ease;
+            }
         }
     }
 }

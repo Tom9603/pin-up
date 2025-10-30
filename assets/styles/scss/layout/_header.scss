@@ -44,6 +44,10 @@ header {
         grid-column: 1;
         margin-right: auto;
         font-family: 'Limelight', sans-serif;
+        &:hover {
+            color: #F5F5F7;
+            transition: 0.3s ease;
+        }
     }
 
     .title-main1 {
