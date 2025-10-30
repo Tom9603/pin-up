@@ -353,16 +353,19 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
 
 .toggle-text {
     font-size: 0.85rem;
-    color: #a13b2d;
+    color: $quaternary-color;
+    background-color: $primary-color;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
     font-weight: bold;
     margin-top: 1rem;
     cursor: pointer;
     text-align: left;
-}
-
-.article-card.open .toggle-text {
-    content: none;
-    color: #6c4b3c;
+    &:hover {
+        color: $quaternary-color;
+        background-color: darkred;
+        transition: 0.3s ease;
+    }
 }
 
 .article-card.open .toggle-text::after {
