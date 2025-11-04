@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Lobster&display=swap" rel="stylesheet">
 
     {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('app') }}
     {% endblock %}
 </head>
 
@@ -30,7 +30,8 @@
 {% include 'partials/_footer.html.twig' %}
 
 {% block javascripts %}
-    {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('app') }}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
 {% endblock %}
 
 </body>
