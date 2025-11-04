@@ -1,23 +1,30 @@
 {
-  "name": "Pin-Up",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/Tom9603/pin-up",
-  "author": "Tom9603 <tom.ochietti@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/core": "^7.28.4",
-    "@babel/preset-env": "^7.28.3",
-    "@symfony/webpack-encore": "^5.2.0",
-    "babel-loader": "^10.0.0",
-    "sass": "^1.93.0",
-    "sass-loader": "^16.0.5",
-    "webpack": "^5.101.3",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.2"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.0.1",
-    "fullcalendar": "^6.1.19"
-  }
+    "name": "Pin-Up",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/Tom9603/pin-up",
+    "author": "Tom9603 <tom.ochietti@gmail.com>",
+    "license": "MIT",
+
+    "scripts": {
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production"
+    },
+
+    "devDependencies": {
+        "@babel/core": "^7.28.4",
+        "@babel/preset-env": "^7.28.3",
+        "@symfony/webpack-encore": "^5.2.0",
+        "babel-loader": "^10.0.0",
+        "sass": "^1.93.0",
+        "sass-loader": "^16.0.5",
+        "webpack": "^5.101.3",
+        "webpack-cli": "^6.0.1",
+        "webpack-dev-server": "^5.2.2"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^7.0.1",
+        "fullcalendar": "^6.1.19"
+    }
 }
