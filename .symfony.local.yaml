@@ -1,3 +1,6 @@
 server:
     mailer:
         disabled: true
+workers:
+    sass:
+        cmd: ['symfony', 'console', 'sass:build', '--watch']

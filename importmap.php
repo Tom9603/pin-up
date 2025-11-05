@@ -1,19 +1,29 @@
 <?php
 
+/**
+ * Returns the importmap for this application.
+ *
+ * - "path" is a path inside the asset mapper system. Use the
+ *     "debug:asset-map" command to see the full list of paths.
+ *
+ * - "entrypoint" (JavaScript only) set to true for any module that will
+ *     be used as an "entrypoint" (and passed to the importmap() Twig function).
+ *
+ * The "importmap:require" command can be used to add new entries to this file.
+ */
 return [
     'app' => [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
 
-    './js/menu.js' => ['path' => './assets/js/menu.js'],
-    './js/back-to-top.js' => ['path' => './assets/js/back-to-top.js'],
-    './js/stars.js' => ['path' => './assets/js/stars.js'],
-    './js/blog.js' => ['path' => './assets/js/blog.js'],
-    './js/article.js' => ['path' => './assets/js/article.js'],
-    './js/carrousel.js' => ['path' => './assets/js/carrousel.js'],
-    './js/bell.js' => ['path' => './assets/js/bell.js'],
-
-    '@hotwired/stimulus' => ['version' => '3.2.2'],
-    '@symfony/stimulus-bundle' => ['path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js'],
+    '@hotwired/stimulus' => [
+        'version' => '3.2.2',
+    ],
+    '@symfony/stimulus-bundle' => [
+        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
+    ],
+    '@hotwired/turbo' => [
+        'version' => '7.3.0',
+    ],
 ];

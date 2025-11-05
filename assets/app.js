@@ -1,4 +1,4 @@
-import './styles/app.css';
+import './styles/app.scss';
 
 import './js/menu.js';
 import './js/back-to-top.js';

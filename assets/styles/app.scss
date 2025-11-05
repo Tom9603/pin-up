@@ -1,0 +1,20 @@
+// Variables & mixins
+@import "scss/abstract/variables";
+
+// Base
+@import "scss/base/global";
+@import "scss/base/typography";
+
+// Layout
+@import "scss/layout/header";
+@import "scss/layout/footer";
+@import "scss/layout/legal";
+
+// Pages
+@import "scss/pages/contact";
+@import "scss/pages/events";
+@import "scss/pages/home";
+@import "scss/pages/login";
+@import "scss/pages/profil";
+@import "scss/pages/register";
+@import "scss/pages/resetpassword";

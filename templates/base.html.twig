@@ -18,12 +18,12 @@
           referrerpolicy="no-referrer"
     />
 
-
+    {% block importmap %}
+        {{ importmap('app') }}
+    {% endblock %}
 
     {% block stylesheets %}
-        {% block importmap %}
-            {{ importmap('app') }}
-        {% endblock %}
+
     {% endblock %}
 </head>
 
