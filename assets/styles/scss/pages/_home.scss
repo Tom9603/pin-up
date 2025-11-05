@@ -3,7 +3,7 @@
 .logo {
     width: 60%;
     margin: 0 auto;
-    background: url('../../images/bg.png') center/cover no-repeat;
+    background: url('../../../images/bg.png') center/cover no-repeat;
     border-radius: 10rem;
     overflow: hidden;
     margin-bottom: 2rem;
@@ -16,7 +16,7 @@
 }
 
 h2 {
-    background-image: url('../../images/bg.png');
+    background-image: url('../../../images/bg.png');
     border-radius: 20px;
     font-size: $font-size-h2*0.9;
     font-family: $font-family-primary;

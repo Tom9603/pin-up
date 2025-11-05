@@ -10,7 +10,7 @@
     "@babel/preset-env": "^7.28.3",
     "@symfony/webpack-encore": "^5.2.0",
     "babel-loader": "^10.0.0",
-    "sass": "^1.93.0",
+    "sass": "^1.93.3",
     "sass-loader": "^16.0.5",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1",
