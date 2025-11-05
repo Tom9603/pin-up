@@ -1,3 +1,4 @@
+import './stimulus_bootstrap.js';
 import './styles/app.scss';
 
 import './js/menu.js';
