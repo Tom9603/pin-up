@@ -3491,10 +3491,10 @@ sass-loader@^16.0.1, sass-loader@^16.0.5:
   dependencies:
     neo-async "^2.6.2"
 
-sass@^1.17.0, sass@^1.3.0, sass@^1.93.0:
-  version "1.93.0"
-  resolved "https://registry.npmjs.org/sass/-/sass-1.93.0.tgz"
-  integrity sha512-CQi5/AzCwiubU3dSqRDJ93RfOfg/hhpW1l6wCIvolmehfwgCI35R/0QDs1+R+Ygrl8jFawwwIojE2w47/mf94A==
+sass@^1.17.0, sass@^1.3.0, sass@^1.93.3:
+  version "1.93.3"
+  resolved "https://registry.npmjs.org/sass/-/sass-1.93.3.tgz"
+  integrity sha512-elOcIZRTM76dvxNAjqYrucTSI0teAF/L2Lv0s6f6b7FOwcwIuA357bIE871580AjHJuSvLIRUosgV+lIWx6Rgg==
   dependencies:
     chokidar "^4.0.0"
     immutable "^5.0.2"
