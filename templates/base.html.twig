@@ -5,12 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}Miss Pin-Up Bretagne{% endblock %}</title>
 
+    {# Meta Open Graph & Twitter (compatible avec d'autres applis) #}
+    <meta property="og:title" content="Miss Pin-Up Bretagne">
+    <meta property="og:description" content="Découvrez l'univers rétro, les concours et les candidates de Miss Pin-Up Bretagne !">
+    <meta property="og:image" content="{{ asset('images/logo.png') }}">
+    <meta property="og:url" content="https://pin-up-bretagne.fr/">
+    <meta property="og:type" content="website">
+
+    {# Meta twitter #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@MissPinUpBretagne">
+    <meta name="twitter:description" content="Découvrez l'univers rétro et les concours Miss Pin-Up Bretagne. Élégance, authenticité et esprit vintage.">
+    <meta name="twitter:title" content="Miss Pin-Up Bretagne">
+    <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+
+    {# Favicon & Font #}
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Limelight&family=Lobster&display=swap" rel="stylesheet">
 
-    {# FontAwesome CDN — simple, immédiat, fonctionne avec AssetMapper #}
+    {# FontAwesome #}
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           crossorigin="anonymous"
