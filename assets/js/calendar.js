@@ -98,7 +98,6 @@ function openReservationModal(eventId, title, startDate) {
         </li>
     `;
 
-    // Charge la liste des inscrits depuis ton API Symfony
     fetch(`/api/event/${eventId}/reservations`)
         .then(r => r.json())
         .then(users => {

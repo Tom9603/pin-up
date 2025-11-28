@@ -16,23 +16,22 @@ class EmailVerifier
         private VerifyEmailHelperInterface $verifyEmailHelper,
         private MailerInterface $mailer,
         private EntityManagerInterface $entityManager
-    ) {
-    }
+    ) {}
 
     public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): void
     {
         $signatureComponents = $this->verifyEmailHelper->generateSignature(
             $verifyEmailRouteName,
-            (string) $user->getId(),
-            (string) $user->getEmail()
+            $user->getId(),
+            $user->getEmail(),
+            ['id' => $user->getId()] // IMPORTANT → ajoute id dans l’URL
         );
 
-        $context = $email->getContext();
-        $context['signedUrl'] = $signatureComponents->getSignedUrl();
-        $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
-        $context['expiresAtMessageData'] = $signatureComponents->getExpirationMessageData();
-
-        $email->context($context);
+        $email->context([
+            'signedUrl' => $signatureComponents->getSignedUrl(),
+            'expiresAtMessageKey' => $signatureComponents->getExpirationMessageKey(),
+            'expiresAtMessageData' => $signatureComponents->getExpirationMessageData(),
+        ]);
 
         $this->mailer->send($email);
     }
@@ -42,11 +41,13 @@ class EmailVerifier
      */
     public function handleEmailConfirmation(Request $request, User $user): void
     {
-        $this->verifyEmailHelper->validateEmailConfirmationFromRequest($request, (string) $user->getId(), (string) $user->getEmail());
+        $this->verifyEmailHelper->validateEmailConfirmationFromRequest(
+            $request,
+            $user->getId(),
+            $user->getEmail()
+        );
 
         $user->setIsVerified(true);
-
-        $this->entityManager->persist($user);
         $this->entityManager->flush();
     }
 }
