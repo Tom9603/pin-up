@@ -24,24 +24,8 @@ class ResetPasswordRequestFormType extends AbstractType
                         'min' => 8,
                         'minMessage' => 'Il manque {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
-                        'max' => 30,
-                    ]),
-                    new \Symfony\Component\Validator\Constraints\Regex([
-                        'pattern' => '/[A-Z]/',
-                        'message' => 'Il manque une majuscule.',
-                    ]),
-                    new \Symfony\Component\Validator\Constraints\Regex([
-                        'pattern' => '/[a-z]/',
-                        'message' => 'Il manque une minuscule.',
-                    ]),
-                    new \Symfony\Component\Validator\Constraints\Regex([
-                        'pattern' => '/\d/',
-                        'message' => 'Il manque un chiffre.',
-                    ]),
-                    new \Symfony\Component\Validator\Constraints\Regex([
-                        'pattern' => '/[\W_]/',
-                        'message' => 'Il manque un caractère spécial.',
-                    ]),
+                        'max' => 30
+                    ])
                 ],
             ])
         ;
