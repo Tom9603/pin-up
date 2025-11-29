@@ -19,6 +19,7 @@ class CommentController extends AbstractController
         ArticleRepository $articleRepository,
         EntityManagerInterface $em
     ): Response {
+
         $article = $articleRepository->find($articleId);
 
         if (!$article) {

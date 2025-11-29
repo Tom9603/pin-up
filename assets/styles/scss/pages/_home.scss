@@ -134,7 +134,7 @@ h2 {
 
 /************************** CARROUSEL ****************************/
 
-.carousel {
+.carousel { // Conteneur du carousel
     width: 100%;
     max-width: 800px;
     height: 300px;
@@ -150,7 +150,7 @@ h2 {
     overflow: visible;
 }
 
-.carousel-track {
+.carousel-track { // Conteneur des images
     display: flex;
     transition: transform 0.3s ease;
     height: 100%;
@@ -162,7 +162,7 @@ h2 {
     max-height: 300px;
 }
 
-.carousel-item img {
+.carousel-item img { // Image du carousel
     max-width: 100%;
     width: 100%;
     height: 100%;
@@ -170,7 +170,7 @@ h2 {
     background-color: black;
 }
 
-.prev, .next {
+.prev, .next { // Boutons de navigation
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

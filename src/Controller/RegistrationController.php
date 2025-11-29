@@ -36,11 +36,11 @@ class RegistrationController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $security->login($user);
+            //$security->login($user);
 
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('no-reply@localhost.com', 'Comité Miss Pin-Up Bretagne'))
+                    ->from(new Address('tom.ochietti@gmail.com', 'Comité Miss Pin-Up Bretagne'))
                     ->to($user->getEmail())
                     ->subject('Confirmez votre adresse e-mail')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -56,7 +56,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/verify/email', name: 'app_verify_email')]
-    public function verifyUserEmail(Request $request, TranslatorInterface $translator, EntityManagerInterface $entityManager): Response
+    public function verifyUserEmail(Request $request, EntityManagerInterface $entityManager): Response
     {
         $userId = $request->query->get('id');
 
@@ -105,7 +105,7 @@ class RegistrationController extends AbstractController
 
         $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
             (new TemplatedEmail())
-                ->from(new Address('no-reply@localhost.com', 'Comité Miss Pin-Up Bretagne'))
+                ->from(new Address('tom.ochietti@gmail.com', 'Comité Miss Pin-Up Bretagne'))
                 ->to($user->getEmail())
                 ->subject('Confirmation de votre e-mail')
                 ->htmlTemplate('registration/confirmation_email.html.twig')

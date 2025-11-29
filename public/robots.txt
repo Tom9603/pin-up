@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /profil
+
+Sitemap: https://pin-up-bretagne.fr/sitemap.xml
+
+

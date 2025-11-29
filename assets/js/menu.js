@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const openBtn = document.getElementById("open-menu");
-    const closeBtn = document.getElementById("close-menu"); // si tu veux garder ton bouton "fermer"
+    const closeBtn = document.getElementById("close-menu");
     const menu = document.getElementById("side-menu");
     const overlay = document.querySelector(".overlay");
     const body = document.body;
@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
         menu.classList.add("open");
         overlay.classList.add("active");
         body.classList.add("no-scroll");
-        body.style.overflow = "hidden"; // bloque le scroll
-        openBtn.classList.add("active"); // transforme burger → croix
+        body.style.overflow = "hidden";
+        openBtn.classList.add("active");
     }
 
     function closeMenu() {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.classList.remove("active");
         body.classList.remove("no-scroll");
         body.style.overflow = "";
-        openBtn.classList.remove("active"); // croix → burger
+        openBtn.classList.remove("active"); // Pour que la croix se transforme en burger
 
         menu.addEventListener("transitionend", () => {
             menu.classList.remove("open", "closing");

@@ -83,21 +83,6 @@ permettant de naviguer entre les mois et d'accéder au mois en cours. */
     color: $tertiary-color !important;
 }
 
-.calendar-image {
-    position: absolute;
-    bottom: 93%;
-    left: 25%;
-    transform: translateX(-50%) rotate(-6deg);
-    width: 40%;
-    z-index: 1;
-}
-
-@media (min-width: 600px) {
-    .calendar-image {
-        bottom: 85%;
-    }
-}
-
 /****************************************** LISTE D'ÉVÉNEMENTS ******************************************/
 
 .event-list {
