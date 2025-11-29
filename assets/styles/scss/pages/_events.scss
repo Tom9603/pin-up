@@ -4,9 +4,6 @@
     position: relative;
 }
 
-/* Masque totalement la grille du calendrier FullCalendar, pour une version plus compacte avec juste le header et ses boutons,
-permettant de naviguer entre les mois et d'accéder au mois en cours. */
-
 #calendar .fc-view-harness,
 #calendar .fc-scrollgrid,
 #calendar .fc-daygrid,

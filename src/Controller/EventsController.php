@@ -15,7 +15,6 @@ class EventsController extends AbstractController
     #[Route('/events', name: 'app_events')]
     public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository): Response
     {
-        // Récupération des articles et catégories
         $articles = $articleRepository->findBy([], ['date_publication' => 'DESC']);
         $categories = $categoryRepository->findAll();
 
@@ -32,8 +31,6 @@ class EventsController extends AbstractController
 
         $data = [];
         foreach ($events as $event) {
-
-            //Pour chaque image
 
             $imageUrl = null;
             if (count($event->getMedias()) > 0) {

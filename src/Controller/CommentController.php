@@ -25,7 +25,6 @@ class CommentController extends AbstractController
             throw $this->createNotFoundException('Article non trouvé');
         }
 
-        // Si l’utilisateur n’est pas connecté, le redirige vers login
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');

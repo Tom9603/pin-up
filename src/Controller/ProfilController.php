@@ -44,7 +44,7 @@ class ProfilController extends AbstractController
     public function delete(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = $this->getUser();
-        $password = $request->request->get('password'); // <-- on récupère le champ "password"
+        $password = $request->request->get('password');
 
         if (!$this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $this->addFlash('error', 'Échec de la vérification CSRF.');
@@ -65,6 +65,4 @@ class ProfilController extends AbstractController
         $this->addFlash('success', 'Votre compte a bien été supprimé.');
         return $this->redirectToRoute('app_home');
     }
-
-
 }
