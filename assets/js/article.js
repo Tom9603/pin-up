@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Quand on clique sur un onglet
+    // quand on clique sur un onglet
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const id = tab.dataset.id;
@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
             tab.classList.add('active');
 
             // Quand on veut fermer l'article
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
             document.querySelectorAll('.article-card.open').forEach(openCard => {
                 openCard.classList.remove('open');
             });

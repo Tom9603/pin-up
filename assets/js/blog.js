@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // active la première catégorie par défaut
     if (buttons.length > 0) {
         buttons[0].classList.add('active');
         document.getElementById('cat-' + buttons[0].dataset.id).style.display = 'block';

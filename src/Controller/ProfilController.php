@@ -65,6 +65,4 @@ class ProfilController extends AbstractController
         $this->addFlash('success', 'Votre compte a bien été supprimé.');
         return $this->redirectToRoute('app_home');
     }
-
-
 }

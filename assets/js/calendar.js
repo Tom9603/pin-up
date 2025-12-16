@@ -90,7 +90,6 @@ function openReservationModal(eventId, title, startDate) {
     const unreserveBtn = document.getElementById('unreserveBtn');
     const closeModal = document.getElementById('closeModal');
 
-    // Affiche infos de l'événement
     list.innerHTML = `
         <li>
             <h3>${title}</h3>
@@ -122,7 +121,6 @@ function openReservationModal(eventId, title, startDate) {
         }
     };
 
-    // Annuler la réservation
     unreserveBtn.onclick = async () => {
         const res = await fetch(`/api/unreserve/${eventId}`, { method: 'DELETE' });
         const data = await res.json();

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         overlay.classList.remove("active");
         body.classList.remove("no-scroll");
         body.style.overflow = "";
-        openBtn.classList.remove("active"); // Pour que la croix se transforme en burger
+        openBtn.classList.remove("active");
 
         menu.addEventListener("transitionend", () => {
             menu.classList.remove("open", "closing");
