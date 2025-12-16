@@ -18,11 +18,11 @@ class ResetPasswordRequestFormType extends AbstractType
                 'attr' => ['autocomplete' => 'email'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter your email',
+                        'message' => 'Veuillez entrer une adresse e-mail valide.',
                     ]),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Il manque {{ limit }} caractères',
+                        'minMessage' => 'Il manque {{ limit }} caractères.',
                         // max length allowed by Symfony for security reasons
                         'max' => 30
                     ])
