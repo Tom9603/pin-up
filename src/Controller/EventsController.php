@@ -33,8 +33,6 @@ class EventsController extends AbstractController
         $data = [];
         foreach ($events as $event) {
 
-            //Pour chaque image
-
             $imageUrl = null;
             if (count($event->getMedias()) > 0) {
                 $firstMedia = $event->getMedias()->first();
