@@ -13,7 +13,6 @@ use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\User;
 use App\Entity\Image;
-use Symfony\Component\Routing\Attribute\Route;
 
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
@@ -44,3 +43,4 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToUrl('Retour au site', 'fa fa-arrow-left', $this->generateUrl('app_home'));
     }
 }
+

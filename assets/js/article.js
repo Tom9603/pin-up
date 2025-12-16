@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             toggleText.onclick = (e) => {
                 e.stopPropagation();
-                const scrollY = window.scrollY; // garde la position
+                const scrollY = window.scrollY;
                 card.classList.toggle('open');
-                window.scrollTo({ top: scrollY }); // empêche le saut de page
+                window.scrollTo({ top: scrollY });
             };
         });
     }
@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', () => {
             const id = tab.dataset.id;
 
+            // Quitte l'article avec sa classe active
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Quand on veut fermer l'article
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 

@@ -9,8 +9,12 @@
     <meta property="og:title" content="Miss Pin-Up Bretagne">
     <meta property="og:description" content="Découvrez l'univers rétro, les concours et les candidates de Miss Pin-Up Bretagne !">
     <meta property="og:site_name" content="Miss Pin-Up Bretagne">
+
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:keywords" content="Miss Pin-Up Bretagne, Pin-Up, Bretagne, Concours, Candidature, Candidature Miss Pin-Up Bretagne, Candidature Miss Pin-up, Candidature Pin-Up, Miss Pin-Up, Miss">
+    <meta property="og:image" content="{{ asset('images/preview.jpg') }}">
+
     <meta property="keywords" content="Miss Pin-Up Bretagne, Pin-Up, Bretagne, Concours, Candidature, Candidature Pin-Up, Candidature Bretagne, Candidature Miss Pin-Up Bretagne, Candidature Miss Pin-Up Bretagne 2023, Candidature Miss Pin-Up Bretagne 2024, Candidature Miss Pin-Up Bretagne 2025, Candidature Miss Pin-Up Bretagne 2026, Candidature Miss Pin-Up Bretagne 2027, Candidature Miss Pin-Up Bretagne 2028, Candidature Miss Pin-Up Bretagne 2029, Candidature Miss Pin-Up Bretagne 2030">
-    <meta property="og:image" content="{{ asset('images/logo.png') }}">
     <meta property="og:url" content="https://pin-up-bretagne.fr/">
     <meta property="og:type" content="website">
 
@@ -19,7 +23,7 @@
     <meta name="twitter:site" content="@MissPinUpBretagne">
     <meta name="twitter:description" content="Découvrez l'univers rétro et les concours Miss Pin-Up Bretagne. Élégance, authenticité et esprit vintage.">
     <meta name="twitter:title" content="Miss Pin-Up Bretagne">
-    <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
+    <meta name="twitter:image" content="{{ asset('images/preview.jpg') }}">
 
     {# Favicon & Font #}
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
@@ -39,8 +43,8 @@
     {% endblock %}
 
     {% block stylesheets %}
-
     {% endblock %}
+
 </head>
 
 <body class="{{ body_class|default('') }}">
@@ -52,13 +56,13 @@
 <div class="stars"></div>
 
 <main>
-    {% block body %}{% endblock %}
+    {% block body %}
+    {% endblock %}
 </main>
 
 {% include 'partials/_footer.html.twig' %}
 
 {% block javascripts %}{% endblock %}
-
 
 </body>
 </html>

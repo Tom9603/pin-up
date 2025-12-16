@@ -2,6 +2,12 @@
 
 {% block title %}Événements{% endblock %}
 
+{% block meta %}
+    <meta name="description" content="Découvrez le calendrier des événements du comité Miss Pin-up Bretagne.
+        Participez à l'espace blog, à nos activités festives, défilés et shootings vintage en Bretagne.
+        Rejoignez-nous pour vivre des moments inoubliables dans l'univers rétro des pin-up.">
+{% endblock %}
+
 {% block body %}
 
     <h1>Calendrier des événements</h1>
@@ -9,7 +15,6 @@
 
     <div class="events-page">
         {# FullCalendar #}
-        <img src="{{ asset('images/femme14.png') }}" alt="Pin-up décorative" class="calendar-image">
         <div id="calendar"></div>
     </div>
 
