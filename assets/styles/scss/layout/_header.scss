@@ -308,9 +308,9 @@ header {
 @media (min-width: 1200px) {
 
     .menu {
-        max-width: 1300px;
-        width: 90%;
-        padding: 1.5rem 4rem;
+        max-width: 1100px;
+        width: 70%;
+        padding: 2rem 4rem;
         border-radius: 90px;
         gap: 3rem;
         top: 1rem;
@@ -325,25 +325,25 @@ header {
         }
 
         .title-main1 {
-            font-size: 4rem;
+            font-size: 2.5rem;
             letter-spacing: 1px;
             margin-right: 1.2rem;
         }
         .title-main1,
         .title-main2 {
-            font-size: 4rem;
+            font-size: 2.5rem;
             letter-spacing: 2px;
         }
 
         .title-sub {
-            font-size: 2rem;
+            font-size: 1.2rem;
             letter-spacing: 4px;
             margin-top: .3rem;
         }
 
         .menu-icons {
             position: absolute;
-            font-size: 3rem;
+            font-size: 2rem;
             right: 4rem;
             top: 50%;
             transform: translateY(-50%);
@@ -352,7 +352,7 @@ header {
         #open-menu {
             background: none;
             border: none;
-            font-size: 3.2rem;
+            font-size: 2rem;
             cursor: pointer;
             min-width: 70px;
             min-height: 70px;
@@ -362,17 +362,17 @@ header {
         }
 
         .pinup-img {
-            top: 40px;
-            left: 5%;
+            top: 60px;
+            left: 15%;
             transform: translateX(-50%) scale(1.6) scaleX(-1);
-            height: 220px;
+            height: 130px;
         }
     }
 
     .side-menu {
         max-width: 500px;
         width: 45vw;
-        padding: 14rem 3rem 3rem;
+        padding: 7rem 3rem 3rem;
 
         .img-menu {
             height: 600px; left: -260px;
