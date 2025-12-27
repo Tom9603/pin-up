@@ -18,7 +18,16 @@
 
         <div class="form-container">
             <h2 class="contact">Contactez-nous !</h2>
-            {{ form_start(contactForm, {'method': 'POST'}) }}
+            {{ form_start(contactForm, {
+                method: 'POST',
+                attr: {
+                    id: 'contact-form',
+                    'data-recaptcha': 'v3',
+                    'data-recaptcha-action': 'contact',
+                    'data-recaptcha-sitekey': recaptcha_site_key
+                }
+            }) }}
+
             {{ form_row(contactForm.nom) }}
             {{ form_row(contactForm.email) }}
             {{ form_row(contactForm.message) }}
@@ -32,4 +41,6 @@
         </div>
 
     </section>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ recaptcha_site_key }}"></script>
+    <script src="{{ asset('js/recaptcha-v3.js') }}" defer></script>
 {% endblock %}

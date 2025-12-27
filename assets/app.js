@@ -9,3 +9,4 @@ import './js/article.js';
 import './js/carrousel.js';
 import './js/bell.js';
 import './js/calendar.js';
+import './js/recaptcha-v3';
