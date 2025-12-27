@@ -1,5 +1,6 @@
 parameters:
     app_url: '%env(APP_URL)%'
+    recaptcha_site_key: '%env(RECAPTCHA_SITE_KEY)%'
 
 services:
     _defaults:
@@ -9,7 +10,6 @@ services:
     App\:
         resource: '../src/'
 
-# === CONFIG MAILER POUR UTILISER GMAIL COMME EXPEDITEUR ===
 framework:
     mailer:
         envelope:
