@@ -1,5 +1,12 @@
+@media (min-width: 1200px) {
+    .profil-container {
+        max-width: 450px;
+        margin: 0 auto;
+    }
+}
+
 .profil-container {
-    background-color: rgba(228, 225, 217, 0.11);
+    background-color: rgba(237, 237, 237, 0.81);
     -webkit-backdrop-filter: blur(10px) saturate(120%);
     backdrop-filter: blur(10px);
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
@@ -39,9 +46,46 @@
     border: none;
 }
 
-@media (min-width: 1200px) {
-    .profil-container {
-        max-width: 450px;
-        margin: 0 auto;
+.profil_orders {
+    display: block;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: $tertiary-color;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+        color: $primary-color;
     }
+}
+
+.profil-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    color: #413E3E;
+    font-family: Inter, sans-serif;
+}
+
+.profil-container h1 {
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.profil-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profil-container li {
+    border: 1px solid #e5e5e5;
+    border-left: 4px solid #AC432A;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    background: #fff;
+}
+
+.profil-container strong {
+    border-bottom: 1px dotted #AC432A;
 }

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block body %}
+
+    {% if order.status == 'paid' %}
+    <section class="shop-payment
+    {% if order.status == 'paid' %}
+        shop-payment--success
+    {% else %}
+        shop-payment--pending
+    {% endif %}
+">
+
+        {% if order.status == 'paid' %}
+            <h1>Paiement confirmé ✅</h1>
+
+            <p>
+                Merci pour votre achat.<br>
+                Commande n°{{ order.id }}
+            </p>
+        {% else %}
+            <h1>Paiement en cours ⏳</h1>
+
+            <p>
+                Votre paiement est en cours de confirmation.
+                Cette page va se mettre à jour automatiquement.
+            </p>
+
+            <script>
+                setTimeout(() => window.location.reload(), 2500);
+            </script>
+        {% endif %}
+
+        <p class="shop-payment__amount">
+            Montant :
+            <strong>
+                {{ (order.total / 100)|number_format(2, '.', ' ') }} €
+            </strong>
+        </p>
+
+        <p class="shop-payment__status">
+            Statut : {{ order.status }}
+        </p>
+
+        <div class="shop-payment__actions">
+            <a class="shop-btn shop-btn--primary" href="{{ path('app_shop') }}">
+                Boutique
+            </a>
+
+            <a class="shop-btn shop-btn--ghost" href="{{ path('cart_index') }}">
+                Panier
+            </a>
+        </div>
+
+    </section>
+
+{% endblock %}

@@ -6,7 +6,7 @@
 
 html, body {
     background-image: url('../images/bg.png');
-
+    scroll-behavior: smooth;
     z-index: 1;
     min-height: 100%;
     width: 100%;
@@ -55,6 +55,7 @@ main {
     padding: 6rem 1rem 1rem;
     max-width: 900px;
     position: relative;
+    min-height: calc(100vh - 5rem - 6rem - 1rem);
 }
 
 footer {

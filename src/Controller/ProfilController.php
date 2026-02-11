@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Order;
+
 
 class ProfilController extends AbstractController
 {
@@ -64,5 +66,23 @@ class ProfilController extends AbstractController
 
         $this->addFlash('success', 'Votre compte a bien été supprimé.');
         return $this->redirectToRoute('app_home');
+    }
+
+    #[Route('/profil/commandes', name: 'app_profil_orders')]
+    public function orders(EntityManagerInterface $em): Response
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $orders = $em->getRepository(Order::class)->findBy(
+            ['user' => $user],
+            ['createdAt' => 'DESC']
+        );
+
+        return $this->render('profil/orders.html.twig', [
+            'orders' => $orders,
+        ]);
     }
 }

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes commandes{% endblock %}
+
+{% block body %}
+    <section class="profil-container" role="main">
+
+        <h1>Mes commandes</h1>
+
+        {% if orders is empty %}
+            <p>Aucune commande pour le moment.</p>
+        {% else %}
+            <ul>
+                {% for order in orders %}
+                    <li>
+                        <strong>Commande #{{ order.id }}</strong><br>
+                        Date : {{ order.createdAt|date('d/m/Y H:i') }}<br>
+                        Montant : {{ (order.total / 100)|number_format(2, '.', ' ') }} €<br>
+                        Statut :
+                        {% if order.status == 'paid' %}
+                            Payée
+                        {% elseif order.status == 'pending' %}
+                            En attente
+                        {% endif %}
+
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <p><a href="{{ path('app_profil') }}" class="profil_orders">Retour au profil</a></p>
+
+    </section>
+{% endblock %}

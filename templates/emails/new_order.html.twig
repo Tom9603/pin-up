@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelle commande reçue</title>
+</head>
+<body style="background-color:#ffffff; font-family:Arial, Helvetica, sans-serif; padding:20px; color:#000000;">
+
+<div style="max-width:600px; margin:0 auto; border:1px solid #ddd; border-radius:6px; padding:20px;">
+
+    <h2 style="text-align:center; font-size:20px; margin-top:0; margin-bottom:20px;">
+        🧾 Nouvelle commande reçue
+    </h2>
+
+    <p style="font-size:14px; line-height:1.6; margin:0 0 10px 0;">
+        Une nouvelle commande vient d’être <strong>payée</strong>.
+    </p>
+
+    <hr style="border:none; border-top:1px solid #ddd; margin:20px 0;">
+
+    <p style="font-size:14px; line-height:1.6; margin:0 0 8px 0;">
+        <strong>Commande :</strong> #{{ order.id }}
+    </p>
+
+    <p style="font-size:14px; line-height:1.6; margin:0 0 8px 0;">
+        <strong>Acheteur :</strong> {{ order.user }}
+    </p>
+
+    <p style="font-size:14px; line-height:1.6; margin:0 0 8px 0;">
+        <strong>Email :</strong> {{ order.user.email }}
+    </p>
+
+    <p style="font-size:14px; line-height:1.6; margin:0 0 8px 0;">
+        <strong>Montant :</strong>
+        {{ (order.total / 100)|number_format(2, ',', ' ') }} €
+    </p>
+
+    <p style="font-size:14px; line-height:1.6; margin:0 0 15px 0;">
+        <strong>Date :</strong>
+        {{ order.createdAt|date('d/m/Y à H:i') }}
+    </p>
+
+    <p style="font-size:13px; line-height:1.6; margin:0 0 15px 0; color:#555;">
+        <strong>Session Stripe :</strong><br>
+        {{ order.stripeSessionId }}
+    </p>
+
+    <hr style="border:none; border-top:1px solid #ddd; margin:25px 0;">
+
+    <p style="font-size:14px; line-height:1.6; margin:0 0 15px 0;">
+        👉 Consultez le détail de la commande dans l’administration du site.
+    </p>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="https://TON-DOMAINE/admin"
+           style="display:inline-block; padding:10px 18px; background-color:#000000; color:#ffffff; text-decoration:none; border-radius:4px; font-size:14px;">
+            Accéder à l’administration
+        </a>
+    </div>
+
+    <div style="height:15px; line-height:15px;">&nbsp;</div>
+
+    <p style="font-size:12px; color:#555555; text-align:center; margin:0;">
+        Notification automatique — Miss Pin-Up Bretagne
+    </p>
+
+</div>
+
+</body>
+</html>

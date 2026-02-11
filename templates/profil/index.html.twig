@@ -18,6 +18,10 @@
             <p aria-live="polite" class="validate">{{ message }}</p>
         {% endif %}
 
+        <p>
+            <a href="{{ path('app_profil_orders') }}" class="profil_orders">Voir mes commandes</a>
+        </p>
+
         <h2>Supprimer mon compte</h2>
 
         <form method="post" action="{{ path('app_profil_delete') }}">

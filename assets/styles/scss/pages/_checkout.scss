@@ -1,0 +1,110 @@
+.shop-payment {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 30px 24px;
+
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    border-radius: 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+
+    h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+    }
+
+    p {
+        margin: 0;
+        line-height: 1.55;
+        font-size: 15px;
+        opacity: 0.9;
+    }
+
+    strong {
+        font-weight: 900;
+        font-size: 18px;
+        opacity: 1;
+    }
+
+    .shop-payment__amount {
+        font-size: 16px;
+    }
+
+    .shop-payment__status {
+        font-size: 14px;
+        opacity: 0.8;
+    }
+
+    .shop-payment__actions {
+        margin-top: 6px;
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .shop-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 10px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        text-decoration: none;
+        font-weight: 750;
+        font-size: 14px;
+
+        background: rgba(255, 255, 255, 0.95);
+        color: inherit;
+
+        transition: transform .06s ease, background .12s ease, opacity .12s ease;
+
+        &:active {
+            transform: translateY(1px);
+        }
+
+        &--primary {
+            background: rgba(145, 56, 43, 0.95);
+            color: #fff;
+            border-color: transparent;
+
+            &:hover {
+                opacity: .94;
+            }
+        }
+
+        &--ghost {
+            background: transparent;
+            border-color: rgba(0, 0, 0, 0.18);
+            opacity: 0.85;
+
+            &:hover {
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.6);
+            }
+        }
+    }
+
+    &--success {
+        border-color: rgba(40, 160, 90, 0.35);
+        box-shadow: 0 0 0 3px rgba(40, 160, 90, 0.08);
+    }
+
+    &--pending {
+        border-color: rgba(220, 150, 40, 0.35);
+        box-shadow: 0 0 0 3px rgba(220, 150, 40, 0.08);
+    }
+
+    &--cancel {
+        border-color: rgba(180, 60, 60, 0.35);
+        box-shadow: 0 0 0 3px rgba(180, 60, 60, 0.08);
+    }
+}

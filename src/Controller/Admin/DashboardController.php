@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Event;
+use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -13,6 +14,8 @@ use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\User;
 use App\Entity\Image;
+use App\Entity\Order;
+use App\Entity\OrderItem;
 
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
 class DashboardController extends AbstractDashboardController
@@ -37,10 +40,13 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Commentaire', 'fa fa-comments', Comment::class);
         yield MenuItem::linkToCrud('Utilisateur', 'fa fa-users', User::class);
         yield MenuItem::linkToCrud('Carrousel', 'fa fa-camera', Image::class);
+        yield MenuItem::linkToCrud('Produit', 'fa fa-shopping-cart', Product::class);
+        yield MenuItem::linkToCrud('Commandes', 'fa fa-receipt', Order::class);
+        yield MenuItem::linkToCrud('Lignes commandes', 'fa fa-list', OrderItem::class);
+
         yield MenuItem::section('   ');
         yield MenuItem::section('   ');
         yield MenuItem::section('   ');
         yield MenuItem::linkToUrl('Retour au site', 'fa fa-arrow-left', $this->generateUrl('app_home'));
     }
 }
-

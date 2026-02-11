@@ -4,12 +4,58 @@
 
 {% block body %}
 
-    <div class="shop-page" role="main">
+    <section class="shop-scope">
 
-        <h1 role="heading" aria-level="1">Bienvenue dans la boutique !</h1>
+        <h1 class="shop-title">Boutique</h1>
 
-        <h2 role="status" aria-live="polite" class="shop-page">La boutique arrive prochainement !</h2>
+        <div class="shop-cart-summary">
+            {% if cartCount > 0 %}
+                <p class="shop-cart-summary__text">
+                    {{ cartCount }} article{{ cartCount > 1 ? 's' : '' }} -
+                    Total : {{ (cartTotal / 100)|number_format(2, '.', ' ') }} €
+                </p>
+                <a class="shop-btn shop-btn--primary" href="{{ path('cart_index') }}">Voir le panier</a>
+            {% else %}
+                <p class="shop-cart-summary__text">Votre panier est vide.</p>
+                <a class="shop-btn" href="{{ path('cart_index') }}">Accéder au panier</a>
+            {% endif %}
+        </div>
 
-    </div>
+        {% if products is empty %}
+            <p class="shop-empty">Aucun produit disponible.</p>
+        {% else %}
+            <div class="shop-grid">
+                {% for product in products %}
+                    <article class="shop-card">
+
+                        {% if product.imageName %}
+                            <img src="{{ asset('uploads/images/' ~ product.imageName) }}"
+                                 alt="{{ product.name }}"
+                                 class="shop-card__img">
+                        {% endif %}
+
+                        <div class="shop-card__title">{{ product.name }}</div>
+
+                        {% if product.description %}
+                            <div class="shop-card__desc">
+                                {{ product.description|raw }}
+                            </div>
+                        {% endif %}
+
+                        <div class="shop-card__price">
+                            {{ (product.price / 100)|number_format(2, '.', ' ') }} €
+                        </div>
+
+                        <a class="shop-btn shop-btn--primary"
+                           href="{{ path('app_shop_product', { id: product.id }) }}">
+                            Voir le produit
+                        </a>
+                    </article>
+                {% endfor %}
+
+            </div>
+        {% endif %}
+
+    </section>
 
 {% endblock %}

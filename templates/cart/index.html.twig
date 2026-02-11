@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block body %}
+
+    <section class="cart-container">
+
+        <h1>Mon panier</h1>
+
+        <a class="cart-back" href="{{ path('app_shop') }}">Retour</a>
+
+        {% if products is empty %}
+            <p>Votre panier est vide.</p>
+
+            <p>
+                <a class="cart-btn cart-btn--primary" href="{{ path('app_shop') }}">Voir la boutique</a>
+            </p>
+
+        {% else %}
+
+            <ul class="cart-list">
+                {% for product in products %}
+                    <li class="cart-item">
+
+                        <div class="cart-item__title">{{ product.name }}</div>
+
+                        <div class="cart-row">
+                            <span>Quantité</span>
+
+                            <span class="cart-qty">
+                                <a class="cart-qty__btn" href="{{ path('cart_update', { id: product.id, action: 'minus' }) }}">−</a>
+                                <span class="cart-qty__value">{{ cart[product.id] }}</span>
+                                <a class="cart-qty__btn" href="{{ path('cart_update', { id: product.id, action: 'plus' }) }}">+</a>
+                            </span>
+                        </div>
+
+                        <div class="cart-row">
+                            <span>Prix unitaire</span>
+                            <strong>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</strong>
+                        </div>
+
+                        <div class="cart-row">
+                            <span>Sous-total</span>
+                            <strong>{{ ((product.price * cart[product.id]) / 100)|number_format(2, ',', ' ') }} €</strong>
+                        </div>
+
+                        <a class="cart-remove" href="{{ path('cart_remove', { id: product.id }) }}">
+                            Supprimer
+                        </a>
+
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <p class="cart-total">
+                <span>Total</span>
+                <strong>{{ (total / 100)|number_format(2, ',', ' ') }} €</strong>
+            </p>
+
+            <p class="cart-actions">
+                <a href="{{ path('cart_checkout') }}" class="cart-btn cart-btn--primary">
+                    Valider et payer
+                </a>
+
+                <a href="{{ path('cart_clear') }}" class="cart-btn cart-btn--danger">
+                    Vider le panier
+                </a>
+            </p>
+
+        {% endif %}
+
+    </section>
+
+{% endblock %}

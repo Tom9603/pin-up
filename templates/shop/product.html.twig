@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+
+    <section class="shop-product">
+
+        <h1>{{ product.name }}</h1>
+        <img src="{{ asset('uploads/images/' ~ product.imageName) }}"
+             alt="{{ product.name }}"
+             class ="img_product">
+
+        <p class ="name_product">{{ product.name }}</p>
+        {% if product.description %}
+            <p>{{ product.description|raw }}</p>
+        {% endif %}
+
+        <p class="shop-product__price">
+            Prix :
+            <strong>
+                {{ (product.price / 100)|number_format(2, ',', ' ') }} €
+            </strong>
+        </p>
+
+        <div class="shop-product__actions">
+            <a href="{{ path('cart_add', { id: product.id }) }}"
+               class="shop-btn shop-btn--primary">
+                Ajouter au panier
+            </a>
+
+            <a href="{{ path('app_shop') }}"
+               class="shop-btn shop-btn--ghost">
+                Retour
+            </a>
+        </div>
+
+    </section>
+
+{% endblock %}

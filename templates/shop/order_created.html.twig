@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande #{{ order.id }}{% endblock %}
+
+{% block body %}
+
+    <h1>Commande créée</h1>
+
+    <p>ID: {{ order.id }}</p>
+    <p>Statut: {{ order.status }}</p>
+    <p>Total: {{ (order.total / 100)|number_format(2, '.', ' ') }} €</p>
+
+    <p>
+        <a href="{{ path('app_shop') }}">Retour boutique</a>
+    </p>
+
+{% endblock %}

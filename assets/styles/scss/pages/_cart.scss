@@ -1,0 +1,206 @@
+.cart-container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 28px 22px;
+
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    border-radius: 18px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    /* lien retour */
+    .cart-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        font-weight: 650;
+        opacity: 0.85;
+
+        &:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    }
+
+    /* liste */
+    .cart-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        display: grid;
+        gap: 14px;
+    }
+
+    .cart-item {
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(0, 0, 0, 0.10);
+
+        display: grid;
+        gap: 10px;
+    }
+
+    .cart-item__title {
+        font-size: 16px;
+        font-weight: 800;
+    }
+
+    .cart-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+
+        font-size: 14px;
+        opacity: 0.9;
+    }
+
+    .cart-row strong {
+        opacity: 1;
+    }
+
+    /* quantité */
+    .cart-qty {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .cart-qty__btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        background: rgba(255, 255, 255, 0.95);
+        text-decoration: none;
+        font-weight: 900;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+
+    .cart-qty__value {
+        min-width: 26px;
+        text-align: center;
+        font-weight: 900;
+        font-size: 14px;
+    }
+
+    /* supprimer */
+    .cart-remove {
+        display: inline-flex;
+        width: fit-content;
+        text-decoration: none;
+        font-weight: 650;
+        opacity: 0.75;
+
+        &:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    }
+
+    /* total */
+    .cart-total {
+        margin: 6px 0 0 0;
+        padding-top: 14px;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+
+        font-size: 15px;
+        font-weight: 650;
+    }
+
+    .cart-total strong {
+        font-size: 22px;
+        font-weight: 900;
+    }
+
+    /* actions */
+    .cart-actions {
+        margin: 0;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .cart-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 10px 16px;
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.14);
+        text-decoration: none;
+        font-weight: 750;
+        font-size: 14px;
+
+        background: rgba(255, 255, 255, 0.95);
+        color: inherit;
+
+        transition: transform .06s ease, background .12s ease, opacity .12s ease;
+
+        &:hover {
+            background: rgba(96, 38, 29, 0.95);
+            transition: 0.3s ease;
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+
+        &--primary {
+            background: rgba(145, 56, 43, 0.95);
+            color: #fff;
+            border-color: transparent;
+
+            &:hover {
+                opacity: .94;
+            }
+        }
+
+        &--danger {
+            background: transparent;
+            border-color: rgba(0, 0, 0, 0.18);
+            opacity: 0.85;
+
+            &:hover {
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.6);
+            }
+        }
+    }
+}

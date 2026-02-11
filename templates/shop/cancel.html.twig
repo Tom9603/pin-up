@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement annulé{% endblock %}
+
+{% block body %}
+
+    <section class="shop-payment shop-payment--cancel">
+
+        <h1>Paiement annulé</h1>
+
+        <p>
+            Le paiement a été annulé.<br>
+            Aucun débit n’a été effectué.
+        </p>
+
+        <div class="shop-payment__actions">
+            <a class="shop-btn shop-btn--primary" href="{{ path('app_shop') }}">
+                Retour à la boutique
+            </a>
+        </div>
+
+    </section>
+
+{% endblock %}
