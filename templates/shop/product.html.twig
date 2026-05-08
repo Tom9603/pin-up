@@ -13,7 +13,7 @@
 
         <p class ="name_product">{{ product.name }}</p>
         {% if product.description %}
-            <p>{{ product.description|raw }}</p>
+            <p>{{ product.description|sanitize_html }}</p>
         {% endif %}
 
         <p class="shop-product__price">

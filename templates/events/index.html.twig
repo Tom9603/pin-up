@@ -49,7 +49,7 @@
                             <p class="toggle-text"></p>
 
                             <div class="article-content">
-                                {{ article.content|raw }}
+                                {{ article.content|sanitize_html }}
                                 {% if article.medias|length > 0 %}
                                     <div class="article-images">
                                         {% for media in article.medias %}

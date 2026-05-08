@@ -21,10 +21,9 @@ class ResetPasswordRequestFormType extends AbstractType
                         'message' => 'Veuillez entrer une adresse e-mail valide.',
                     ]),
                     new Length([
-                        'min' => 8,
+                        'min' => 5,
                         'minMessage' => 'Il manque {{ limit }} caractères.',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 30
+                        'max' => 254
                     ])
                 ],
             ])

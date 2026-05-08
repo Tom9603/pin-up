@@ -38,7 +38,7 @@
 
                         {% if product.description %}
                             <div class="shop-card__desc">
-                                {{ product.description|raw }}
+                                {{ product.description|sanitize_html }}
                             </div>
                         {% endif %}
 
