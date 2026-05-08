@@ -43,7 +43,6 @@ class UserCrudController extends AbstractCrudController
         return [
             TextField::new('name')->setLabel('Nom'),
             TextField::new('email')->setLabel('Email'),
-            TextField::new('password')->setLabel('Mot de passe'),
             DateTimeField::new('date_inscription')->setLabel('Date d\'inscription'),
             ChoiceField::new('roles')
             ->setLabel('Rôles')

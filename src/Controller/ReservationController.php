@@ -66,8 +66,12 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/api/event/{id}/reservations', name: 'api_event_reservations', methods: ['GET'])]
-    public function getReservations(Event $event): JsonResponse
+    public function getReservations(Event $event, Security $security): JsonResponse
     {
+        if (!$security->getUser()) {
+            return new JsonResponse(['error' => 'Authentification requise'], 401);
+        }
+
         $users = [];
         foreach ($event->getReservations() as $reservation) {
             $users[] = $reservation->getUser()->getName();

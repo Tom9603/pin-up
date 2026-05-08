@@ -75,6 +75,7 @@
 
                                 {% if app.user %}
                                     <form action="{{ path('comment_add', {'articleId': article.id}) }}" method="POST" class="comment-form">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('comment_add_' ~ article.id) }}">
                                         <textarea name="content" placeholder="Votre commentaire..." required></textarea>
                                         <button type="submit">Envoyer</button>
                                     </form>

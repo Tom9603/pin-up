@@ -31,10 +31,8 @@ class ProfilController extends AbstractController
             }
 
             $em->flush();
-            return $this->render('profil/index.html.twig', [
-                'profilForm' => $form->createView(),
-                'message' => 'Modifications enregistrées.',
-            ]);
+            $this->addFlash('success', 'Modifications enregistrées.');
+            return $this->redirectToRoute('app_profil');
         }
 
         return $this->render('profil/index.html.twig', [

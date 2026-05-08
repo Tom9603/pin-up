@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Validator\Constraints\Length;
 
 class ContactFormType extends AbstractType
 {
@@ -30,8 +31,12 @@ class ContactFormType extends AbstractType
             ->add('message', TextareaType::class, [
                 'label' => 'Message',
                 'attr' => [
-                    'placeholder' => 'Entrez votre message'
-                ]
+                    'placeholder' => 'Entrez votre message',
+                    'maxlength' => 2000,
+                ],
+                'constraints' => [
+                    new Length(['max' => 2000, 'maxMessage' => 'Votre message ne peut pas dépasser 2000 caractères.']),
+                ],
             ])
             ->add('envoyer', SubmitType::class, [
                 'label' => 'Envoyer',

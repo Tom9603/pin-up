@@ -31,6 +31,10 @@ class CommentController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
+        if (!$this->isCsrfTokenValid('comment_add_' . $articleId, $request->request->get('_token'))) {
+            throw $this->createAccessDeniedException('Token CSRF invalide.');
+        }
+
         $content = trim($request->request->get('content'));
         if ($content === '') {
             return $this->redirectToRoute('app_events', ['_fragment' => 'article-' . $articleId]);
