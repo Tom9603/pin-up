@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
-
 final class StripeWebhookController extends AbstractController
 {
     #[Route('/stripe/webhook', name: 'stripe_webhook', methods: ['POST'])]
@@ -31,47 +30,46 @@ final class StripeWebhookController extends AbstractController
             return new Response('Invalid signature', 400);
         }
 
-        if ($event->type === 'checkout.session.completed') {
-            $session = $event->data->object; // checkout session
+        $order = null;
 
-            $order = $em->getRepository(Order::class)->findOneBy([
-                'stripeSessionId' => $session->id,
-            ]);
-
-            if ($order && $order->getStatus() !== 'paid') {
-                $order->setStatus('paid');
-                $em->flush();
-            }
+        if ($event->type !== 'checkout.session.completed') {
+            return new Response('Ignored', 200);
         }
 
-        if ($order && $order->getStatus() !== 'paid') {
-            $order->setStatus('paid');
-            $em->flush();
+        $session = $event->data->object;
 
-            $email = (new TemplatedEmail())
-                ->from('no-reply@misspinupbretagne.fr')
-                ->to($order->getUser()->getEmail())
-                ->subject('Confirmation de commande n°' . $order->getId())
-                ->htmlTemplate('emails/order_confirmation.html.twig')
-                ->context([
-                    'order' => $order,
-                ]);
+        $order = $em->getRepository(Order::class)->findOneBy([
+            'stripeSessionId' => $session->id,
+        ]);
 
-            $mailer->send($email);
-
-            $adminEmail = (new TemplatedEmail())
-                ->from('no-reply@misspinupbretagne.fr')
-                ->to('misspinupbretagne@gmail.fr')
-                ->subject('Nouvelle commande reçue #' . $order->getId())
-                ->htmlTemplate('emails/new_order.html.twig')
-                ->context([
-                    'order' => $order,
-                ]);
-
-            $mailer->send($adminEmail);
-
-
+        if (!$order) {
+            return new Response('Order not found', 200);
         }
+
+        if ($order->getStatus() === 'paid') {
+            return new Response('Already paid', 200);
+        }
+
+        $order->setStatus('paid');
+        $em->flush();
+
+        $email = (new TemplatedEmail())
+            ->from('no-reply@misspinupbretagne.fr')
+            ->to($order->getUser()->getEmail())
+            ->subject('Confirmation de commande n°' . $order->getId())
+            ->htmlTemplate('emails/order_confirmation.html.twig')
+            ->context(['order' => $order]);
+
+        $mailer->send($email);
+
+        $adminEmail = (new TemplatedEmail())
+            ->from('no-reply@misspinupbretagne.fr')
+            ->to('misspinupbretagne@gmail.com')
+            ->subject('Nouvelle commande reçue #' . $order->getId())
+            ->htmlTemplate('emails/new_order.html.twig')
+            ->context(['order' => $order]);
+
+        $mailer->send($adminEmail);
 
         return new Response('OK', 200);
     }

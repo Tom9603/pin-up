@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\StripeClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CartController extends AbstractController
 {
+    public function __construct(private StripeClient $stripe) {}
+
     #[Route('/cart', name: 'cart_index')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
@@ -128,9 +131,7 @@ class CartController extends AbstractController
         $em->persist($order);
         $em->flush();
 
-        \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
-
-        $stripeSession = \Stripe\Checkout\Session::create([
+        $stripeSession = $this->stripe->checkout->sessions->create([
             'mode' => 'payment',
             'payment_method_types' => ['card'],
             'line_items' => $lineItemsStripe,

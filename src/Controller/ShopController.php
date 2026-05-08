@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Entity\Order;
 use App\Entity\OrderItem;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\StripeClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -16,6 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 final class ShopController extends AbstractController
 {
+    public function __construct(private StripeClient $stripe) {}
+
     #[Route('/shop', name: 'app_shop')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
@@ -87,9 +90,7 @@ final class ShopController extends AbstractController
         $em->persist($item);
         $em->flush();
 
-        \Stripe\Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
-
-        $session = \Stripe\Checkout\Session::create([
+        $session = $this->stripe->checkout->sessions->create([
             'mode' => 'payment',
             'payment_method_types' => ['card'],
             'line_items' => [[
