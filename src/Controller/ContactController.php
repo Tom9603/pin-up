@@ -49,8 +49,9 @@ final class ContactController extends AbstractController
             $data = $form->getData();
 
             $email = (new Email())
-                ->from('tom.ochietti@gmail.com')
-                ->to('tom.ochietti@gmail.com')
+                ->from($_ENV['APP_FROM_EMAIL'] ?? 'contact@misspinupbretagne.fr')
+                ->to($_ENV['APP_ADMIN_EMAIL'] ?? 'contact@misspinupbretagne.fr')
+                ->replyTo($data['email'])
                 ->subject('Nouveau message de contact')
                 ->html(
                     $this->renderView('emails/contact.html.twig', [

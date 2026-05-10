@@ -40,7 +40,7 @@ class RegistrationController extends AbstractController
 
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
-                    ->from(new Address('tom.ochietti@gmail.com', 'Comité Miss Pin-Up Bretagne'))
+                    ->from(new Address($_ENV['APP_FROM_EMAIL'] ?? 'contact@misspinupbretagne.fr', 'Comité Miss Pin-Up Bretagne'))
                     ->to($user->getEmail())
                     ->subject('Confirmez votre adresse e-mail')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
@@ -105,7 +105,7 @@ class RegistrationController extends AbstractController
 
         $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
             (new TemplatedEmail())
-                ->from(new Address('tom.ochietti@gmail.com', 'Comité Miss Pin-Up Bretagne'))
+                ->from(new Address($_ENV['APP_FROM_EMAIL'] ?? 'contact@misspinupbretagne.fr', 'Comité Miss Pin-Up Bretagne'))
                 ->to($user->getEmail())
                 ->subject('Confirmation de votre e-mail')
                 ->htmlTemplate('registration/confirmation_email.html.twig')
