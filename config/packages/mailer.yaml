@@ -2,5 +2,5 @@ framework:
     mailer:
         dsn: '%env(resolve:MAILER_DSN)%'
         envelope:
-            sender: 'tom.ochietti@gmail.com'
+            sender: '%env(APP_FROM_EMAIL)%'
         message_bus: false

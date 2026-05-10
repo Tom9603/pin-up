@@ -13,4 +13,4 @@ services:
 framework:
     mailer:
         envelope:
-            sender: 'tom.ochietti@gmail.com'
+            sender: '%env(APP_FROM_EMAIL)%'
