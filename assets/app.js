@@ -10,3 +10,5 @@ import './js/carrousel.js';
 import './js/bell.js';
 import './js/calendar.js';
 import './js/recaptcha-v3.js';
+import './js/preserve-scroll.js';
+import './js/lightbox.js';

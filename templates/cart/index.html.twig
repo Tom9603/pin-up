@@ -8,7 +8,10 @@
 
         <h1>Mon panier</h1>
 
-        <a class="cart-back" href="{{ path('app_shop') }}">Retour</a>
+        <a class="cart-back" href="{{ path('app_shop') }}">
+            <i class="fa-solid fa-arrow-left"></i>
+            Continuer mes achats
+        </a>
 
         {% if products is empty %}
             <p>Votre panier est vide.</p>
@@ -23,31 +26,55 @@
                 {% for product in products %}
                     <li class="cart-item">
 
-                        <div class="cart-item__title">{{ product.name }}</div>
+                        {% if product.imageName %}
+                            <img class="cart-item__image"
+                                 src="{{ asset('uploads/images/' ~ product.imageName) }}"
+                                 alt="{{ product.name }}">
+                        {% else %}
+                            <div class="cart-item__image cart-item__image--empty"></div>
+                        {% endif %}
 
-                        <div class="cart-row">
-                            <span>Quantité</span>
+                        <div class="cart-item__body">
 
-                            <span class="cart-qty">
-                                <a class="cart-qty__btn" href="{{ path('cart_update', { id: product.id, action: 'minus' }) }}">−</a>
-                                <span class="cart-qty__value">{{ cart[product.id] }}</span>
-                                <a class="cart-qty__btn" href="{{ path('cart_update', { id: product.id, action: 'plus' }) }}">+</a>
-                            </span>
+                            <div class="cart-item__title">{{ product.name }}</div>
+
+                            <div class="cart-row">
+                                <span>Quantité</span>
+
+                                <span class="cart-qty">
+                                    <form method="post" action="{{ path('cart_update', { id: product.id, action: 'minus' }) }}" data-preserve-scroll>
+                                        <input type="hidden" name="_token" value="{{ csrf_token('cart_update') }}">
+                                        <button type="submit" class="cart-qty__btn">−</button>
+                                    </form>
+                                    <span class="cart-qty__value">{{ cart[product.id] }}</span>
+                                    <form method="post" action="{{ path('cart_update', { id: product.id, action: 'plus' }) }}" data-preserve-scroll>
+                                        <input type="hidden" name="_token" value="{{ csrf_token('cart_update') }}">
+                                        <button type="submit" class="cart-qty__btn">+</button>
+                                    </form>
+                                </span>
+                            </div>
+
+                            <div class="cart-row">
+                                <span>Prix unitaire</span>
+                                <strong>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</strong>
+                            </div>
+
+                            <div class="cart-row">
+                                <span>Sous-total</span>
+                                <strong>{{ ((product.price * cart[product.id]) / 100)|number_format(2, ',', ' ') }} €</strong>
+                            </div>
+
+                            <div class="cart-item__actions">
+                                <form method="post" action="{{ path('cart_remove', { id: product.id }) }}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('cart_remove') }}">
+                                    <button type="submit" class="cart-remove">
+                                        <i class="fa-solid fa-trash"></i>
+                                        Supprimer
+                                    </button>
+                                </form>
+                            </div>
+
                         </div>
-
-                        <div class="cart-row">
-                            <span>Prix unitaire</span>
-                            <strong>{{ (product.price / 100)|number_format(2, ',', ' ') }} €</strong>
-                        </div>
-
-                        <div class="cart-row">
-                            <span>Sous-total</span>
-                            <strong>{{ ((product.price * cart[product.id]) / 100)|number_format(2, ',', ' ') }} €</strong>
-                        </div>
-
-                        <a class="cart-remove" href="{{ path('cart_remove', { id: product.id }) }}">
-                            Supprimer
-                        </a>
 
                     </li>
                 {% endfor %}
@@ -58,15 +85,17 @@
                 <strong>{{ (total / 100)|number_format(2, ',', ' ') }} €</strong>
             </p>
 
-            <p class="cart-actions">
-                <a href="{{ path('cart_checkout') }}" class="cart-btn cart-btn--primary">
-                    Valider et payer
-                </a>
+            <div class="cart-actions">
+                <form method="post" action="{{ path('cart_checkout') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('cart_checkout') }}">
+                    <button type="submit" class="cart-btn cart-btn--primary">Valider et payer</button>
+                </form>
 
-                <a href="{{ path('cart_clear') }}" class="cart-btn cart-btn--danger">
-                    Vider le panier
-                </a>
-            </p>
+                <form method="post" action="{{ path('cart_clear') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('cart_clear') }}">
+                    <button type="submit" class="cart-btn cart-btn--danger">Vider le panier</button>
+                </form>
+            </div>
 
         {% endif %}
 

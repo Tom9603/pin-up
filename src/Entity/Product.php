@@ -40,6 +40,9 @@ class Product
     #[ORM\Column]
     private ?bool $isActive = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $stock = null;
+
     /**
      * @var Collection<int, OrderItem>
      */
@@ -100,6 +103,18 @@ class Product
     public function setIsActive(bool $isActive): static
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(?int $stock): static
+    {
+        $this->stock = $stock;
 
         return $this;
     }

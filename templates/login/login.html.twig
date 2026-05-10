@@ -2,100 +2,111 @@
 
 {% set body_class = 'login-page' %}
 
-{% block title %}Connectez-vous !{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block meta %}
-    <meta name="description" content="Connectez-vous à votre espace personnel sur le site Miss Pin-Up Bretagne pour accéder à vos informations et participer aux activités du comité.">
+    <meta name="description" content="Connectez-vous à votre espace personnel sur le site Miss Pin-Up Bretagne.">
 {% endblock %}
 
 {% block body %}
 
-    <section class ="login-container" role="main">
+    <section class="auth-page" role="main">
 
-        {% for message in app.flashes('verify_banner') %}
-            <div class="success">{{ message }}</div>
-        {% endfor %}
+        <a class="auth-back" href="{{ path('app_home') }}">
+            <i class="fa-solid fa-arrow-left"></i>
+            Retour à l'accueil
+        </a>
 
-        <h1>Connectez-vous</h1>
-        <a class ="back" href="{{ path('app_home') }}">Retour à l'accueil</a>
+        <div class="auth-card">
 
-        <div class="login-box">
-            <form method="post">
+            <h1>Connexion</h1>
+            <p class="auth-subtitle">Accédez à votre espace personnel.</p>
 
-                {% if error %}
-                    <div class="alert alert-danger login-error" role="alert" aria-live="assertive">
+            {% for message in app.flashes('verify_banner') %}
+                <div class="auth-alert auth-alert--success">{{ message }}</div>
+            {% endfor %}
 
-                        {% if error.messageKey == 'Veuillez confirmer votre e-mail avant de vous connecter.' %}
-                            {{ error.messageKey }}
-                            <br>
-                            <a href="{{ path('app_resend_verification') }}?email={{ last_username }}" class="resend-link">
-                                Renvoyer le lien de confirmation
-                            </a>
-                        {% else %}
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
-                        {% endif %}
+            {% if error %}
+                <div class="auth-alert auth-alert--error" role="alert" aria-live="assertive">
+                    {% if error.messageKey == 'Veuillez confirmer votre e-mail avant de vous connecter.' %}
+                        {{ error.messageKey }}
+                        <a href="{{ path('app_resend_verification') }}?email={{ last_username }}" class="auth-link">
+                            Renvoyer le lien de confirmation
+                        </a>
+                    {% else %}
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    {% endif %}
+                </div>
+            {% endif %}
 
-                    </div>
-                {% endif %}
+            {% if app.user %}
+                <div class="auth-alert auth-alert--info">
+                    Vous êtes connecté en tant que <strong>{{ app.user.userIdentifier }}</strong>.
+                    <a class="auth-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+                </div>
+            {% endif %}
 
-                {% if app.user %}
-                    <div class="mb-3">
-                        Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
-                    </div>
-                {% endif %}
+            <form method="post" class="auth-form">
 
-                <div class="blur">
-
+                <div class="auth-field">
                     <label for="username">Email</label>
-                    <input type="email" value="{{ last_username }}" name="_username" placeholder="Saisissez votre e-mail" id="username" class="form-control" autocomplete="email" required autofocus>
+                    <input type="email"
+                           id="username"
+                           name="_username"
+                           value="{{ last_username }}"
+                           placeholder="vous@exemple.fr"
+                           autocomplete="email"
+                           required
+                           autofocus>
+                </div>
 
+                <div class="auth-field">
                     <label for="password">Mot de passe</label>
-                    <div class="password-field">
-                        <input type="password" name="_password" placeholder="Saisissez votre mot de passe" id="password" class="form-control" autocomplete="current-password" required>
-                        <i class="fa-solid fa-eye toggle-password" onclick="togglePassword(this)"></i>
-                    </div>
-                    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}" class="login-error">
-
-                    <div class="remember-container">
-
-                        <label for="_remember_me">
-                            <input type="checkbox" name="_remember_me" id="_remember_me">
-                            Se souvenir de moi
-                        </label>
-
-                    </div>
-
-                    <button class="btn btn-lg btn-primary" type="submit">
-                        Connexion
-                    </button>
-
-                    <div class="possibilities">
-
-                        <div>
-                            <a href="{{ path('app_register') }}">Inscrivez-vous</a>
-                        </div>
-                        <div>
-                            <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
-                        </div>
-
+                    <div class="auth-password">
+                        <input type="password"
+                               id="password"
+                               name="_password"
+                               placeholder="Votre mot de passe"
+                               autocomplete="current-password"
+                               required>
+                        <button type="button" class="auth-password__toggle" aria-label="Afficher / masquer le mot de passe" onclick="togglePassword(this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
                     </div>
                 </div>
+
+                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                <label class="auth-checkbox">
+                    <input type="checkbox" name="_remember_me" id="_remember_me">
+                    <span>Se souvenir de moi</span>
+                </label>
+
+                <button type="submit" class="auth-btn auth-btn--primary">
+                    Se connecter
+                </button>
+
             </form>
+
+            <div class="auth-links">
+                <a href="{{ path('app_register') }}">Pas encore de compte ? <strong>Inscrivez-vous</strong></a>
+                <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+            </div>
+
         </div>
 
     </section>
 
     <script>
-        function togglePassword(icon) {
-            const input = icon.previousElementSibling;
+        function togglePassword(btn) {
+            const input = btn.parentElement.querySelector('input');
+            const icon = btn.querySelector('i');
             if (input.type === "password") {
                 input.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
+                icon.classList.replace("fa-eye", "fa-eye-slash");
             } else {
                 input.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
+                icon.classList.replace("fa-eye-slash", "fa-eye");
             }
         }
     </script>

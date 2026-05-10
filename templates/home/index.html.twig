@@ -31,25 +31,25 @@
     <section>
         <h2 class="red">Pourquoi nous rejoindre ?</h2>
         <div class="grid-home">
-            <div>
+            <a href="{{ path('app_register') }}">
                 <img src="{{ asset('images/communaute.png') }}" alt="Communauté de Pin-up">
                 <p>Communauté engagée</p>
-            </div>
-            <div>
+            </a>
+            <a href="{{ path('app_events') }}">
                 <img src="{{ asset('images/jukebox.png') }}" alt="Jukebox">
-                <p>événements exclusifs</p>
-            </div>
-            <div>
+                <p>Événements exclusifs</p>
+            </a>
+            <a href="{{ path('app_shop') }}">
                 <img src="{{ asset('images/lipstick.png') }}" alt="Rouge à lèvres">
                 <p>Espace boutique</p>
-            </div>
-            <div>
+            </a>
+            <a href="{{ path('app_home') }}#carrousel">
                 <img src="{{ asset('images/photo.png') }}" alt="Appareil photo">
                 <p>Shooting événementiel</p>
-            </div>
+            </a>
         </div>
     </section>
-    <section class="carousel-section">
+    <section class="carousel-section" id="carrousel">
         <h2>Derniers évènements</h2>
 
         <div class="carousel">

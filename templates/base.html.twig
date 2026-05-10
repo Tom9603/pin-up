@@ -56,6 +56,12 @@
 <div class="stars"></div>
 
 <main>
+    {% for type, messages in app.flashes(['error', 'success', 'warning']) %}
+        {% for message in messages %}
+            <div class="flash flash--{{ type }}">{{ message }}</div>
+        {% endfor %}
+    {% endfor %}
+
     {% block body %}
     {% endblock %}
 </main>

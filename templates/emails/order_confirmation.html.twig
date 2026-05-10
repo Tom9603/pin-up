@@ -19,6 +19,9 @@
     <p style="font-size:14px; line-height:1.6; margin:0 0 15px 0;">
         Nous vous confirmons que votre commande
         <strong>n°{{ order.id }}</strong> a bien été validée.
+        {% if order.invoiceNumber %}
+            <br>Facture : <strong>{{ order.invoiceNumber }}</strong>
+        {% endif %}
     </p>
 
     <p style="font-size:14px; line-height:1.6; margin:0 0 10px 0;">
@@ -27,13 +30,15 @@
     </p>
 
     <p style="font-size:14px; line-height:1.6; margin:0 0 20px 0;">
-        <strong>Statut :</strong>
-        {% if order.status == 'paid' %}
-            Payée
-        {% else %}
-            En attente
-        {% endif %}
+        <strong>Statut :</strong> {{ order.status.label }}
     </p>
+
+    {% if order.hasShippingAddress %}
+        <p style="font-size:14px; line-height:1.6; margin:0 0 10px 0;">
+            <strong>Livraison :</strong><br>
+            {{ order.formattedShippingAddress|nl2br }}
+        </p>
+    {% endif %}
 
     <hr style="border:none; border-top:1px solid #ddd; margin:25px 0;">
 

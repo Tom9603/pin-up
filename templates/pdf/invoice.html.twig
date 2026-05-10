@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Facture #{{ order.id }}</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #222;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            padding: 40px;
+        }
+        .header {
+            display: table;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .header__brand,
+        .header__meta {
+            display: table-cell;
+            vertical-align: top;
+        }
+        .header__meta {
+            text-align: right;
+        }
+        h1 {
+            font-size: 22px;
+            margin: 0 0 4px 0;
+            letter-spacing: 0.04em;
+        }
+        .muted {
+            color: #777;
+            font-size: 11px;
+        }
+        .invoice-meta {
+            margin-top: 20px;
+            border: 1px solid #e5e5e5;
+            padding: 14px 16px;
+            border-radius: 4px;
+        }
+        .invoice-meta__row {
+            display: table;
+            width: 100%;
+        }
+        .invoice-meta__row > div {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+        }
+        h2 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #555;
+            margin: 0 0 8px 0;
+        }
+        table.items {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0 12px 0;
+        }
+        table.items th {
+            text-align: left;
+            background: #f5f5f5;
+            border-bottom: 2px solid #ddd;
+            padding: 10px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        table.items td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        .right { text-align: right; }
+        .totals {
+            margin-top: 12px;
+            width: 50%;
+            margin-left: 50%;
+            border-collapse: collapse;
+        }
+        .totals td {
+            padding: 6px 10px;
+        }
+        .totals .total td {
+            border-top: 2px solid #222;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 10px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <div class="header">
+        <div class="header__brand">
+            <h1>Miss Pin-Up Bretagne</h1>
+            <div class="muted">misspinupbretagne.fr</div>
+        </div>
+        <div class="header__meta">
+            <h1>Facture</h1>
+            <div>N°{{ order.invoiceNumber ?: ('%05d'|format(order.id)) }}</div>
+            <div class="muted">{{ order.createdAt|date('d/m/Y') }}</div>
+        </div>
+    </div>
+
+    <div class="invoice-meta">
+        <div class="invoice-meta__row">
+            <div>
+                <h2>Client</h2>
+                <div>{{ order.user }}</div>
+                <div class="muted">{{ order.user.email }}</div>
+            </div>
+            {% if order.hasShippingAddress %}
+                <div>
+                    <h2>Livraison</h2>
+                    <div>{{ order.shippingName }}</div>
+                    <div>{{ order.shippingLine1 }}</div>
+                    {% if order.shippingLine2 %}
+                        <div>{{ order.shippingLine2 }}</div>
+                    {% endif %}
+                    <div>{{ order.shippingPostalCode }} {{ order.shippingCity }}</div>
+                    <div>{{ order.shippingCountry }}</div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <table class="items">
+        <thead>
+        <tr>
+            <th>Produit</th>
+            <th class="right">P.U.</th>
+            <th class="right">Quantité</th>
+            <th class="right">Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in order.orderItems %}
+            <tr>
+                <td>{{ item.product ? item.product.name : '(produit supprimé)' }}</td>
+                <td class="right">{{ (item.price / 100)|number_format(2, ',', ' ') }} €</td>
+                <td class="right">{{ item.quantity }}</td>
+                <td class="right">{{ ((item.price * item.quantity) / 100)|number_format(2, ',', ' ') }} €</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="totals">
+        <tr class="total">
+            <td>Total TTC</td>
+            <td class="right">{{ (order.total / 100)|number_format(2, ',', ' ') }} €</td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        Miss Pin-Up Bretagne — Document généré automatiquement.<br>
+        Statut de la commande : {{ order.status.label }}
+    </div>
+
+</div>
+</body>
+</html>

@@ -3,43 +3,56 @@
 {% block title %}Mon profil{% endblock %}
 
 {% block body %}
-    <section class="profil-container" role="main">
 
-    <h1>Modifier mon profil</h1>
+    <section class="profil-page" role="main">
 
-        {{ form_start(profilForm) }}
-        {{ form_row(profilForm.name) }}
-        {{ form_row(profilForm.email) }}
-        {{ form_row(profilForm.plainPassword) }}
-        <button type="submit" class="btn">Mettre à jour</button>
-        {{ form_end(profilForm) }}
+        <div class="profil-card">
+            <h1>Modifier mon profil</h1>
 
-        {% if message is defined %}
-            <p aria-live="polite" class="validate">{{ message }}</p>
-        {% endif %}
+            {{ form_start(profilForm) }}
+                {{ form_row(profilForm.name) }}
+                {{ form_row(profilForm.email) }}
+                {{ form_row(profilForm.plainPassword) }}
 
-        <p>
-            <a href="{{ path('app_profil_orders') }}" class="profil_orders">Voir mes commandes</a>
-        </p>
+                <button type="submit" class="profil-btn profil-btn--primary">
+                    Mettre à jour
+                </button>
+            {{ form_end(profilForm) }}
+        </div>
 
-        <h2>Supprimer mon compte</h2>
+        <div class="profil-card">
+            <h2>Mes commandes</h2>
+            <p>Retrouvez l'historique de vos achats et téléchargez vos factures.</p>
 
-        <form method="post" action="{{ path('app_profil_delete') }}">
-            <label for="password">Confirmez votre mot de passe :</label>
-            <input type="password" name="password" id="password" required placeholder="Entrez votre mot de passe">
+            <a href="{{ path('app_profil_orders') }}" class="profil-btn">
+                <i class="fa-solid fa-receipt"></i>
+                Voir mes commandes
+            </a>
+        </div>
 
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
+        <div class="profil-card profil-card--danger">
+            <h2>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                Zone dangereuse
+            </h2>
+            <p>
+                La suppression de votre compte est <strong>définitive</strong>.
+                Toutes vos données (commandes, profil, etc.) seront effacées.
+            </p>
 
-            <button class="btn btn-danger delete-profil" type="submit">Supprimer mon compte</button>
-        </form>
+            <form method="post" action="{{ path('app_profil_delete') }}" class="profil-delete-form">
+                <label for="password">Confirmez votre mot de passe :</label>
+                <input type="password" name="password" id="password" required placeholder="Votre mot de passe">
 
-        {% for message in app.flashes('success') %}
-            <div class="validate">{{ message }}</div>
-        {% endfor %}
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.user.id) }}">
 
-        {% for message in app.flashes('error') %}
-            <div class="login-error">{{ message }}</div>
-        {% endfor %}
+                <button type="submit" class="profil-btn profil-btn--danger">
+                    <i class="fa-solid fa-trash"></i>
+                    Supprimer mon compte
+                </button>
+            </form>
+        </div>
 
     </section>
+
 {% endblock %}

@@ -11,9 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             toggleText.onclick = (e) => {
                 e.stopPropagation();
-                const scrollY = window.scrollY;
+                const wasOpen = card.classList.contains('open');
                 card.classList.toggle('open');
-                window.scrollTo({ top: scrollY });
+
+                // Quand on ouvre, on amène la carte en haut de la zone visible (smooth)
+                if (!wasOpen) {
+                    requestAnimationFrame(() => {
+                        const top = card.getBoundingClientRect().top + window.scrollY - 80;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    });
+                }
             };
         });
     }

@@ -16,6 +16,33 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    /**
+     * Génère le prochain numéro de facture au format AAAA-NNNN (ex: 2026-0001).
+     * Réinitialise le compteur chaque année.
+     */
+    public function nextInvoiceNumber(?string $year = null): string
+    {
+        $year ??= (new \DateTimeImmutable())->format('Y');
+        $pattern = $year . '-%';
+
+        $last = $this->createQueryBuilder('o')
+            ->select('o.invoiceNumber')
+            ->where('o.invoiceNumber LIKE :pattern')
+            ->setParameter('pattern', $pattern)
+            ->orderBy('o.invoiceNumber', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        $next = 1;
+        if ($last !== null && isset($last['invoiceNumber'])) {
+            $parts = explode('-', $last['invoiceNumber']);
+            $next = (int) end($parts) + 1;
+        }
+
+        return sprintf('%s-%04d', $year, $next);
+    }
+
     //    /**
     //     * @return Order[] Returns an array of Order objects
     //     */

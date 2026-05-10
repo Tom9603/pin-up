@@ -9,6 +9,10 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+###> claude code ###
+/.claude/
+###< claude code ###
+
 ###> phpunit/phpunit ###
 /phpunit.xml
 /.phpunit.cache/
@@ -47,3 +51,12 @@ yarn-error.log
 
 ###> symfonycasts/sass-bundle ###
 /public/assets/
+
+###> uploads (fichiers utilisateurs) ###
+/public/media/*
+!/public/media/.gitkeep
+/public/uploads/images/*
+!/public/uploads/images/.gitkeep
+/public/uploads/media/*
+!/public/uploads/media/.gitkeep
+###< uploads ###

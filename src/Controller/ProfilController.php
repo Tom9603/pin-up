@@ -18,6 +18,9 @@ class ProfilController extends AbstractController
     public function index(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
 
         $form = $this->createForm(ProfilType::class, $user);
         $form->handleRequest($request);
@@ -44,6 +47,10 @@ class ProfilController extends AbstractController
     public function delete(Request $request, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = $this->getUser();
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $password = $request->request->get('password');
 
         if (!$this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {

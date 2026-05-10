@@ -4,20 +4,90 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const container = document.querySelector(".stars");
+    if (!container) return;
+
     const images = ["star1.png", "star2.png"];
+    const TOTAL_STARS = 60;
+    const ATTEMPTS_PER_STAR = 12;
+    const BUFFER = 16; // marge autour des zones protégées (px)
 
-    for (let i = 0; i < 60; i++) {
-        const star = document.createElement("img");
-        star.src = "/images/stars/" + images[Math.floor(Math.random() * images.length)];
-        star.className = "star";
-        star.alt = "étoiles décoratives";
+    // Sélecteurs des éléments à ne pas chevaucher
+    const PROTECTED_SELECTOR = [
+        'h1', 'h2', 'h3',
+        '.shop-title', '.contact-subtitle', '.auth-subtitle',
+        '.tab-btn', '.fc-toolbar h2'
+    ].join(', ');
 
-        star.style.left = Math.random() * 100 + "%";
-        star.style.top = Math.random() * 100 + "%";
-
-        const size = 10 + Math.random() * 20;
-        star.style.width = size + "px";
-
-        container.appendChild(star);
+    // Récupère les rects des éléments à éviter (en coordonnées document, avec buffer)
+    function getProtectedRects() {
+        const scrollY = window.scrollY;
+        const scrollX = window.scrollX;
+        return Array.from(document.querySelectorAll(PROTECTED_SELECTOR))
+            .map(el => el.getBoundingClientRect())
+            .filter(r => r.width > 0 && r.height > 0)
+            .map(r => ({
+                left:   r.left   + scrollX - BUFFER,
+                top:    r.top    + scrollY - BUFFER,
+                right:  r.right  + scrollX + BUFFER,
+                bottom: r.bottom + scrollY + BUFFER,
+            }));
     }
+
+    function intersects(starLeft, starTop, starSize, rect) {
+        return !(
+            starLeft + starSize < rect.left ||
+            starLeft > rect.right ||
+            starTop + starSize < rect.top ||
+            starTop > rect.bottom
+        );
+    }
+
+    function placeStars() {
+        // Vide les étoiles existantes (en cas de re-run)
+        container.innerHTML = '';
+
+        const protectedRects = getProtectedRects();
+        const containerRect = container.getBoundingClientRect();
+        const W = containerRect.width;
+        const H = containerRect.height || document.body.scrollHeight;
+
+        for (let i = 0; i < TOTAL_STARS; i++) {
+            const size = 10 + Math.random() * 20;
+
+            for (let a = 0; a < ATTEMPTS_PER_STAR; a++) {
+                const xPct = Math.random() * 100;
+                const yPct = Math.random() * 100;
+                const xPx = (xPct / 100) * W;
+                const yPx = (yPct / 100) * H;
+
+                const docX = containerRect.left + window.scrollX + xPx;
+                const docY = containerRect.top  + window.scrollY + yPx;
+
+                const overlaps = protectedRects.some(r => intersects(docX, docY, size, r));
+                if (overlaps) continue;
+
+                const star = document.createElement("img");
+                star.src = "/images/stars/" + images[Math.floor(Math.random() * images.length)];
+                star.className = "star";
+                star.alt = "";
+                star.style.width = size + "px";
+                star.style.left = xPct + "%";
+                star.style.top = yPct + "%";
+                container.appendChild(star);
+
+                break;
+            }
+        }
+    }
+
+    // On attend que les fonts soient chargées (sinon les h2 changent de taille
+    // après coup et les étoiles atterrissent dessus)
+    const ready = document.fonts && document.fonts.ready
+        ? document.fonts.ready
+        : Promise.resolve();
+
+    ready.then(() => {
+        // Petit délai pour laisser FullCalendar et autres libs async finir leur rendu
+        setTimeout(placeStars, 150);
+    });
 });

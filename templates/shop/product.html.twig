@@ -6,12 +6,16 @@
 
     <section class="shop-product">
 
-        <h1>{{ product.name }}</h1>
-        <img src="{{ asset('uploads/images/' ~ product.imageName) }}"
-             alt="{{ product.name }}"
-             class ="img_product">
+        {{ include('shop/_cart_summary.html.twig') }}
 
-        <p class ="name_product">{{ product.name }}</p>
+        <h1>{{ product.name }}</h1>
+
+        {% if product.imageName %}
+            <img src="{{ asset('uploads/images/' ~ product.imageName) }}"
+                 alt="{{ product.name }}"
+                 class="img_product">
+        {% endif %}
+
         {% if product.description %}
             <p>{{ product.description|sanitize_html }}</p>
         {% endif %}
@@ -23,14 +27,47 @@
             </strong>
         </p>
 
+        {% set stock = product.stock %}
+        {% if stock is not null %}
+            {% if stock == 0 %}
+                <p class="shop-product__stock shop-product__stock--out">
+                    <i class="fa-solid fa-circle-xmark"></i> Rupture de stock
+                </p>
+            {% elseif stock <= 5 %}
+                <p class="shop-product__stock shop-product__stock--low">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    Plus que {{ stock }} en stock
+                </p>
+            {% else %}
+                <p class="shop-product__stock shop-product__stock--in">
+                    <i class="fa-solid fa-circle-check"></i> En stock
+                </p>
+            {% endif %}
+        {% endif %}
+
         <div class="shop-product__actions">
-            <a href="{{ path('cart_add', { id: product.id }) }}"
-               class="shop-btn shop-btn--primary">
-                Ajouter au panier
+            {% if stock is null or stock > 0 %}
+                <form method="post" action="{{ path('cart_add', { id: product.id }) }}" data-preserve-scroll>
+                    <input type="hidden" name="_token" value="{{ csrf_token('cart_add') }}">
+                    <button type="submit" class="shop-btn shop-btn--primary">
+                        <i class="fa-solid fa-cart-plus"></i>
+                        Ajouter au panier
+                    </button>
+                </form>
+            {% else %}
+                <button type="button" class="shop-btn shop-btn--primary" disabled>
+                    <i class="fa-solid fa-cart-plus"></i>
+                    Indisponible
+                </button>
+            {% endif %}
+
+            <a href="{{ path('cart_index') }}" class="shop-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Voir le panier
             </a>
 
-            <a href="{{ path('app_shop') }}"
-               class="shop-btn shop-btn--ghost">
+            <a href="{{ path('app_shop') }}" class="shop-btn shop-btn--ghost">
+                <i class="fa-solid fa-arrow-left"></i>
                 Retour
             </a>
         </div>

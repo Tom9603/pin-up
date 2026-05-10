@@ -1,0 +1,365 @@
+/* ─────────────────────────────────────────────
+   Auth pages (login / register / reset password)
+   ───────────────────────────────────────────── */
+
+.auth-page {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    /* Override h1 hidden globally */
+    h1 {
+        display: block;
+        margin: 0;
+        font-size: 26px;
+        font-weight: 800;
+        font-family: inherit;
+        letter-spacing: -0.01em;
+        color: $primary-color;
+    }
+
+    /* Override h2 Bebas Neue uppercase globally */
+    h2 {
+        margin: 0 0 14px 0;
+        padding: 0;
+        background: none;
+        font-size: 18px;
+        font-weight: 800;
+        font-family: inherit;
+        letter-spacing: 0;
+    }
+
+    p {
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    /* Lien retour */
+    .auth-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        color: $primary-color;
+        text-decoration: none;
+        opacity: 0.85;
+        width: fit-content;
+        transition: opacity 0.2s ease;
+
+        i {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        &:hover {
+            opacity: 1;
+
+            i { transform: translateX(-3px); }
+        }
+    }
+
+    /* Card */
+    .auth-card {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        border-radius: 16px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .auth-subtitle {
+        margin: 0 0 4px 0;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    /* Form */
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin: 0;
+    }
+
+    .auth-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    /* Inputs : neutralise les règles globales */
+    label {
+        all: unset;
+        display: block;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        height: 42px;
+        padding: 0 14px;
+        margin: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        background: #fff;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.85);
+        transform: none;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(172, 67, 42, 0.12);
+        }
+
+        &::placeholder {
+            transform: none;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.35);
+        }
+    }
+
+    /* Password field with toggle */
+    .auth-password {
+        position: relative;
+
+        input {
+            padding-right: 42px;
+        }
+    }
+
+    .auth-password__toggle {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        margin: 0;
+        border: none;
+        background: transparent;
+        color: rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        transition: color 0.2s ease, background 0.2s ease;
+
+        &:hover {
+            color: $primary-color;
+            background: rgba(172, 67, 42, 0.08);
+        }
+    }
+
+    /* Checkboxes */
+    .auth-checkbox {
+        all: unset;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        font-size: 13px;
+        color: rgba(0, 0, 0, 0.75);
+        line-height: 1.4;
+        font-family: inherit;
+        font-weight: 400;
+        padding: 0;
+        margin: 0;
+
+        input[type="checkbox"] {
+            all: unset;
+            appearance: auto;
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: $primary-color;
+        }
+
+        a {
+            color: $primary-color;
+            text-decoration: underline;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    /* Boutons */
+    .auth-btn {
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 44px;
+        padding: 0 18px;
+        margin: 6px 0 0 0;
+        border-radius: 12px;
+        border: 1px solid $primary-color;
+        background: #fff;
+        color: $primary-color;
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: 0;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background: $primary-color;
+            color: #fff;
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+
+        &--primary {
+            background: $primary-color;
+            color: #fff;
+
+            &:hover {
+                background: #fff;
+                color: $primary-color;
+            }
+        }
+    }
+
+    /* Liens secondaires */
+    .auth-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 4px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        font-size: 13px;
+        color: rgba(0, 0, 0, 0.7);
+
+        a {
+            color: rgba(0, 0, 0, 0.7);
+            text-decoration: none;
+            transition: color 0.2s ease;
+
+            strong {
+                color: $primary-color;
+                font-weight: 700;
+            }
+
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+
+    .auth-link {
+        color: $primary-color;
+        font-weight: 600;
+        text-decoration: underline;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    /* Alertes */
+    .auth-alert {
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.4;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        &--error {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: #b91c1c;
+        }
+
+        &--success {
+            background: rgba(22, 163, 74, 0.1);
+            border: 1px solid rgba(22, 163, 74, 0.3);
+            color: #15803d;
+        }
+
+        &--info {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: #1e40af;
+        }
+    }
+
+    /* Erreurs de champ */
+    .auth-error {
+        margin: 0;
+        padding: 6px 10px;
+        background: rgba(220, 38, 38, 0.08);
+        border-left: 3px solid #b91c1c;
+        border-radius: 4px;
+        color: #b91c1c;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    /* Aide / hint */
+    .auth-help {
+        margin: 0;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.55);
+        line-height: 1.4;
+    }
+}
+
+/* Background immersif sur la page de login */
+body.login-page {
+    background-image: url('../images/femme10.png');
+    background-repeat: no-repeat;
+    background-position: center -5rem;
+    background-size: 220% auto;
+
+    @media (min-width: 640px) and (max-width: 1199px) {
+        background-size: 130% auto;
+        background-position: -5rem -10rem;
+    }
+
+    @media (min-width: 1200px) {
+        background-size: 90% auto;
+        background-position: 15rem -10rem;
+    }
+
+    @media (min-width: 2160px) {
+        background-size: 70% auto;
+        background-position: 40rem -25rem;
+    }
+}

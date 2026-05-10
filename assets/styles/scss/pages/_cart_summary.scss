@@ -1,0 +1,107 @@
+.shop-cart-summary {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 16px 20px;
+    box-sizing: border-box;
+
+    background: linear-gradient(135deg, rgba(172, 67, 42, 0.08), rgba(255, 255, 255, 0.5));
+    border: 1px solid rgba(172, 67, 42, 0.25);
+    border-radius: 14px;
+
+    &--empty {
+        background: rgba(255, 255, 255, 0.55);
+        border-color: rgba(0, 0, 0, 0.08);
+
+        .shop-cart-summary__icon {
+            background: rgba(0, 0, 0, 0.06);
+            color: rgba(0, 0, 0, 0.45);
+        }
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+    }
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(172, 67, 42, 0.15);
+        color: $primary-color;
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
+    &__count {
+        display: block;
+        font-size: 15px;
+        font-weight: 800;
+        color: $primary-color;
+        line-height: 1.2;
+    }
+
+    &__total {
+        font-size: 13px;
+        opacity: 0.75;
+
+        strong {
+            font-weight: 700;
+            opacity: 1;
+        }
+    }
+
+    &__text {
+        margin: 0;
+        font-size: 14px;
+        opacity: 0.75;
+    }
+
+    /* Bouton interne autonome */
+    .shop-btn {
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 40px;
+        padding: 0 18px;
+        border-radius: 10px;
+        border: 1px solid $primary-color;
+        background: #fff;
+        color: $primary-color;
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: 0;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background: $primary-color;
+            color: #fff;
+        }
+
+        &--primary {
+            background: $primary-color;
+            color: #fff;
+
+            &:hover {
+                background: #fff;
+                color: $primary-color;
+            }
+        }
+    }
+}

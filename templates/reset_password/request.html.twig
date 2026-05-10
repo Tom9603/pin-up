@@ -1,25 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mot de passe oublié ?{% endblock %}
+{% block title %}Mot de passe oublié{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
-    <section class="reset-container">
-        <h1>Réinitialisation de mot de passe</h1>
 
-        {{ form_start(requestForm) }}
-        {{ form_row(requestForm.email) }}
-        <div>
-            <small class="inform-text">
-                Saisissez votre adresse e-mail.
-                Si elle existe, vous recevrez un lien de réinitialisation de votre mot de passe.
-            </small>
+    <section class="auth-page" role="main">
+
+        <a class="auth-back" href="{{ path('app_login') }}">
+            <i class="fa-solid fa-arrow-left"></i>
+            Retour à la connexion
+        </a>
+
+        <div class="auth-card">
+
+            <h1>Mot de passe oublié</h1>
+            <p class="auth-subtitle">
+                Saisissez votre adresse e-mail. Si elle existe dans notre base, vous recevrez un lien de réinitialisation.
+            </p>
+
+            {% for flash_error in app.flashes('reset_password_error') %}
+                <div class="auth-alert auth-alert--error" role="alert">{{ flash_error }}</div>
+            {% endfor %}
+
+            {{ form_start(requestForm, {'attr': {'class': 'auth-form'}}) }}
+
+                <div class="auth-field">
+                    {{ form_label(requestForm.email) }}
+                    {{ form_widget(requestForm.email) }}
+                    {% for error in requestForm.email.vars.errors %}
+                        <p class="auth-error">{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="auth-btn auth-btn--primary">
+                    Envoyer le lien
+                </button>
+
+            {{ form_end(requestForm) }}
+
         </div>
 
-        <button class="btn btn-primary reset">Lien de réinitialisation</button>
-        {{ form_end(requestForm) }}
     </section>
 
 {% endblock %}

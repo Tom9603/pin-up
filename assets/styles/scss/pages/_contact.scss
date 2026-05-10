@@ -1,123 +1,197 @@
-.mail-container {
-    position: relative;
+/* ─────────────────────────────────────────────
+   Contact page
+   ───────────────────────────────────────────── */
+
+.contact-page {
+    max-width: 720px;
+    margin: 0 auto;
     display: flex;
-    justify-content: center;
-    padding-bottom: 2rem;
-    top: -3rem;
+    flex-direction: column;
+    gap: 18px;
 
-    img {
-        width: 100%;
-        border-radius: 4rem;
-        margin-top: 2rem;
-        margin-bottom: -2rem;
-    }
-}
-
-.contact {
-    margin-top: -1rem;
-    bottom: -1rem;
-}
-
-.form-container {
-    background-color: rgba(228, 225, 217, 0.012);
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    padding: 1rem;
-    border-radius: 30px;
-    h2 {
-        background: none;
-        font-family: $font-family-quaternary;
-    }
-    label {
-        color: $tertiary-color;
-    }
-}
-
-input, textarea, select {
-    width: 100%;
-    border-radius: 15px;
-    border: 3px solid $primary-color;
-    padding: 0.5rem;
-    font-size: $font-size-p;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-input {
-    margin-bottom: 1rem;
-}
-
-textarea {
-    height: 200px;
-    padding: 0.5rem 6rem 1rem 0.5rem;
-    font-family: $font-family-secondary;
-}
-
-input::placeholder,
-textarea::placeholder {
-    font-family: $font-family-secondary;
-}
-
-textarea::placeholder {
-    padding-top: 0.1rem;
-}
-
-button[type="submit"] {
-    display: block;
-    width: fit-content;
-    background-color: $primary-color;
-    color: $secondary-color;
-    font-size: 1.2rem;
-    font-family: $font-family-primary;
-    border: none;
-    border-radius: 30px;
-    padding: 1rem 3.5rem;
-    margin: 2rem auto 0;
-    position: relative;
-    z-index: 1000;
-    &:hover {
-        background-color:#F5F5F7;
+    /* Override h1 hidden globally */
+    h1 {
+        display: block;
+        margin: 0 0 6px 0;
+        font-size: 26px;
+        font-weight: 800;
+        font-family: inherit;
+        letter-spacing: -0.01em;
         color: $primary-color;
     }
-}
 
-.tel {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: clamp(250px, 50vw, 600px);
-    height: auto;
-    transform: translate(clamp(20%, 25vw, 40%), 25%);
-    object-fit: contain;
-    filter: drop-shadow(7px 10px 6px rgba(0, 0, 0, 0.3));
-    z-index: 10;
-}
-
-@media (min-width: 640px) and (max-width: 1199px) {
-    .form-container label {
-        display: block;
-        margin-left: 1.5rem;
-    }
-}
-
-
-/************************** MEDIA QUERIES DESKTOP (1200px et +) ****************************/
-
-@media (min-width: 1200px) {
-    .tel {
-        position: absolute;
-        bottom: 0;
-        left: 45rem;
-        width: clamp(350px, 28vw, 550px);
-        height: auto;
-        transform: translate(20%, 15%);
-        object-fit: contain;
-        z-index: 10;
-        filter: drop-shadow(7px 10px 6px rgba(0, 0, 0, 0.3));
+    .contact-subtitle {
+        margin: 0 0 8px 0;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.6);
+        line-height: 1.5;
     }
 
-    .form-container label {
+    /* Hero illustration */
+    .contact-hero {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        max-width: 360px;
+
+        &__img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            mask-image: radial-gradient(ellipse at center, #000 55%, transparent 95%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 55%, transparent 95%);
+        }
+    }
+
+    /* Card */
+    .contact-card {
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        border-radius: 16px;
+        padding: 28px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    /* Form */
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin: 0;
+    }
+
+    .contact-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    /* Inputs : neutralise les règles globales */
+    label {
+        all: unset;
         display: block;
-        margin-left: 2rem;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 0 14px;
+        margin: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        background: #fff;
+        font-family: inherit;
+        font-size: 14px;
+        color: rgba(0, 0, 0, 0.85);
+        transform: none;
+        box-sizing: border-box;
+        box-shadow: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba(172, 67, 42, 0.12);
+        }
+
+        &::placeholder {
+            transform: none;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.35);
+            font-family: inherit;
+        }
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        height: 42px;
+        line-height: 1;
+    }
+
+    textarea {
+        min-height: 160px;
+        padding: 12px 14px;
+        line-height: 1.5;
+        resize: vertical;
+        font-family: inherit;
+    }
+
+    /* Bouton submit */
+    .contact-btn,
+    button[type="submit"] {
+        align-self: flex-start;
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 44px;
+        padding: 0 24px;
+        margin: 4px 0 0 0;
+        border-radius: 12px;
+        border: 1px solid $primary-color;
+        background: $primary-color;
+        color: #fff;
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: 0;
+        cursor: pointer;
+        box-shadow: none;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            background: #fff;
+            color: $primary-color;
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+    }
+
+    /* Alerts */
+    .contact-alert {
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.4;
+
+        &--success {
+            background: rgba(22, 163, 74, 0.1);
+            border: 1px solid rgba(22, 163, 74, 0.3);
+            color: #15803d;
+        }
+
+        &--error {
+            background: rgba(220, 38, 38, 0.1);
+            border: 1px solid rgba(220, 38, 38, 0.3);
+            color: #b91c1c;
+        }
+    }
+
+    /* Erreurs de champ */
+    .contact-error {
+        margin: 0;
+        padding: 6px 10px;
+        background: rgba(220, 38, 38, 0.08);
+        border-left: 3px solid #b91c1c;
+        border-radius: 4px;
+        color: #b91c1c;
+        font-size: 12px;
+        font-weight: 500;
     }
 }

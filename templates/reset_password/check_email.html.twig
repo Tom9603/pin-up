@@ -1,23 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}E-mail de réinitialisation envoyé{% endblock %}
+{% block title %}E-mail envoyé{% endblock %}
 
 {% block body %}
 
-    <div class="reset-box" role="main">
+    <section class="auth-page" role="main">
 
-        <p role="status" aria-live="polite">
-        Si un compte correspondant à votre adresse e-mail existe, un message vient de vous être envoyé.
-            Il contient un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.
-            Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
-        </p>
+        <div class="auth-card">
 
-        <p>
-            Si vous ne recevez pas d’e-mail, vérifiez dans vos spams ou
-            <a href="{{ path('app_forgot_password_request') }}" aria-label="Relancer une demande de réinitialisation du mot de passe">
-                <strong>essayez à nouveau</strong>
-            </a>.
-        </p>
-    </div>
+            <h1>
+                <i class="fa-solid fa-envelope-circle-check" style="color: #15803d; margin-right: 8px;"></i>
+                E-mail envoyé
+            </h1>
+
+            <p role="status" aria-live="polite">
+                Si un compte correspondant à votre adresse e-mail existe,
+                un message vient de vous être envoyé. Il contient un lien que
+                vous pouvez utiliser pour réinitialiser votre mot de passe.
+                <br>
+                <small style="color: rgba(0,0,0,0.55);">
+                    Ce lien expirera dans
+                    {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                </small>
+            </p>
+
+            <p>
+                Si vous ne recevez pas d'e-mail, vérifiez dans vos spams ou
+                <a class="auth-link" href="{{ path('app_forgot_password_request') }}">
+                    essayez à nouveau
+                </a>.
+            </p>
+
+            <a href="{{ path('app_login') }}" class="auth-btn auth-btn--primary" style="margin-top: 8px;">
+                Retour à la connexion
+            </a>
+
+        </div>
+
+    </section>
 
 {% endblock %}

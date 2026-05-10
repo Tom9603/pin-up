@@ -5,6 +5,9 @@
 @import "scss/base/global";
 @import "scss/base/typography";
 
+// Components
+@import "scss/components/lightbox";
+
 // Layout
 @import "scss/layout/header";
 @import "scss/layout/footer";
@@ -14,11 +17,10 @@
 @import "scss/pages/contact";
 @import "scss/pages/events";
 @import "scss/pages/home";
-@import "scss/pages/login";
+@import "scss/pages/auth";
 @import "scss/pages/profil";
-@import "scss/pages/register";
-@import "scss/pages/resetpassword";
 @import "scss/pages/shop";
 @import "scss/pages/shop_product";
+@import "scss/pages/cart_summary";
 @import "scss/pages/_cart";
 @import "scss/pages/_checkout";

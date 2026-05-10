@@ -9,8 +9,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -81,6 +81,10 @@ class ProductCrudController extends AbstractCrudController
                 ->setLabel('Prix')
                 ->setCurrency('EUR')
                 ->setStoredAsCents(true),
+
+            IntegerField::new('stock')
+                ->setLabel('Stock')
+                ->setHelp('Laisser vide pour stock illimité.'),
 
             BooleanField::new('isActive')
                 ->setLabel('Actif'),

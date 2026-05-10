@@ -5,14 +5,14 @@
 {% block body %}
 
     <section class="shop-payment
-    {% if order.status == 'paid' %}
+    {% if order.isPaid %}
         shop-payment--success
     {% else %}
         shop-payment--pending
     {% endif %}
 ">
 
-        {% if order.status == 'paid' %}
+        {% if order.isPaid %}
             <h1>Paiement confirmé ✅</h1>
 
             <p>
@@ -40,7 +40,7 @@
         </p>
 
         <p class="shop-payment__status">
-            Statut : {{ order.status }}
+            Statut : {{ order.status.label }}
         </p>
 
         <div class="shop-payment__actions">

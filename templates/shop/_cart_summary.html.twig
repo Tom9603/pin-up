@@ -1,0 +1,24 @@
+<div class="shop-cart-summary {% if cartCount == 0 %}shop-cart-summary--empty{% endif %}">
+    <div class="shop-cart-summary__info">
+        <span class="shop-cart-summary__icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </span>
+        {% if cartCount > 0 %}
+            <div>
+                <strong class="shop-cart-summary__count">
+                    {{ cartCount }} article{{ cartCount > 1 ? 's' : '' }}
+                </strong>
+                <span class="shop-cart-summary__total">
+                    Total : <strong>{{ (cartTotal / 100)|number_format(2, ',', ' ') }} €</strong>
+                </span>
+            </div>
+        {% else %}
+            <span class="shop-cart-summary__text">Votre panier est vide.</span>
+        {% endif %}
+    </div>
+
+    <a class="shop-btn {% if cartCount > 0 %}shop-btn--primary{% endif %}"
+       href="{{ path('cart_index') }}">
+        {% if cartCount > 0 %}Voir le panier{% else %}Accéder au panier{% endif %}
+    </a>
+</div>

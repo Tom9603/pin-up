@@ -1,20 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Réinitialisation de mot de passe{% endblock %}
+{% block title %}Nouveau mot de passe{% endblock %}
 
 {% block body %}
 
-<section role="main">
+    <section class="auth-page" role="main">
 
-    <h1 role="heading" aria-level="1">Réinitialisation de mot de passe</h1>
+        <div class="auth-card">
 
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
+            <h1>Nouveau mot de passe</h1>
+            <p class="auth-subtitle">
+                Choisissez un nouveau mot de passe sécurisé pour votre compte.
+            </p>
 
-    <button class="btn btn-primary" aria-label="Valider la réinitialisation du mot de passe">Valider</button>
+            {{ form_start(resetForm, {'attr': {'class': 'auth-form'}}) }}
 
-    {{ form_end(resetForm) }}
+                <div class="auth-field">
+                    {{ form_label(resetForm.plainPassword) }}
+                    {{ form_widget(resetForm.plainPassword) }}
+                    {% for error in resetForm.plainPassword.vars.errors %}
+                        <p class="auth-error">{{ error.message }}</p>
+                    {% endfor %}
+                </div>
 
-</section>
+                <button type="submit" class="auth-btn auth-btn--primary">
+                    Valider
+                </button>
+
+            {{ form_end(resetForm) }}
+
+        </div>
+
+    </section>
 
 {% endblock %}

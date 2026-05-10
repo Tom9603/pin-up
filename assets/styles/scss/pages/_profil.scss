@@ -1,91 +1,270 @@
-@media (min-width: 1200px) {
-    .profil-container {
-        max-width: 450px;
-        margin: 0 auto;
-    }
-}
+.profil-page {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 
-.profil-container {
-    background-color: rgba(237, 237, 237, 0.81);
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
-    backdrop-filter: blur(10px);
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 30px;
-    border: 1px solid $tertiary-color;
-    padding: 2rem 1rem 2rem;
+    /* Override h1 hidden globally */
+    h1 {
+        display: block;
+        margin: 0 0 18px 0;
+        font-size: 26px;
+        font-weight: 800;
+        font-family: inherit;
+        letter-spacing: -0.01em;
+    }
+
+    /* Override h2 Bebas Neue uppercase globally */
+    h2 {
+        margin: 0 0 14px 0;
+        padding: 0;
+        background: none;
+        font-size: 18px;
+        font-weight: 800;
+        font-family: inherit;
+        letter-spacing: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    p {
+        margin: 0 0 14px 0;
+        line-height: 1.5;
+        color: inherit;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    /* Inputs : neutralise les règles globales (transform, width 90%, etc.) */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        height: 40px;
+        padding: 0 12px;
+        margin: 0 0 14px 0;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        background: #fff;
+        font-family: inherit;
+        font-size: 14px;
+        line-height: 1;
+        transform: none;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+        }
+
+        &::placeholder {
+            transform: none;
+            font-size: 14px;
+            opacity: 0.5;
+        }
+    }
 
     label {
         all: unset;
         display: block;
-        background: none;
-        color: $tertiary-color;
+        margin: 0 0 6px 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Carte */
+    .profil-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        border-radius: 16px;
+        padding: 24px;
+
+        &--danger {
+            border-color: rgba(220, 38, 38, 0.30);
+            background: rgba(254, 242, 242, 0.85);
+
+            h2 {
+                color: #b91c1c;
+            }
+        }
+    }
+
+    /* Lien retour */
+    .profil-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        font-size: 14px;
+        font-weight: 600;
+        color: $primary-color;
+        text-decoration: none;
+        opacity: 0.85;
+        width: fit-content;
+
+        i {
+            font-size: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        &:hover {
+            opacity: 1;
+
+            i { transform: translateX(-3px); }
+        }
+    }
+
+    /* Boutons */
+    .profil-btn {
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        height: 40px;
+        padding: 0 18px;
+        margin: 0;
+        border-radius: 12px;
+        border: 1px solid $primary-color;
+        background: #fff;
+        color: $primary-color;
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: 0;
+        text-decoration: none;
         cursor: pointer;
-        margin-bottom: 1rem;
-        margin-left: 1.2rem;
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+        &:hover {
+            background: $primary-color;
+            color: #fff;
+        }
+
+        &:active {
+            transform: translateY(1px);
+        }
+
+        &--primary {
+            background: $primary-color;
+            color: #fff;
+
+            &:hover {
+                background: #fff;
+                color: $primary-color;
+            }
+        }
+
+        &--danger {
+            border-color: #b91c1c;
+            color: #b91c1c;
+            background: #fff;
+
+            &:hover {
+                background: #b91c1c;
+                color: #fff;
+            }
+        }
     }
 
-    p {
-        margin-top: 1rem;
-        color: green
+    /* Form delete */
+    .profil-delete-form {
+        margin: 0;
     }
 
-    h2 {
-        margin-top: 2rem !important;
-        font-size: 2rem;
-        background: none;
+    /* ─────────── Liste des commandes ─────────── */
+
+    .orders-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 14px;
     }
-}
 
-.validate {
-    color: green;
-    background-color: #d4edda;
-    padding: 1rem;
-}
+    .order-card {
+        padding: 16px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(0, 0, 0, 0.10);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
 
-.delete-profil {
-    border: none;
-}
+    .order-card__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
 
-.profil_orders {
-    display: block;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    color: $tertiary-color;
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
-    &:hover {
+    .order-card__date {
+        margin-left: 10px;
+        opacity: 0.7;
+        font-size: 13px;
+    }
+
+    .order-card__invoice {
+        margin-left: 10px;
+        font-size: 12px;
+        font-weight: 600;
         color: $primary-color;
     }
-}
 
-.profil-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    color: #413E3E;
-    font-family: Inter, sans-serif;
-}
+    .order-status {
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
 
-.profil-container h1 {
-    display: block;
-    margin-bottom: 1.5rem;
-}
+        &--pending   { background: rgba(234, 179, 8, 0.15);  color: #a16207; }
+        &--paid      { background: rgba(22, 163, 74, 0.15);  color: #15803d; }
+        &--shipped   { background: rgba(59, 130, 246, 0.15); color: #1d4ed8; }
+        &--delivered { background: rgba(16, 185, 129, 0.15); color: #047857; }
+        &--cancelled { background: rgba(220, 38, 38, 0.15);  color: #b91c1c; }
+        &--refunded  { background: rgba(107, 114, 128, 0.15); color: #4b5563; }
+    }
 
-.profil-container ul {
-    list-style: none;
-    padding: 0;
-}
+    .order-items {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 6px;
+        font-size: 14px;
 
-.profil-container li {
-    border: 1px solid #e5e5e5;
-    border-left: 4px solid #AC432A;
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin-bottom: 12px;
-    background: #fff;
-}
+        li {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 10px;
+            align-items: center;
+        }
+    }
 
-.profil-container strong {
-    border-bottom: 1px dotted #AC432A;
+    .order-card__foot {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-top: 10px;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+
+        strong {
+            font-size: 20px;
+            font-weight: 900;
+        }
+    }
 }

@@ -3,9 +3,9 @@
     margin: 0 auto;
     padding: 28px 22px;
 
-    background: rgba(255, 255, 255, 0.78);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 245, 0.78));
     backdrop-filter: blur(6px);
-    border: 1px solid rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(172, 67, 42, 0.20);
     border-radius: 18px;
 
     display: flex;
@@ -17,6 +17,7 @@
         font-size: 30px;
         font-weight: 800;
         letter-spacing: -0.02em;
+        color: $primary-color;
     }
 
     p {
@@ -26,20 +27,48 @@
 
     /* description */
     > p:first-of-type {
-        color: rgba(0, 0, 0, 0.72);
-        font-size: 2rem;
-    }
-
-    /* bloc prix */
-    strong {
-        font-size: 22px;
-        font-weight: 900;
+        color: rgba(0, 0, 0, 0.65);
+        font-size: 15px;
     }
 
     /* zone prix */
     .shop-product__price {
-        font-size: 15px;
-        opacity: 0.85;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        padding: 12px 18px;
+        border-radius: 12px;
+        background: rgba(172, 67, 42, 0.08);
+        border: 1px solid rgba(172, 67, 42, 0.20);
+        width: fit-content;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+
+        strong {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -0.01em;
+            color: $primary-color;
+            text-transform: none;
+        }
+    }
+
+    /* indicateur de stock */
+    .shop-product__stock {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+        width: fit-content;
+
+        &--in    { color: #15803d; }
+        &--low   { color: #a16207; }
+        &--out   { color: #b91c1c; }
     }
 
     /* zone actions */
@@ -47,53 +76,87 @@
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
+        align-items: center;
         margin-top: 8px;
+
+        form {
+            margin: 0;
+            padding: 0;
+            display: inline-flex;
+        }
     }
 
     .shop-btn {
+        box-sizing: border-box;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 8px;
 
-        padding: 10px 16px;
+        height: 40px;
+        padding: 0 18px;
+        margin: 0;
         border-radius: 12px;
-        border: 1px solid rgba(0, 0, 0, 0.14);
+        border: 1px solid $primary-color;
         text-decoration: none;
+        font-family: inherit;
         font-weight: 700;
         font-size: 14px;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: 0;
 
-        background: rgba(255, 255, 255, 0.95);
-        color: inherit;
+        background: #fff;
+        color: $primary-color;
+        cursor: pointer;
 
-        transition: transform .06s ease, background .12s ease, opacity .12s ease;
+        transition: background .2s ease, color .2s ease, border-color .2s ease, transform .06s ease;
 
         &:hover {
-            background: rgba(96, 38, 29, 0.95);
+            background: $primary-color;
+            color: #fff;
         }
 
         &:active {
             transform: translateY(1px);
         }
 
+        i {
+            font-size: 13px;
+            transition: transform 0.2s ease;
+        }
+
         &--primary {
-            background: rgba(145, 56, 43, 0.95);
-            color: #fff;
-            border-color: transparent;
+            background: #fff;
+            color: $primary-color;
+            border: 1px solid $primary-color;
 
             &:hover {
-                opacity: .94;
+                background: $primary-color;
+                color: #fff;
             }
         }
 
         &--ghost {
             background: transparent;
             border-color: rgba(0, 0, 0, 0.18);
-            opacity: .85;
+            color: rgba(0, 0, 0, 0.65);
 
             &:hover {
-                opacity: 1;
-                background: rgba(255, 255, 255, 0.6);
+                background: $primary-color;
+                color: #fff;
+                border-color: $primary-color;
+
+                i {
+                    transform: translateX(-3px);
+                }
             }
+        }
+
+        &[disabled] {
+            cursor: not-allowed;
+            opacity: 0.5;
+            pointer-events: none;
         }
     }
 }

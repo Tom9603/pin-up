@@ -3,32 +3,76 @@
 {% block title %}Mes commandes{% endblock %}
 
 {% block body %}
-    <section class="profil-container" role="main">
 
-        <h1>Mes commandes</h1>
+    <section class="profil-page" role="main">
 
-        {% if orders is empty %}
-            <p>Aucune commande pour le moment.</p>
-        {% else %}
-            <ul>
-                {% for order in orders %}
-                    <li>
-                        <strong>Commande #{{ order.id }}</strong><br>
-                        Date : {{ order.createdAt|date('d/m/Y H:i') }}<br>
-                        Montant : {{ (order.total / 100)|number_format(2, '.', ' ') }} €<br>
-                        Statut :
-                        {% if order.status == 'paid' %}
-                            Payée
-                        {% elseif order.status == 'pending' %}
-                            En attente
-                        {% endif %}
+        <div class="profil-card">
 
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+            <a href="{{ path('app_profil') }}" class="profil-back">
+                <i class="fa-solid fa-arrow-left"></i>
+                Retour au profil
+            </a>
 
-        <p><a href="{{ path('app_profil') }}" class="profil_orders">Retour au profil</a></p>
+            <h1>Mes commandes</h1>
+
+            {% if orders is empty %}
+                <p>Vous n'avez aucune commande pour le moment.</p>
+                <a class="profil-btn profil-btn--primary" href="{{ path('app_shop') }}">
+                    Voir la boutique
+                </a>
+            {% else %}
+
+                <ul class="orders-list">
+                    {% for order in orders %}
+                        <li class="order-card">
+
+                            <div class="order-card__head">
+                                <div>
+                                    <strong>Commande n°{{ order.id }}</strong>
+                                    {% if order.invoiceNumber %}
+                                        <span class="order-card__invoice">
+                                            Facture {{ order.invoiceNumber }}
+                                        </span>
+                                    {% endif %}
+                                    <span class="order-card__date">
+                                        {{ order.createdAt|date('d/m/Y à H:i') }}
+                                    </span>
+                                </div>
+                                <span class="order-status order-status--{{ order.status.value }}">
+                                    {{ order.status.label }}
+                                </span>
+                            </div>
+
+                            <ul class="order-items">
+                                {% for item in order.orderItems %}
+                                    <li>
+                                        <span>{{ item.product ? item.product.name : '(produit supprimé)' }}</span>
+                                        <span>× {{ item.quantity }}</span>
+                                        <strong>{{ ((item.price * item.quantity) / 100)|number_format(2, ',', ' ') }} €</strong>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+
+                            <div class="order-card__foot">
+                                <span>Total</span>
+                                <strong>{{ (order.total / 100)|number_format(2, ',', ' ') }} €</strong>
+                            </div>
+
+                            {% if order.isPaid %}
+                                <a class="profil-btn" href="{{ path('account_invoice', { id: order.id }) }}">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                    Télécharger la facture
+                                </a>
+                            {% endif %}
+
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            {% endif %}
+
+        </div>
 
     </section>
+
 {% endblock %}

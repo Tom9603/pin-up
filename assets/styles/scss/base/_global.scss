@@ -23,6 +23,13 @@ html, body {
         }
 }
 
+/* Décalage du scroll sur les ancres pour éviter que le contenu
+   soit caché derrière le header fixe en haut */
+section[id],
+[id]:not(input):not(label):not(textarea):not(select) {
+    scroll-margin-top: 13rem;
+}
+
 h1 {
     display: none;
 }
@@ -121,10 +128,47 @@ button[type="submit"] {
     cursor: pointer;
 }
 
+/* Empêche l'auto-zoom de Safari iOS au focus d'un input.
+   Safari déclenche un zoom si la font-size de l'input est < 16px.
+   On force 16px uniquement sur les écrans tactiles. */
+@media (hover: none) and (pointer: coarse) {
+    input,
+    textarea,
+    select {
+        font-size: 16px !important;
+    }
+}
+
 .success {
     color: green;
     background-color: #d4edda;
     padding: 1rem;
+}
+
+.flash {
+    padding: 12px 16px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+
+    &--error {
+        background: rgba(220, 38, 38, 0.1);
+        border: 1px solid rgba(220, 38, 38, 0.3);
+        color: #b91c1c;
+    }
+
+    &--success {
+        background: rgba(22, 163, 74, 0.1);
+        border: 1px solid rgba(22, 163, 74, 0.3);
+        color: #15803d;
+    }
+
+    &--warning {
+        background: rgba(234, 179, 8, 0.1);
+        border: 1px solid rgba(234, 179, 8, 0.3);
+        color: #a16207;
+    }
 }
 
 /********************** REGISTER PAGE **********************/

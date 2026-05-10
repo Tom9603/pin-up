@@ -22,9 +22,9 @@ class MediaForEventCrudController extends AbstractCrudController
                 ->setBasePath('media/')
                 ->setRequired(true)
                 ->setFormTypeOption('attr', [
-                    'onchange' => "const img=this.closest('.form-widget').querySelector('.image-preview'); if(img && this.files[0]) img.src=window.URL.createObjectURL(this.files[0]);"
+                    'onchange' => "const w=this.closest('.form-widget'); const img=w && w.querySelector('.image-preview'); if(img && this.files[0]){img.src=window.URL.createObjectURL(this.files[0]); img.style.display='block';}"
                 ])
-                ->setHelp('<img class="image-preview" style="margin-top:10px;max-width:150px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.3);" />'),
+                ->setHelp('<img class="image-preview" style="display:none;margin-top:10px;max-width:150px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,0.2);" alt="Aperçu" />'),
         ];
     }
 }

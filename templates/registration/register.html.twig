@@ -1,67 +1,87 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}S'inscrire{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert" aria-live="assertive">{{ flash_error }}</div>
-    {% endfor %}
 
-    <h1>Inscription</h1>
+    <section class="auth-page" role="main">
 
-    <section class="register-container" role="main">
-        {{ form_start(registrationForm) }}
-
-        <div class="form-group">
-            {{ form_label(registrationForm.name) }}
-            {{ form_widget(registrationForm.name) }}
-            {% for error in registrationForm.name.vars.errors %}
-                <p class="form-error name-error">{{ error.message }}</p>
-            {% endfor %}
-        </div>
-
-        <div class="form-group">
-            {{ form_label(registrationForm.email) }}
-            {{ form_widget(registrationForm.email) }}
-            {% for error in registrationForm.email.vars.errors %}
-                <p class="form-error email-error">{{ error.message }}</p>
-            {% endfor %}
-        </div>
-
-        <div class="password-wrapper">
-            {{ form_label(registrationForm.plainPassword) }}
-            <div class="password-field">
-                {{ form_widget(registrationForm.plainPassword) }}
-                <i class="fa-solid fa-eye toggle-password"
-                   onclick="togglePassword(this)"
-                   aria-label="Afficher ou masquer le mot de passe"></i>
+        {% for flash_error in app.flashes('verify_email_error') %}
+            <div class="auth-alert auth-alert--error" role="alert" aria-live="assertive">
+                {{ flash_error }}
             </div>
-            {% for error in registrationForm.plainPassword.vars.errors %}
-                <p class="form-error password-error">{{ error.message }}</p>
-            {% endfor %}
+        {% endfor %}
+
+        <a class="auth-back" href="{{ path('app_home') }}">
+            <i class="fa-solid fa-arrow-left"></i>
+            Retour à l'accueil
+        </a>
+
+        <div class="auth-card">
+
+            <h1>Inscription</h1>
+            <p class="auth-subtitle">Créez votre compte pour rejoindre la communauté.</p>
+
+            {{ form_start(registrationForm, {'attr': {'class': 'auth-form', 'novalidate': 'novalidate'}}) }}
+
+                <div class="auth-field">
+                    {{ form_label(registrationForm.name) }}
+                    {{ form_widget(registrationForm.name) }}
+                    {% for error in registrationForm.name.vars.errors %}
+                        <p class="auth-error">{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="auth-field">
+                    {{ form_label(registrationForm.email) }}
+                    {{ form_widget(registrationForm.email) }}
+                    {% for error in registrationForm.email.vars.errors %}
+                        <p class="auth-error">{{ error.message }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="auth-field">
+                    {{ form_label(registrationForm.plainPassword) }}
+                    <div class="auth-password">
+                        {{ form_widget(registrationForm.plainPassword) }}
+                        <button type="button" class="auth-password__toggle" aria-label="Afficher / masquer le mot de passe" onclick="togglePassword(this)">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    {% for error in registrationForm.plainPassword.vars.errors %}
+                        <p class="auth-error">{{ error.message }}</p>
+                    {% endfor %}
+                    <p class="auth-help">
+                        8 caractères minimum, dont une majuscule, une minuscule, un chiffre et un caractère spécial.
+                    </p>
+                </div>
+
+                <label class="auth-checkbox auth-checkbox--terms">
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                    <span>{{ registrationForm.agreeTerms.vars.label|raw }}</span>
+                </label>
+                {% for error in registrationForm.agreeTerms.vars.errors %}
+                    <p class="auth-error">{{ error.message }}</p>
+                {% endfor %}
+
+                <button type="submit" class="auth-btn auth-btn--primary">
+                    S'inscrire
+                </button>
+
+            {{ form_end(registrationForm) }}
+
+            <div class="auth-links">
+                <a href="{{ path('app_login') }}">Déjà un compte ? <strong>Connectez-vous</strong></a>
+            </div>
+
         </div>
 
-        <p>Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.</p>
-
-        <div class="form-check">
-            {{ form_widget(registrationForm.agreeTerms) }}
-            {{ form_label(registrationForm.agreeTerms) }}
-            {% for error in registrationForm.agreeTerms.vars.errors %}
-                <p class="form-error terms-error">{{ error.message }}</p>
-            {% endfor %}
-        </div>
-
-        <button type="submit" class="btn">S'inscrire</button>
-        {{ form_end(registrationForm) }}
-
-        <div class="log">
-            <a href="{{ path('app_login') }}">Déjà un compte ? Connectez-vous</a>
-        </div>
     </section>
 
     <script>
-        function togglePassword(icon) {
-            const input = icon.previousElementSibling;
+        function togglePassword(btn) {
+            const input = btn.parentElement.querySelector('input');
+            const icon = btn.querySelector('i');
             if (input.type === "password") {
                 input.type = "text";
                 icon.classList.replace("fa-eye", "fa-eye-slash");
@@ -71,4 +91,5 @@
             }
         }
     </script>
+
 {% endblock %}
