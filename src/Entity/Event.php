@@ -28,6 +28,12 @@ class Event
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $end = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $location = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $eventType = null;
+
     /**
      * @var Collection<int, Reservation>
      */
@@ -92,6 +98,28 @@ class Event
     public function setEnd(?\DateTimeInterface $end): static
     {
         $this->end = $end;
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): static
+    {
+        $this->location = $location;
+        return $this;
+    }
+
+    public function getEventType(): ?string
+    {
+        return $this->eventType;
+    }
+
+    public function setEventType(?string $eventType): static
+    {
+        $this->eventType = $eventType;
         return $this;
     }
 

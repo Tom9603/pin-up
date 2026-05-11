@@ -29,6 +29,87 @@
         </div>
     </div>
 
+    {# Section : Prochains événements #}
+    {% if upcomingEvents is not empty %}
+        <section class="upcoming-events">
+            <h2>Prochains événements</h2>
+
+            <div class="upcoming-events__list">
+                {% for event in upcomingEvents %}
+                    {% set daysUntil = date(event.start).diff(date()).days %}
+                    {% set eventType = event.eventType ?: 'autre' %}
+                    {% set firstMedia = event.medias|first %}
+                    {% set imageUrl = firstMedia ? asset('media/' ~ firstMedia.fileName) : null %}
+
+                    <article class="upcoming-event-card"
+                             data-event-id="{{ event.id }}"
+                             data-event-title="{{ event.title }}"
+                             data-event-start="{{ event.start|date('Y-m-d H:i:s') }}"
+                             tabindex="0"
+                             aria-label="Voir le détail de {{ event.title }}">
+
+                        <div class="upcoming-event__header">
+                            {% if imageUrl %}
+                                <img class="upcoming-event__image"
+                                     src="{{ imageUrl }}"
+                                     alt="{{ event.title }}">
+                            {% else %}
+                                <div class="upcoming-event__image upcoming-event__image--placeholder">
+                                    <span class="upcoming-event__day">{{ event.start|date('d') }}</span>
+                                    <span class="upcoming-event__month">{{ event.start|date('M')|upper }}</span>
+                                </div>
+                            {% endif %}
+
+                            <div class="upcoming-event__info">
+                                <h3 class="upcoming-event__title">{{ event.title }}</h3>
+                                <p class="upcoming-event__meta">
+                                    {{ event.start|date('l d M Y')|capitalize }}
+                                    {% if event.location %} · {{ event.location }}{% endif %}
+                                </p>
+                                {% if event.eventType %}
+                                    <span class="upcoming-event__badge upcoming-event__badge--{{ eventType }}">
+                                        {{ eventType }}
+                                    </span>
+                                {% endif %}
+                            </div>
+
+                            <span class="upcoming-event__countdown">
+                                {% if daysUntil == 0 %}
+                                    Aujourd'hui
+                                {% elseif daysUntil == 1 %}
+                                    Demain
+                                {% else %}
+                                    Dans {{ daysUntil }} j.
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        <div class="upcoming-event__details">
+                            {% if event.content %}
+                                <div class="upcoming-event__description">
+                                    {{ event.content|sanitize_html }}
+                                </div>
+                            {% endif %}
+
+                            {% if event.medias|length > 1 %}
+                                <div class="upcoming-event__gallery">
+                                    {% for media in event.medias %}
+                                        <img src="{{ asset('media/' ~ media.fileName) }}"
+                                             alt="{{ event.title }}">
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+
+                            <button type="button" class="upcoming-event__reserve">
+                                S'inscrire à l'événement
+                            </button>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
     {# Section blog #}
 
     <section class="blog-section">
@@ -103,6 +184,46 @@
         const IS_LOGGED_IN = {{ app.user ? 'true' : 'false' }};
         const LOGIN_URL = "{{ path('app_login') }}";
         const USERNAME = "{{ app.user ? app.user.name : '' }}";
+    </script>
+
+    {# Clic sur la carte → déroule le détail. Clic sur "S'inscrire" → ouvre la modale. #}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.upcoming-event-card').forEach((card) => {
+                const toggle = () => card.classList.toggle('open');
+
+                card.addEventListener('click', (e) => {
+                    // Ne pas toggle si le clic est sur un bouton/lien/img interne
+                    if (e.target.closest('button, a')) return;
+                    toggle();
+                });
+
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggle();
+                    }
+                });
+
+                const reserveBtn = card.querySelector('.upcoming-event__reserve');
+                if (reserveBtn) {
+                    reserveBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (!IS_LOGGED_IN) {
+                            window.location.href = LOGIN_URL;
+                            return;
+                        }
+                        if (typeof window.openReservationModal === 'function') {
+                            window.openReservationModal(
+                                card.dataset.eventId,
+                                card.dataset.eventTitle,
+                                card.dataset.eventStart
+                            );
+                        }
+                    });
+                }
+            });
+        });
     </script>
 
     {#  <script src="{{ asset('js/calendar.js') }}"></script>#}

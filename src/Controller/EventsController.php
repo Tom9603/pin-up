@@ -13,14 +13,19 @@ use Symfony\Component\HttpFoundation\Response;
 class EventsController extends AbstractController
 {
     #[Route('/events', name: 'app_events')]
-    public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository): Response
-    {
+    public function index(
+        ArticleRepository $articleRepository,
+        CategoryRepository $categoryRepository,
+        EventRepository $eventRepository,
+    ): Response {
         $articles = $articleRepository->findBy([], ['date_publication' => 'DESC']);
         $categories = $categoryRepository->findAll();
+        $upcomingEvents = $eventRepository->findUpcoming(5);
 
         return $this->render('events/index.html.twig', [
             'articles' => $articles,
             'categories' => $categories,
+            'upcomingEvents' => $upcomingEvents,
         ]);
     }
 

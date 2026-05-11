@@ -201,7 +201,7 @@
 }
 
 .event-reserve {
-    text-align: center;
+    text-align: left;
     margin-top: 12px;
 }
 
@@ -363,6 +363,274 @@
         background: rgba(0, 0, 0, 0.05);
         color: rgba(0, 0, 0, 0.85);
         border-color: rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* ─────────────────────────────────────────────
+   Section : Prochains événements
+   ───────────────────────────────────────────── */
+
+.upcoming-events {
+    max-width: 800px;
+    margin: 3rem auto 0 auto;
+
+    h2 {
+        background: none;
+        font-family: inherit;
+        font-size: 22px;
+        font-weight: 800;
+        color: $primary-color;
+        letter-spacing: -0.01em;
+        text-transform: none;
+        text-shadow: none;
+        margin: 0 0 18px 0;
+        padding: 0;
+
+        &::after {
+            display: none;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+}
+
+.upcoming-event-card {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 245, 0.9));
+    border: 1px solid rgba(172, 67, 42, 0.18);
+    border-radius: 14px;
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    /* Barre verticale colorée à gauche (une couleur différente par carte) */
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 5px;
+        background: $primary-color;
+    }
+
+    &:nth-child(5n + 1)::before { background: $primary-color; }   /* rouge brand */
+    &:nth-child(5n + 2)::before { background: #15803d; }           /* vert */
+    &:nth-child(5n + 3)::before { background: #d4a017; }           /* doré */
+    &:nth-child(5n + 4)::before { background: #1d4ed8; }           /* bleu */
+    &:nth-child(5n + 5)::before { background: #7c3aed; }           /* violet */
+
+    @media (hover: hover) {
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(172, 67, 42, 0.15);
+            border-color: rgba(172, 67, 42, 0.35);
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid $primary-color;
+        outline-offset: 2px;
+    }
+}
+
+.upcoming-event__header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 18px 14px 26px;
+}
+
+.upcoming-event__image {
+    width: 88px;
+    height: 88px;
+    border-radius: 10px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.04);
+    display: block;
+
+    &--placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: $primary-color;
+        background: rgba(172, 67, 42, 0.10);
+    }
+}
+
+.upcoming-event__day {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.upcoming-event__month {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+.upcoming-event__info {
+    min-width: 0;
+}
+
+.upcoming-event__title {
+    margin: 0 0 4px 0;
+    padding: 0;
+    background: none;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 800;
+    color: $primary-color;
+    letter-spacing: -0.01em;
+    text-shadow: none;
+    text-transform: none;
+    line-height: 1.3;
+
+    &::after {
+        display: none;
+    }
+}
+
+.upcoming-event__meta {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.6);
+    line-height: 1.4;
+}
+
+.upcoming-event__badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    background: rgba(172, 67, 42, 0.10);
+    color: $primary-color;
+
+    &--gala    { background: rgba(22, 163, 74, 0.12);  color: #15803d; }
+    &--photo   { background: rgba(212, 160, 23, 0.15); color: #a87100; }
+    &--salon   { background: rgba(29, 78, 216, 0.10);  color: #1d4ed8; }
+    &--reunion { background: rgba(124, 58, 237, 0.10); color: #7c3aed; }
+}
+
+.upcoming-event__countdown {
+    align-self: start;
+    padding: 6px 12px;
+    background: $primary-color;
+    color: #fff;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Détails dépliables au clic */
+.upcoming-event__details {
+    display: none;
+    padding: 0 18px 18px 26px;
+    border-top: 1px solid rgba(172, 67, 42, 0.15);
+    margin-top: 4px;
+}
+
+.upcoming-event-card.open .upcoming-event__details {
+    display: block;
+    padding-top: 14px;
+}
+
+.upcoming-event__description {
+    margin: 0 0 14px 0;
+    line-height: 1.55;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.75);
+
+    p { margin: 0 0 8px 0; }
+}
+
+.upcoming-event__gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+
+    img {
+        width: 110px;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        cursor: zoom-in;
+    }
+}
+
+.upcoming-event__reserve {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 12px;
+    border: 1px solid $primary-color;
+    background: $primary-color;
+    color: #fff;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        background: #fff;
+        color: $primary-color;
+    }
+}
+
+/* Responsive */
+@media (max-width: 540px) {
+    .upcoming-event__header {
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+        padding: 12px 14px 12px 22px;
+    }
+
+    .upcoming-event__image {
+        width: 64px;
+        height: 64px;
+    }
+
+    .upcoming-event__countdown {
+        grid-column: 2;
+        justify-self: start;
+        margin-top: 4px;
+    }
+
+    .upcoming-event__details {
+        padding: 0 14px 16px 22px;
+    }
+
+    .upcoming-event__gallery img {
+        width: 90px;
+        height: 90px;
     }
 }
 

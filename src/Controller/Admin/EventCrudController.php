@@ -6,6 +6,7 @@ use App\Entity\Event;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -32,6 +33,23 @@ class EventCrudController extends AbstractCrudController
     {
         return [
             TextField::new('title')->setLabel('Titre'),
+
+            TextField::new('location')
+                ->setLabel('Lieu')
+                ->setHelp('Ex: "Rennes, Parc des Expos"'),
+
+            ChoiceField::new('eventType')
+                ->setLabel('Type d\'événement')
+                ->setChoices([
+                    'Élection'  => 'election',
+                    'Gala'      => 'gala',
+                    'Photo / Shooting' => 'photo',
+                    'Salon'     => 'salon',
+                    'Réunion'   => 'reunion',
+                    'Autre'     => 'autre',
+                ])
+                ->setRequired(false)
+                ->setHelp('Détermine la couleur du badge sur la page événements.'),
 
             TextEditorField::new('content')
                 ->setLabel('Contenu')

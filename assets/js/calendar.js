@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadMonthEvents();
 });
 
+window.openReservationModal = openReservationModal;
+
 function openReservationModal(eventId, title, startDate) {
     const modal = document.getElementById('modal');
     const list = document.getElementById('reservationList');
