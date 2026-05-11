@@ -56,14 +56,14 @@
                             {% else %}
                                 <div class="upcoming-event__image upcoming-event__image--placeholder">
                                     <span class="upcoming-event__day">{{ event.start|date('d') }}</span>
-                                    <span class="upcoming-event__month">{{ event.start|date('M')|upper }}</span>
+                                    <span class="upcoming-event__month">{{ event.start|format_date(locale='fr', pattern='MMM')|upper|trim('.') }}</span>
                                 </div>
                             {% endif %}
 
                             <div class="upcoming-event__info">
                                 <h3 class="upcoming-event__title">{{ event.title }}</h3>
                                 <p class="upcoming-event__meta">
-                                    {{ event.start|date('l d M Y')|capitalize }}
+                                    {{ event.start|format_date(locale='fr', pattern='EEEE d MMMM y')|capitalize }}
                                     {% if event.location %} · {{ event.location }}{% endif %}
                                 </p>
                                 {% if event.eventType %}
