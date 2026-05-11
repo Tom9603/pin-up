@@ -48,9 +48,11 @@ final class ContactController extends AbstractController
 
             $data = $form->getData();
 
+            $adminEmails = array_map('trim', explode(',', $_ENV['APP_ADMIN_EMAIL'] ?? 'contact@misspinupbretagne.fr'));
+
             $email = (new Email())
                 ->from($_ENV['APP_FROM_EMAIL'] ?? 'contact@misspinupbretagne.fr')
-                ->to($_ENV['APP_ADMIN_EMAIL'] ?? 'contact@misspinupbretagne.fr')
+                ->to(...$adminEmails)
                 ->replyTo($data['email'])
                 ->subject('Nouveau message de contact')
                 ->html(

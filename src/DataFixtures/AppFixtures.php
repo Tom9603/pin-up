@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $data = [
-            ['email' => 'tom.ochietti@gmail.com', 'password' => 'admin', 'name' => 'Tom'],
+            ['email' => 'contact@misspinupbretagne.fr', 'password' => 'admin', 'name' => 'Admin'],
             ['email' => '', 'password' => 'admin', 'name' => 'admin']
         ];
 

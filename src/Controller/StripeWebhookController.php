@@ -94,8 +94,8 @@ final class StripeWebhookController extends AbstractController
 
         $em->flush();
 
-        $fromEmail = $_ENV['APP_FROM_EMAIL'] ?? 'no-reply@misspinupbretagne.fr';
-        $adminEmail = $_ENV['APP_ADMIN_EMAIL'] ?? 'misspinupbretagne@gmail.com';
+        $fromEmail = $_ENV['APP_FROM_EMAIL'] ?? 'contact@misspinupbretagne.fr';
+        $adminEmails = array_map('trim', explode(',', $_ENV['APP_ADMIN_EMAIL'] ?? 'contact@misspinupbretagne.fr'));
 
         try {
             $mailer->send((new TemplatedEmail())
@@ -114,7 +114,7 @@ final class StripeWebhookController extends AbstractController
         try {
             $mailer->send((new TemplatedEmail())
                 ->from($fromEmail)
-                ->to($adminEmail)
+                ->to(...$adminEmails)
                 ->subject('Nouvelle commande reçue #' . $order->getId())
                 ->htmlTemplate('emails/new_order.html.twig')
                 ->context(['order' => $order]));
