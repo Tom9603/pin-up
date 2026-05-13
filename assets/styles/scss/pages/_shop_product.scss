@@ -25,13 +25,11 @@
         line-height: 1.5;
     }
 
-    /* description */
     > p:first-of-type {
         color: rgba(0, 0, 0, 0.65);
         font-size: 15px;
     }
 
-    /* zone prix */
     .shop-product__price {
         display: inline-flex;
         align-items: baseline;
@@ -56,7 +54,6 @@
         }
     }
 
-    /* indicateur de stock */
     .shop-product__stock {
         display: inline-flex;
         align-items: center;
@@ -71,7 +68,6 @@
         &--out   { color: #b91c1c; }
     }
 
-    /* zone actions */
     .shop-product__actions {
         display: flex;
         gap: 12px;
@@ -173,7 +169,6 @@
     border-radius: 8px;
     display: block;
 }
-
 
 ////////////////////////
 // IMG SHOP IN DETAILS /

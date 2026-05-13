@@ -1,7 +1,3 @@
-/* ─────────────────────────────────────────────
-   Lightbox (zoom image plein écran)
-   ───────────────────────────────────────────── */
-
 .lightbox {
     display: none;
     position: fixed;
@@ -59,7 +55,6 @@
     to   { opacity: 1; }
 }
 
-/* Curseur zoom sur les images cliquables */
 .article-images img,
 .event-thumb,
 .zoomable {

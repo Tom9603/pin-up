@@ -1,7 +1,3 @@
-/* ─────────────────────────────────────────────
-   Contact page
-   ───────────────────────────────────────────── */
-
 .contact-page {
     max-width: 720px;
     margin: 0 auto;
@@ -9,7 +5,6 @@
     flex-direction: column;
     gap: 18px;
 
-    /* Override h1 hidden globally */
     h1 {
         display: block;
         margin: 0 0 6px 0;
@@ -27,7 +22,6 @@
         line-height: 1.5;
     }
 
-    /* Hero illustration */
     .contact-hero {
         display: flex;
         justify-content: center;
@@ -43,7 +37,6 @@
         }
     }
 
-    /* Card */
     .contact-card {
         background: rgba(255, 255, 255, 0.88);
         backdrop-filter: blur(8px);
@@ -55,7 +48,6 @@
         gap: 14px;
     }
 
-    /* Form */
     .contact-form {
         display: flex;
         flex-direction: column;
@@ -69,7 +61,6 @@
         gap: 6px;
     }
 
-    /* Inputs : neutralise les règles globales */
     label {
         all: unset;
         display: block;
@@ -126,7 +117,6 @@
         font-family: inherit;
     }
 
-    /* Bouton submit */
     .contact-btn,
     button[type="submit"] {
         align-self: flex-start;
@@ -162,7 +152,6 @@
         }
     }
 
-    /* Alerts */
     .contact-alert {
         padding: 12px 14px;
         border-radius: 10px;
@@ -183,7 +172,6 @@
         }
     }
 
-    /* Erreurs de champ */
     .contact-error {
         margin: 0;
         padding: 6px 10px;

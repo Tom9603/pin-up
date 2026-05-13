@@ -14,11 +14,9 @@
     <h2 class="space">Calendrier événementiel</h2>
 
     <div class="events-page">
-        {# FullCalendar #}
         <div id="calendar"></div>
     </div>
 
-    {# Modale pour réservations #}
     <div id="modal" class="modal">
         <div class="modal-content">
             <ul id="reservationList"></ul>
@@ -29,7 +27,6 @@
         </div>
     </div>
 
-    {# Section : Prochains événements #}
     {% if upcomingEvents is not empty %}
         <section class="upcoming-events">
             <h2>Prochains événements</h2>
@@ -110,8 +107,6 @@
         </section>
     {% endif %}
 
-    {# Section blog #}
-
     <section class="blog-section">
         <h2>Nos actualités</h2>
         <div class="category-tabs">
@@ -176,7 +171,6 @@
         </div>
     </section>
 
-    {# FullCalendar via CDN #}
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
@@ -186,7 +180,6 @@
         const USERNAME = "{{ app.user ? app.user.name : '' }}";
     </script>
 
-    {# Clic sur la carte → déroule le détail. Clic sur "S'inscrire" → ouvre la modale. #}
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.upcoming-event-card').forEach((card) => {
@@ -225,7 +218,5 @@
             });
         });
     </script>
-
-    {#  <script src="{{ asset('js/calendar.js') }}"></script>#}
 
 {% endblock %}

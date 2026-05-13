@@ -9,16 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const images = ["star1.png", "star2.png"];
     const TOTAL_STARS = 60;
     const ATTEMPTS_PER_STAR = 12;
-    const BUFFER = 16; // marge autour des zones protégées (px)
+    const BUFFER = 28; // marge autour des zones protégées (px)
 
-    // Sélecteurs des éléments à ne pas chevaucher
     const PROTECTED_SELECTOR = [
         'h1', 'h2', 'h3',
         '.shop-title', '.contact-subtitle', '.auth-subtitle',
         '.tab-btn', '.fc-toolbar h2'
     ].join(', ');
 
-    // Récupère les rects des éléments à éviter (en coordonnées document, avec buffer)
     function getProtectedRects() {
         const scrollY = window.scrollY;
         const scrollX = window.scrollX;
@@ -43,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function placeStars() {
-        // Vide les étoiles existantes (en cas de re-run)
         container.innerHTML = '';
 
         const protectedRects = getProtectedRects();
@@ -80,14 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // On attend que les fonts soient chargées (sinon les h2 changent de taille
-    // après coup et les étoiles atterrissent dessus)
     const ready = document.fonts && document.fonts.ready
         ? document.fonts.ready
         : Promise.resolve();
 
     ready.then(() => {
-        // Petit délai pour laisser FullCalendar et autres libs async finir leur rendu
         setTimeout(placeStars, 150);
     });
 });

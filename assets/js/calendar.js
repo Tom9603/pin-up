@@ -109,7 +109,6 @@ function openReservationModal(eventId, title, startDate) {
 
     modal.style.display = 'flex';
 
-    // Réserver
     reserveBtn.onclick = async () => {
         const res = await fetch(`/api/reserve/${eventId}`, { method: 'POST' });
         const data = await res.json();

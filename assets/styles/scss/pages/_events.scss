@@ -1,14 +1,9 @@
-/* ─────────────────────────────────────────────
-   Events page
-   ───────────────────────────────────────────── */
-
 .events-page {
     position: relative;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-/* FullCalendar : on cache la grille, on garde la toolbar */
 #calendar .fc-view-harness,
 #calendar .fc-scrollgrid,
 #calendar .fc-daygrid,
@@ -97,7 +92,6 @@
     }
 }
 
-/* Espacement entre les boutons (la classe fc-button-group existe pour le couple prev/next) */
 .fc-button-group {
     display: inline-flex;
     gap: 8px;
@@ -110,10 +104,6 @@
 .fc-toolbar-chunk:last-child {
     gap: 10px;
 }
-
-/* ─────────────────────────────────────────────
-   Liste d'événements
-   ───────────────────────────────────────────── */
 
 .event-list {
     display: flex;
@@ -235,10 +225,6 @@
         transform: translateY(1px);
     }
 }
-
-/* ─────────────────────────────────────────────
-   Modale
-   ───────────────────────────────────────────── */
 
 .modal {
     display: none;
@@ -366,10 +352,6 @@
     }
 }
 
-/* ─────────────────────────────────────────────
-   Section : Prochains événements
-   ───────────────────────────────────────────── */
-
 .upcoming-events {
     max-width: 800px;
     margin: 3rem auto 0 auto;
@@ -409,7 +391,6 @@
     color: inherit;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 
-    /* Barre verticale colorée à gauche (une couleur différente par carte) */
     &::before {
         content: '';
         position: absolute;
@@ -420,11 +401,11 @@
         background: $primary-color;
     }
 
-    &:nth-child(5n + 1)::before { background: $primary-color; }   /* rouge brand */
-    &:nth-child(5n + 2)::before { background: #15803d; }           /* vert */
-    &:nth-child(5n + 3)::before { background: #d4a017; }           /* doré */
-    &:nth-child(5n + 4)::before { background: #1d4ed8; }           /* bleu */
-    &:nth-child(5n + 5)::before { background: #7c3aed; }           /* violet */
+    &:nth-child(5n + 1)::before { background: $primary-color; }
+    &:nth-child(5n + 2)::before { background: #15803d; }
+    &:nth-child(5n + 3)::before { background: #d4a017; }
+    &:nth-child(5n + 4)::before { background: #1d4ed8; }
+    &:nth-child(5n + 5)::before { background: #7c3aed; }
 
     @media (hover: hover) {
         &:hover {
@@ -542,7 +523,6 @@
     white-space: nowrap;
 }
 
-/* Détails dépliables au clic */
 .upcoming-event__details {
     display: none;
     padding: 0 18px 18px 26px;
@@ -605,7 +585,6 @@
     }
 }
 
-/* Responsive */
 @media (max-width: 540px) {
     .upcoming-event__header {
         grid-template-columns: auto 1fr;
@@ -633,10 +612,6 @@
         height: 90px;
     }
 }
-
-/* ─────────────────────────────────────────────
-   Section Blog
-   ───────────────────────────────────────────── */
 
 .blog-section {
     padding: 0;
@@ -734,7 +709,6 @@
     }
 }
 
-/* Toggle text "Voir plus / Fermer" */
 .toggle-text {
     display: inline-flex;
     align-items: center;
@@ -765,7 +739,6 @@
     content: "Voir plus";
 }
 
-/* Article déroulant */
 .article-card {
     position: relative;
 
@@ -827,7 +800,6 @@
     display: flex;
 }
 
-/* Commentaires */
 .comments {
     h4 {
         margin: 0 0 8px 0;
@@ -936,7 +908,6 @@
     border-radius: 12px;
 }
 
-/* h2 first-of-type override (compat héritée) */
 h2:first-of-type {
     margin-top: 0 !important;
 }

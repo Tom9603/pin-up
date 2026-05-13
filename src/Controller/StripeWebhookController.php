@@ -62,8 +62,6 @@ final class StripeWebhookController extends AbstractController
             $order->setInvoiceNumber($orderRepository->nextInvoiceNumber());
         }
 
-        // Stripe API 2025+ : adresse dans collected_information.shipping_details
-        // Stripe API ancienne : adresse dans shipping_details directement
         $shipping = $session->collected_information->shipping_details
             ?? $session->shipping_details
             ?? null;

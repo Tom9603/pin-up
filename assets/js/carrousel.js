@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (nextBtn) nextBtn.onclick = next;
     if (prevBtn) prevBtn.onclick = prev;
 
-    // ─── Support tactile : swipe gauche/droite ───
     const SWIPE_THRESHOLD = 40;
     let startX = 0;
     let startY = 0;
@@ -45,13 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const dx = x - startX;
         const dy = y - startY;
 
-        // Détermine si le geste est horizontal dès qu'on a bougé d'au moins 10px
         if (!isHorizontal && (Math.abs(dx) > 10 || Math.abs(dy) > 10)) {
             isHorizontal = Math.abs(dx) > Math.abs(dy);
         }
 
         if (isHorizontal) {
-            // Empêche le swipe-back du navigateur quand le geste est clairement horizontal
             if (e.cancelable) e.preventDefault();
             lastX = x;
         }
@@ -75,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         isHorizontal = false;
     });
 
-    // ─── Support souris (desktop) : drag ───
     let mouseDown = false;
     let mouseStartX = 0;
 
@@ -98,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else        prev();
     });
 
-    // ─── Clavier : flèches gauche/droite quand le carrousel est focus ───
     carousel.tabIndex = 0;
     carousel.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') prev();

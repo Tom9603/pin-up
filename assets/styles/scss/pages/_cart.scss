@@ -23,14 +23,12 @@
         color: inherit;
     }
 
-    /* Forms inline pour ne pas casser l'alignement */
     form {
         margin: 0;
         padding: 0;
         display: inline-flex;
     }
 
-    /* Lien "Continuer mes achats" */
     .cart-back {
         display: inline-flex;
         align-items: center;
@@ -57,7 +55,6 @@
         }
     }
 
-    /* Liste des articles */
     .cart-list {
         list-style: none;
         padding: 0;
@@ -131,7 +128,6 @@
         opacity: 1;
     }
 
-    /* Quantité */
     .cart-qty {
         display: inline-flex;
         align-items: center;
@@ -183,7 +179,6 @@
         height: 36px;
     }
 
-    /* Bouton supprimer (compact, ghost-danger) */
     .cart-remove {
         box-sizing: border-box;
         height: 32px;
@@ -218,7 +213,6 @@
         }
     }
 
-    /* Total */
     .cart-total {
         margin: 6px 0 0 0;
         padding-top: 14px;
@@ -236,7 +230,6 @@
         font-weight: 900;
     }
 
-    /* Actions principales */
     .cart-actions {
         margin: 0;
         display: flex;

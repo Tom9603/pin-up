@@ -5,7 +5,6 @@
     flex-direction: column;
     gap: 18px;
 
-    /* Override h1 hidden globally */
     h1 {
         display: block;
         margin: 0 0 18px 0;
@@ -15,7 +14,6 @@
         letter-spacing: -0.01em;
     }
 
-    /* Override h2 Bebas Neue uppercase globally */
     h2 {
         margin: 0 0 14px 0;
         padding: 0;
@@ -39,7 +37,6 @@
         color: inherit;
     }
 
-    /* Inputs : neutralise les règles globales (transform, width 90%, etc.) */
     input[type="text"],
     input[type="email"],
     input[type="password"] {
@@ -79,7 +76,6 @@
         color: rgba(0, 0, 0, 0.7);
     }
 
-    /* Carte */
     .profil-card {
         background: rgba(255, 255, 255, 0.85);
         backdrop-filter: blur(6px);
@@ -97,7 +93,6 @@
         }
     }
 
-    /* Lien retour */
     .profil-back {
         display: inline-flex;
         align-items: center;
@@ -122,7 +117,6 @@
         }
     }
 
-    /* Boutons */
     .profil-btn {
         box-sizing: border-box;
         display: inline-flex;
@@ -177,12 +171,9 @@
         }
     }
 
-    /* Form delete */
     .profil-delete-form {
         margin: 0;
     }
-
-    /* ─────────── Liste des commandes ─────────── */
 
     .orders-list {
         list-style: none;

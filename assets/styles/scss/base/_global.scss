@@ -30,6 +30,15 @@ section[id],
     scroll-margin-top: 13rem;
 }
 
+/* Halo doux derrière les titres pour les rendre lisibles même
+   quand des étoiles décoratives passent juste derrière.
+   Très discret : ressemble à un léger flou de fond. */
+h1, h2 {
+    text-shadow:
+        0 0 8px rgba(255, 250, 240, 0.85),
+        0 0 16px rgba(255, 250, 240, 0.55);
+}
+
 h1 {
     display: none;
 }
@@ -55,6 +64,8 @@ h2 {
     width: 40px;
     height: auto;
     pointer-events: none;
+    opacity: 0.55;
+    filter: blur(0.5px);
 }
 
 main {

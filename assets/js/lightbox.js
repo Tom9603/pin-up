@@ -1,4 +1,3 @@
-// Lightbox léger : clic sur image .zoomable / images d'articles / vignettes events
 (function () {
     let overlay = null;
 
@@ -38,7 +37,6 @@
         if (e.key === 'Escape') close();
     });
 
-    // Délégation : tout clic sur une image zoomable ouvre la lightbox
     document.addEventListener('click', (e) => {
         const img = e.target.closest('.article-images img, .event-thumb, .zoomable');
         if (!img || img.tagName !== 'IMG') return;
