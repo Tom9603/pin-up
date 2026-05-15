@@ -114,7 +114,7 @@ final class ShopController extends AbstractController
         $html = $this->renderView('pdf/invoice.html.twig', ['order' => $order]);
 
         $options = new Options();
-        $options->set('isRemoteEnabled', true);
+        $options->set('isRemoteEnabled', false);
         $options->set('defaultFont', 'Helvetica');
 
         $dompdf = new Dompdf($options);

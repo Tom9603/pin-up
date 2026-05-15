@@ -1,3 +1,11 @@
+function escapeHtml(str) {
+    return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const calendarEl = document.getElementById('calendar');
     if (!calendarEl) return;
@@ -35,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 filtered.forEach(e => {
                     const img = e.extendedProps?.imageUrl
-                        ? `<img src="${e.extendedProps.imageUrl}" class="event-thumb" alt="${e.title}" onerror="this.style.display='none';">`
+                        ? `<img src="${escapeHtml(e.extendedProps.imageUrl)}" class="event-thumb" alt="${escapeHtml(e.title)}" onerror="this.style.display='none';">`
                         : '';
 
                     const card = document.createElement('div');
@@ -44,12 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="event-header">
                             ${img}
                             <div class="event-meta">
-                                <h3 class="event-title">${e.title}</h3>
+                                <h3 class="event-title">${escapeHtml(e.title)}</h3>
                                 <p class="event-date">${e.date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
                             </div>
                         </div>
                         <div class="event-details" style="display:none;">
-                            <p>${e.extendedProps?.content || "Pas de description."}</p>
+                            <p>${escapeHtml(e.extendedProps?.content || "Pas de description.")}</p>
                             <div class="event-reserve">
                                 <button class="reserve-button">S'inscrire à l'événement</button>
                             </div>
@@ -94,7 +102,7 @@ function openReservationModal(eventId, title, startDate) {
 
     list.innerHTML = `
         <li>
-            <h3>${title}</h3>
+            <h3>${escapeHtml(title)}</h3>
             <p><strong>Date :</strong> ${new Date(startDate).toLocaleDateString('fr-FR')}</p>
         </li>
     `;
@@ -103,7 +111,7 @@ function openReservationModal(eventId, title, startDate) {
         .then(r => r.json())
         .then(users => {
             msg.innerHTML = users.length
-                ? `<p><strong>Déjà inscrit(s) :</strong></p><ul>${users.map(u => `<li>${u}</li>`).join('')}</ul>`
+                ? `<p><strong>Déjà inscrit(s) :</strong></p><ul>${users.map(u => `<li>${escapeHtml(u)}</li>`).join('')}</ul>`
                 : `<p>Aucun inscrit pour le moment.</p>`;
         });
 
@@ -116,9 +124,9 @@ function openReservationModal(eventId, title, startDate) {
         if (res.ok && data.success) {
             msg.innerHTML = `<p style='color:green;'>Réservation confirmée</p>`;
             const users = await (await fetch(`/api/event/${eventId}/reservations`)).json();
-            msg.innerHTML += `<p><strong>Liste des inscrits :</strong></p><ul>${users.map(u => `<li>${u}</li>`).join('')}</ul>`;
+            msg.innerHTML += `<p><strong>Liste des inscrits :</strong></p><ul>${users.map(u => `<li>${escapeHtml(u)}</li>`).join('')}</ul>`;
         } else {
-            msg.innerHTML = `<p style='color:red;'>${data.error || "Erreur lors de la réservation"}</p>`;
+            msg.innerHTML = `<p style='color:red;'>${escapeHtml(data.error || "Erreur lors de la réservation")}</p>`;
         }
     };
 
@@ -130,10 +138,10 @@ function openReservationModal(eventId, title, startDate) {
             msg.innerHTML = `<p style='color:red;'>Réservation annulée</p>`;
             const users = await (await fetch(`/api/event/${eventId}/reservations`)).json();
             msg.innerHTML += users.length
-                ? `<p><strong>Liste restante :</strong></p><ul>${users.map(u => `<li>${u}</li>`).join('')}</ul>`
+                ? `<p><strong>Liste restante :</strong></p><ul>${users.map(u => `<li>${escapeHtml(u)}</li>`).join('')}</ul>`
                 : `<p>Aucun inscrit pour le moment.</p>`;
         } else {
-            msg.innerHTML = `<p style='color:red;'>${data.error || "Vous n'avez fait aucune réservation"}</p>`;
+            msg.innerHTML = `<p style='color:red;'>${escapeHtml(data.error || "Vous n'avez fait aucune réservation")}</p>`;
         }
     };
 

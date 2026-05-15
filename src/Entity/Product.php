@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Attribute as Vich;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -28,6 +29,12 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageName = null;
 
+    #[Assert\File(
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
+        mimeTypesMessage: 'Seuls les formats JPEG, PNG, WebP et GIF sont acceptés.',
+        maxSize: '5M',
+        maxSizeMessage: 'L\'image ne doit pas dépasser 5 Mo.'
+    )]
     #[Vich\UploadableField(mapping: 'article_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 

@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Symfony\Component\Validator\Constraints\File;
 
 class ImageCrudController extends AbstractCrudController
 {
@@ -25,6 +26,13 @@ class ImageCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/media')
                 ->setBasePath('uploads/media')
                 ->setUploadedFileNamePattern('[timestamp]-[slug].[extension]')
+                ->setFormTypeOption('constraints', [
+                    new File(
+                        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
+                        mimeTypesMessage: 'Seuls les formats JPEG, PNG, WebP et GIF sont acceptés.',
+                        maxSize: '5M'
+                    )
+                ])
                 ->setFormTypeOption('attr', [
                     'onchange' => "const w=this.closest('.form-widget'); const img=w && w.querySelector('.image-preview'); if(img && this.files[0]){img.src=window.URL.createObjectURL(this.files[0]); img.style.display='block';}"
                 ])

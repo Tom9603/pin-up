@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Media;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use Symfony\Component\Validator\Constraints\File;
 
 class MediaCrudController extends AbstractCrudController
 {
@@ -22,6 +23,13 @@ class MediaCrudController extends AbstractCrudController
                 ->setBasePath('media/')
                 ->setUploadedFileNamePattern('[timestamp]-[slug].[extension]')
                 ->setRequired(false)
+                ->setFormTypeOption('constraints', [
+                    new File(
+                        mimeTypes: ['image/jpeg', 'image/png', 'image/webp', 'image/gif'],
+                        mimeTypesMessage: 'Seuls les formats JPEG, PNG, WebP et GIF sont acceptés.',
+                        maxSize: '5M'
+                    )
+                ])
                 ->setFormTypeOption('attr', [
                     'onchange' => "const w=this.closest('.form-widget'); const img=w && w.querySelector('.image-preview'); if(img && this.files[0]){img.src=window.URL.createObjectURL(this.files[0]); img.style.display='block';}"
                 ])
