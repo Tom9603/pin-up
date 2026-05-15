@@ -41,7 +41,7 @@
 
             {% if app.user %}
                 <div class="auth-alert auth-alert--info">
-                    Vous êtes connecté en tant que <strong>{{ app.user.userIdentifier }}</strong>.
+                    Vous êtes connecté en tant que <strong>{{ app.user.userIdentifier }}</strong>
                     <a class="auth-link" href="{{ path('app_logout') }}">Se déconnecter</a>
                 </div>
             {% endif %}
